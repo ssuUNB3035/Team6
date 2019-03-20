@@ -68,7 +68,7 @@ public class TranscriptReader{
 	            if(!line.isEmpty()) {
 	            	gradeElements = getGradeElements(line);
 	            	CourseList.addCourse(gradeElements);
-	            	tempTranscript.addGrade(1);             
+	            	tempTranscript.addGrade(gradeElements);             
 	            }
 	        }
 	        transcriptList.add(tempTranscript);

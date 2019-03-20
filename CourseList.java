@@ -14,7 +14,7 @@ class CourseList {
 	public static ArrayList<String> courseNumbers = new ArrayList<String>();
 
 	
-	public static Course addCourse(ArrayList<String> gradeElements){
+	public static ArrayList<String> addCourse(ArrayList<String> gradeElements){
 		Course course = null;
 		//if course does not exist in the list.
 		if(!courseNumbers.contains(gradeElements.get(0))) {	
@@ -24,11 +24,11 @@ class CourseList {
 			courseNumbers.add(gradeElements.get(0));
 		}else {
 			int existingCourseNumberPosition = courseNumbers.indexOf(gradeElements.get(0));
-			course = courseList.get(existingCourseNumberPosition);//.setGrade(gradeElements.get(3));
+			course = courseList.get(existingCourseNumberPosition);
 			course.setGrade(gradeElements.get(3));
 		} 
 		
-		return course;
+		return gradeElements;
 	}
 	
 	public static ArrayList<Course> getCourseList(){
