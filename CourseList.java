@@ -10,28 +10,39 @@ import java.util.ArrayList;
 
 class CourseList {
 	
-	private static ArrayList<String> courseList = new ArrayList<String>();
+	public static ArrayList<Course> courseList = new ArrayList<Course>();
+	public static ArrayList<String> courseNumbers = new ArrayList<String>();
+
 	
-	static boolean addCourse(String courseNum, String letterGrade){
-		
+	public static Course addCourse(ArrayList<String> gradeElements){
+		Course course = null;
 		//if course does not exist in the list.
-		if(!courseList.contains(courseNum)) {	
+		if(!courseNumbers.contains(gradeElements.get(0))) {	
 			//TODO:should we check for co-ops?
-			courseList.add(courseNum);
+			course = new Course(gradeElements);
+			courseList.add(course);
+			courseNumbers.add(gradeElements.get(0));
 		}else {
-			//increment one of the marginal, fails, exceeds, etc
+			int existingCourseNumberPosition = courseNumbers.indexOf(gradeElements.get(0));
+			course = courseList.get(existingCourseNumberPosition);//.setGrade(gradeElements.get(3));
+			course.setGrade(gradeElements.get(3));
 		} 
 		
-		return true;
+		return course;
+	}
+	
+	public static ArrayList<Course> getCourseList(){
+		return courseList;
 	}
 	
 	public static String printRawList() {
 		courseList.sort(null);
 		
-		String template = "Raw course list: \n";
-		for(String course : CourseList.courseList) {
-			template += course + "\n";
+		String template = "Raw course List: \n";
+		for(Course course : CourseList.courseList) {
+				template += course.toString();
 		}
 		return template;
+		
 	}
 }

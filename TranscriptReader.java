@@ -37,46 +37,45 @@ public class TranscriptReader{
 		//File dir = new File("src/" + args[0]);
 		//File dir = parse the config file
         File dir = new File("src/transcripts");
-        System.out.println("Opening the folder: " + dir.getAbsolutePath());
         return dir;
 	}
 	
 	//TODO: Add error handling/ boolean response
 	//TODO: analyze if the iteration of transcripts should be in seperate method and the transcript line-by-line reading should be alone too??
-		public static boolean parseTranscripts(File[] transcriptSet) {
-			ArrayList<String> gradeElements = new ArrayList<String>(ELEM_SIZE);
-			ArrayList<Transcript> transcriptList = new ArrayList<Transcript>();
-	        Scanner sc = null;
+	public static boolean parseTranscripts(File[] transcriptSet) {
+		ArrayList<String> gradeElements = new ArrayList<String>(ELEM_SIZE);
+		ArrayList<Transcript> transcriptList = new ArrayList<Transcript>();
+	    Scanner sc = null;
 	        
-			for (File transcript : transcriptSet) {
+		for (File transcript : transcriptSet) {
 				
-	    		try{
-	                sc = new Scanner(transcript);
-	            }catch(FileNotFoundException f){
-	            	f.printStackTrace();
-	                System.out.println("Error opening file, skipping: " + transcript.getName());
-	            }
+	    	try{
+	    		sc = new Scanner(transcript);
+	    	}catch(FileNotFoundException f){
+	    		f.printStackTrace();
+	            System.out.println("Error opening file, skipping: " + transcript.getName());
+	        }
 	    		
-	    		//TODO: analyze line. Transcript may not be useful. Although we do need
-	    		//		to check the entire transcript to determine the year of the student.
-	    		Transcript tempTranscript = new Transcript(getDirectory().getName());
+	    	//TODO: analyze line. Transcript may not be useful. Although we do need
+	    	//		to check the entire transcript to determine the year of the student.
+	    	Transcript tempTranscript = new Transcript(getDirectory().getName());
 	    		
-	    		//read every line
-	            while(sc.hasNext()){
-	                String line = sc.nextLine();
-	                line = line.trim();
+	    	//read every line
+	        while(sc.hasNext()){
+	        	String line = sc.nextLine();
+	            line = line.trim();
 	                
-	                if(!line.isEmpty()) {
-	                	gradeElements = getGradeElements(line);
-		                Course course = new Course(gradeElements);
-		                tempTranscript.addCourse(course);             
-	                }
+	            if(!line.isEmpty()) {
+	            	gradeElements = getGradeElements(line);
+	            	CourseList.addCourse(gradeElements);
+	            	tempTranscript.addGrade(1);             
 	            }
-	            transcriptList.add(tempTranscript);
-	            System.out.println(tempTranscript.toString());    
-	    	}
-			return true;	
-		}
+	        }
+	        transcriptList.add(tempTranscript);
+	        System.out.println(tempTranscript.toString());    
+		}	
+		return true;	
+	}
 	
 	public static ArrayList<String> getGradeElements(String line){
 		ArrayList<String> elementSet = new ArrayList<String>(ELEM_SIZE);
