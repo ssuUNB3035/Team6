@@ -15,7 +15,9 @@ public class TranscriptReader{
 	//TODO: Move this to the gui once it's ready
     public static void main(String args[]){
         
-        File directory = getDirectory();
+        File directory = null;
+		directory = getDirectory();
+		
         File[] transcriptSet = directory.listFiles();
         System.out.println("Transcript count:" + transcriptSet.length);
         
@@ -32,11 +34,21 @@ public class TranscriptReader{
     
 	
 	//TODO: in the future, have the GUI able to change the path in the config file.
-	//TODO: add the config file in the package and have this method read from it.
-	public static File getDirectory() {
-		//File dir = new File("src/" + args[0]);
-		//File dir = parse the config file
-        File dir = new File("src/transcripts");
+	public static File getDirectory(){
+		File path = new File("src/config.txt");
+		File dir = null;
+		Scanner sc = null;
+		
+		try {
+			sc = new Scanner(path);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		String directoryPath;
+		directoryPath = sc.nextLine();
+		dir = new File(directoryPath);
+		
         return dir;
 	}
 	
@@ -56,11 +68,8 @@ public class TranscriptReader{
 	            System.out.println("Error opening file, skipping: " + transcript.getName());
 	        }
 	    		
-	    	//TODO: analyze line. Transcript may not be useful. Although we do need
-	    	//		to check the entire transcript to determine the year of the student.
 	    	Transcript tempTranscript = new Transcript(getDirectory().getName());
 	    		
-	    	//read every line
 	        while(sc.hasNext()){
 	        	String line = sc.nextLine();
 	            line = line.trim();
@@ -71,8 +80,10 @@ public class TranscriptReader{
 	            	tempTranscript.addGrade(gradeElements);             
 	            }
 	        }
+	        
 	        transcriptList.add(tempTranscript);
 	        System.out.println(tempTranscript.toString());    
+	        
 		}	
 		return true;	
 	}

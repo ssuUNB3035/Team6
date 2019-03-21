@@ -6,31 +6,36 @@ import java.util.ArrayList;
 
 public class Transcript {
 	
+	private static int transcriptCount = 1;
 	
-	//static to make the class variable increment?
 	private int transcriptID;
 	
 	private String cohortName;
 	
-	private double attemptedCreditHours;
+	private double creditHours;
+	
+	private ArrayList<String> grades;
 	
 	public Transcript(String cohort){
-		//TODO:increment transcript ID
-		this.transcriptID = 1;//filler
+		this.transcriptID = transcriptCount++;
 		this.cohortName = cohort;
+		this.creditHours = 0.00;
+		this.grades = new ArrayList<String>();
 	}
 	
-	//TODO: take the grade and credit hours and update gp every time  grade is added to this temp transcript. 
+	//TODO: take the grade and credit hours and update GPA every time a grade is added to this temp transcript. 
 	public boolean addGrade(ArrayList<String> gradeElements) {
-		attemptedCreditHours += Double.parseDouble(gradeElements.get(4));
+		creditHours += Double.parseDouble(gradeElements.get(4));
+		grades.add(gradeElements.toString());
 		return true;
 	}
 	
 	public String toString() {
-		String template = "Cohort: " + this.cohortName + ", Transcript: " + this.transcriptID;
-		template += "\nEnter transcript details here even though we never need to print htem in \n"
-				+ "Credit Hours: " + attemptedCreditHours + "\n";
-		return template;
+		String template = "Cohort: " + this.cohortName + ", Transcript: " + this.transcriptID + "\n";
+		for(String grade : grades) {
+			template += grade + "\n";
+		}
+		return template += "Credit Hours: " + creditHours + "\n";
 	}
 	
 }

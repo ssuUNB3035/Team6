@@ -9,7 +9,10 @@ public class Course implements Comparable<Course>{
 	private String courseNum;
 	
 	private String creditHours;
-	
+
+	private String courseName;
+
+	//TODO: set these to a raw distribution class. 
 	private int other;
 	
 	private int fails;
@@ -21,12 +24,13 @@ public class Course implements Comparable<Course>{
 	private int exceeds;
 	
 	
-	//TODO: Is this if a student had retaken a course? because equivalences aren't accounted for here I think?
+	//TODO: Is this if a student had retaken a course? because equivalences aren't checked here I think?
 	//private String replaces = "";
 
 	//NOTE: yes keep the array of all the information so that we can do something with it if ever we need to. 
 	public Course(ArrayList<String> courseElements) {
 		this.courseNum = courseElements.get(0);
+		this.courseName = courseElements.get(2);
 		setGrade(courseElements.get(3));
 		this.creditHours = courseElements.get(4);
 	}
@@ -58,12 +62,16 @@ public class Course implements Comparable<Course>{
 		return true;
 	}
 	
-	public String getCreditHous() {
+	public String getCreditHours() {
 		return this.creditHours;
 	}
 	
 	public String getCourseNum() {
 		return this.courseNum;
+	}
+	
+	public String getCourseName() {
+		return this.courseName;
 	}
 	
 	@Override
@@ -77,12 +85,12 @@ public class Course implements Comparable<Course>{
 	}
 
 	public String toString() {
-		String template = this.courseNum + ", \t"
-				+ " Other:" + this.other
-				+ " Fails:" + this.fails
-				+ " Marginal:" + this.marginal
-				+ " Meets:" + this.meets
-				+ " Exceeds:" + this.exceeds + "\n";
+		String template = this.courseNum + ": \t"
+				+ "\t  " + this.other
+				+ "\t  " + this.fails
+				+ "\t  " + this.marginal
+				+ "\t  " + this.meets
+				+ "\t  " + this.exceeds + "\n";
 		
 		return template;
 	}
