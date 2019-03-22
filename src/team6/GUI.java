@@ -1,6 +1,8 @@
 package team6;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.*;
 
@@ -29,6 +31,17 @@ public class GUI {
 
 	        //TODO: apache hook to print the CourseList into excel
 	        System.out.println(CourseList.printRawList());
+	        
+	        
+	        try {
+				ExcelWriter.writeToExcel(CourseList.getCourseList());
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	    }
 	   
 	    
