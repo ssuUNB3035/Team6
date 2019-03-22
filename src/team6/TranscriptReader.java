@@ -12,23 +12,6 @@ import java.io.FileNotFoundException;
 public class TranscriptReader{
 	
 	final static int ELEM_SIZE = 6;
-	
-	//TODO: Move this to the gui once it's ready
-    public static void main(String args[]){
-        
-        File directory = null;
-		directory = getDirectory();
-		
-        File[] transcriptSet = directory.listFiles();
-        System.out.println("Transcript count:" + transcriptSet.length);
-        
-        //TODO:Press parse button on GUI. Should keep it simple on the gui for now
-        //on button press: TranscriptReader.parseTranscripts(transcriptSet);
-        parseTranscripts(transcriptSet);
-
-        //TODO: apache hook to print the CourseList into excel
-        System.out.println(CourseList.printRawList());
-    }
    
     
 	//TODO: in the future, have the GUI able to change the path in the config file.
