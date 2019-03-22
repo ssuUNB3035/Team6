@@ -1,1 +1,1 @@
-src/transcripts
+transcripts/

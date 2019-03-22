@@ -1,3 +1,4 @@
+package team6;
 /**
  * @author: Ryan Nitz
  */
@@ -28,14 +29,11 @@ public class TranscriptReader{
         //TODO: apache hook to print the CourseList into excel
         System.out.println(CourseList.printRawList());
     }
+   
     
-    
-    
-    
-	
 	//TODO: in the future, have the GUI able to change the path in the config file.
 	public static File getDirectory(){
-		File path = new File("src/config.txt");
+		File path = new File("config.txt");
 		File dir = null;
 		Scanner sc = null;
 		
