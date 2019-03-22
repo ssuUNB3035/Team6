@@ -19,20 +19,21 @@ public class GUI {
 	       
 	       
 	       
-	       
+	       	//just threw my min method code in here to have the system run. 
+	       	//TODO: couple this all with gui elements
 	       	File directory = null;
 			directory = TranscriptReader.getDirectory();
 			
 	        File[] transcriptSet = directory.listFiles();
 	        System.out.println("Transcript count:" + transcriptSet.length);
-	        //TODO:Press parse button on GUI. Should keep it simple on the gui for now
-	        //on button press: TranscriptReader.parseTranscripts(transcriptSet);
 	        TranscriptReader.parseTranscripts(transcriptSet);
 
-	        //TODO: apache hook to print the CourseList into excel
+	        //prints to console
 	        System.out.println(CourseList.printRawList());
 	        
+	        //TODO: add option to print to file
 	        
+	        //prints to excel
 	        try {
 				ExcelWriter.writeToExcel(CourseList.getCourseList());
 			} catch (FileNotFoundException e) {
