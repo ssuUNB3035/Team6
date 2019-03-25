@@ -1,8 +1,4 @@
 package team6;
-<<<<<<< HEAD
-
-=======
->>>>>>> be98c5314b46fd8f16b385620c30d3cae8bebc33
 /**
  * @author Uwera Ntaganzwa
  */
@@ -62,10 +58,8 @@ public class GUI extends JFrame implements ActionListener {
 	         if(event.equals("Write Raw List to Excel")){
 	        	  
 	        	  sortedList = CourseList.getCourseList();
-<<<<<<< HEAD
-=======
+
 	        	  sortedList.sort(null);
->>>>>>> be98c5314b46fd8f16b385620c30d3cae8bebc33
 	        	  try {
 					ExcelWriter.writeToExcel(sortedList);
 					message2.setText("A Raw List spreadsheet has been created.");
