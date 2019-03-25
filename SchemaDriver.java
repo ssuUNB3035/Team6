@@ -1,18 +1,16 @@
-import java.util.Scanner;
+import java.io.*;
 
 public class SchemaDriver {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        char[] mark = new char[4];
-        for(int i=0; i<4; i++) {
-            mark[i] = input.next().charAt(0);
-        }
+	    File gradeDirectory = null;
+        gradeDirectory = LevelSchema.getDirectory();
+        LevelSchema.setMargins(gradeDirectory + "");        
 
-        LevelSchema makeGrades = new LevelSchema(mark);
+        System.out.println("\nFailing grade: " + LevelSchema.getMargin(0));
+        System.out.println("Marginal grade: " + LevelSchema.getMargin(1));
+        System.out.println("Passing grade: " + LevelSchema.getMargin(2));
+        System.out.println("Exceptional grade: " + LevelSchema.getMargin(3));
+        System.out.println("Other: " + LevelSchema.getOther());
 
-        System.out.println("Failing grade: " + makeGrades.getFail());
-        System.out.println("Marginal grade: " + makeGrades.getMarginal());
-        System.out.println("Passing grade: " + makeGrades.getMeet());
-        System.out.println("Exceptional grade: " + makeGrades.getExceed());
     }
 }
