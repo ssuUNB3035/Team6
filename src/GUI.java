@@ -1,45 +1,59 @@
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.event.ActionEvent;
+/**
+ * @author Uwera Ntaganzwa
+ */
+import javax.swing.*; 
+import java.awt.event.*;
 import java.io.File;
 
-import javax.swing.*;
+import javax.swing.filechooser.*;
 
-public class GUI {
-		private String fileID;
-		private static JTextField txtfield;
-		private static JButton uploadButton;
-		private JFileChooser chooser;
-		
+public class GUI extends JFrame implements ActionListener {
+		private static JLabel message;
+		GUI(){}
 	    public static void main(String args[]){
 	       JFrame frame = new JFrame("Student Transcript Analyser");
 	       JPanel panel = new JPanel();
-	       frame.setSize(750,500);
+	       frame.setSize(450,450);
 	       frame.add(panel);
-	       txtfield = new JTextField(30);
-	       uploadButton = new JButton("Upload Transcript");
-	       uploadButton.setBounds(50, 150, 100, 30);
-	       panel.add(txtfield);
+
+	       
+	       JButton uploadButton = new JButton("Add Transcripts");
+	       uploadButton.setBounds(50, 200, 150, 30);
 	       panel.add(uploadButton);
+	       message = new JLabel("No files chosen.");
+	       panel.add(message);
+	       
+	       GUI fileChooser = new GUI();
+	       uploadButton.addActionListener(fileChooser);
+	       
 	       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	       frame.setVisible(true);
-	    }
+	       }
 	    
 	    public void actionPerformed(ActionEvent e){
-	        if (e.getSource() == uploadButton){  
-	        	//TO ADD: CONFIGURATION PATH FROM Transcript Reader?
-	        }
-	        	/*
-	        	 * Possible Implementation.
-	            chooser = new JFileChooser(new File(System.getProperty("User/uwesh"))); //Downloads Directory as default
-	            chooser.setDialogTitle("Select Location");
-	            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-	            chooser.setAcceptAllFileFilterUsed(false);
+	    	 String event = e.getActionCommand();  
+	         if (event.equals("Add Transcripts")) {
+	        	 /**
+	             JFileChooser chooser = new JFileChooser();
+	             chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+	             int result = chooser.showOpenDialog(null); 
 
-				if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){ 
-	                fileID = chooser.getSelectedFile().getPath();
-	                txtfield.setText(fileID);
-	            }
-	        }*/
+	             if (result == JFileChooser.APPROVE_OPTION){ 
+	                File directory = null;
+	                directory = chooser.getSelectedFile();
+	     			//directory = TranscriptReader.getDirectory();
+	     			
+	            	File[] transcriptSet = directory.listFiles();
+	            	message.setText("Transcript count: " + transcriptSet.length);
+	     	        System.out.println("Transcript count: " + transcriptSet.length);
+	     	        TranscriptReader.parseTranscripts(transcriptSet);
+
+	     	        //prints to console
+	     	        System.out.println(CourseList.printRawList());
+	             } 
+
+	             else
+	                 message.setText("No transcripts added");*/
+	         } 
 	    }
 }
