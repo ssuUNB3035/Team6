@@ -56,7 +56,7 @@ public class ExcelWriter {
 	}
 	
 	public static void writeToExcel(ArrayList<Course> sortedList, String fileName) throws FileNotFoundException, IOException {
-		findFile("fileName");
+		findFile(fileName);
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet("Raw List");
 		HSSFRow row = sheet.createRow(0);
