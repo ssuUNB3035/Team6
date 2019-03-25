@@ -35,10 +35,12 @@ public class ExcelWriter {
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet("Raw List");
 		HSSFRow row = sheet.createRow(0);
-		HSSFCell courseNum = row.createCell(0);
-		HSSFCell courseName = row.createCell(1);
-		courseNum.setCellValue("Course Number");
-		courseName.setCellValue("Course Name");
+		
+		String columnHeaders[] = {"Course Number", "Course Name", "Others", "Fails", "Marginala","Meets", "Exceeds"};
+		for(int c = 0; c < columnHeaders.length; c++) {
+			HSSFCell cell = row.createCell(c);
+			cell.setCellValue(columnHeaders[c]);
+		}
 		
 		int n = 0, m = 0;
 		//Is it possible to replace this with a row iterator even though the for-each loop works fine?
@@ -61,10 +63,6 @@ public class ExcelWriter {
 			marginalsCell.setCellValue(courseIn.getMarginalsCount());
 			meetsCell.setCellValue(courseIn.getMeetsCount());
 			exceedsCell.setCellValue(courseIn.getExceedsCount());
-			HSSFCell cell = nextRow.createCell(m);
-			HSSFCell nextCell = nextRow.createCell(m+1);
-			cell.setCellValue(courseIn.getCourseNum());
-			nextCell.setCellValue(courseIn.getCourseName());
 		}
 		
 		workbook.write(new FileOutputStream("RawList.xsl"));
