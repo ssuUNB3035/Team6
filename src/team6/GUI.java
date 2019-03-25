@@ -1,3 +1,4 @@
+package team6;
 /**
  * @author Uwera Ntaganzwa
  */
