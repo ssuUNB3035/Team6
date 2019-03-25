@@ -1,49 +1,60 @@
 package team6;
-
+/**
+ * @author Uwera Ntaganzwa
+ */
+import javax.swing.*; 
+import java.awt.event.*;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
-import javax.swing.*;
+import javax.swing.filechooser.*;
 
-public class GUI {
-
+public class GUI extends JFrame implements ActionListener {
+		private static JLabel message;
+		GUI(){}
 	    public static void main(String args[]){
 	       JFrame frame = new JFrame("Student Transcript Analyser");
-	       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	       frame.setSize(750,500);
-	       JButton uploadButton = new JButton("Upload Transcript");
-	       uploadButton.setBounds(50, 150, 100, 30);
-	       frame.add(uploadButton);
-	       frame.setVisible(true);
-	       
-	       
-	       
-	       	//just threw my min method code in here to have the system run. 
-	       	//TODO: couple this all with gui elements
-	       	File directory = null;
-			directory = TranscriptReader.getDirectory();
-			
-	        File[] transcriptSet = directory.listFiles();
-	        System.out.println("Transcript count:" + transcriptSet.length);
-	        TranscriptReader.parseTranscripts(transcriptSet);
+	       JPanel panel = new JPanel();
+	       frame.setSize(450,450);
+	       frame.add(panel);
 
-	        //prints to console
-	        System.out.println(CourseList.printRawList());
-	        
-	        //TODO: add option to print to file
-	        
-	        //prints to excel
-	        try {
-				ExcelWriter.writeToExcel(CourseList.getCourseList());
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	    }
-	   
+	       
+	       JButton uploadButton = new JButton("Add Transcripts");
+	       uploadButton.setBounds(50, 200, 150, 30);
+	       panel.add(uploadButton);
+	       message = new JLabel("No files chosen.");
+	       panel.add(message);
+	       
+	       GUI fileChooser = new GUI();
+	       uploadButton.addActionListener(fileChooser);
+	       
+	       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	       frame.setVisible(true);
+	       }
 	    
+	    public void actionPerformed(ActionEvent e){
+	    	 String event = e.getActionCommand();  
+	         if (event.equals("Add Transcripts")) {
+	        	 /**
+	             JFileChooser chooser = new JFileChooser();
+	             chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+	             int result = chooser.showOpenDialog(null); 
+
+	             if (result == JFileChooser.APPROVE_OPTION){ 
+	                File directory = null;
+	                directory = chooser.getSelectedFile();
+	     			//directory = TranscriptReader.getDirectory();
+	     			
+	            	File[] transcriptSet = directory.listFiles();
+	            	message.setText("Transcript count: " + transcriptSet.length);
+	     	        System.out.println("Transcript count: " + transcriptSet.length);
+	     	        TranscriptReader.parseTranscripts(transcriptSet);
+
+	     	        //prints to console
+	     	        System.out.println(CourseList.printRawList());
+	             } 
+
+	             else
+	                 message.setText("No transcripts added");*/
+	         } 
+	    }
 }
