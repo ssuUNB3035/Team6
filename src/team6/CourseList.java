@@ -43,6 +43,7 @@ class CourseList {
 	 * @return The Raw course List
 	 */
 	public static ArrayList<Course> getCourseList(){
+		courseList.sort(null);
 		return courseList;
 	}
 	

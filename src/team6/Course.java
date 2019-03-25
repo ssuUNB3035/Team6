@@ -14,11 +14,11 @@ public class Course implements Comparable<Course>{
 	private String courseName;
 
 	//TODO: set these to a raw distribution class. 
-	private int other;
+	private int others;
 	
 	private int fails;
 	
-	private int marginal;
+	private int marginals;
 	
 	private int meets;
 	
@@ -39,8 +39,8 @@ public class Course implements Comparable<Course>{
 	
 	//TODO: set the default or use the custom ach. schema
 	boolean setGrade(String grade) {
-		
 		grade = grade.replace("-", "").replace("+","");
+		
 		switch(grade) {
 			case "A":
 				this.exceeds++;
@@ -49,7 +49,7 @@ public class Course implements Comparable<Course>{
 				this.meets++;
 				break;
 			case "C":
-				this.marginal++;
+				this.marginals++;
 				break;
 			case "D":
 				this.fails++;
@@ -58,7 +58,7 @@ public class Course implements Comparable<Course>{
 				this.fails++;
 				break;
 			default:
-				this.other++;
+				this.others++;
 		}
 		return true;
 	}
@@ -75,6 +75,26 @@ public class Course implements Comparable<Course>{
 		return this.courseName;
 	}
 	
+	public int getOthersCount() {
+		return this.others;
+	}
+	
+	public int getFailsCount() {
+		return this.fails;
+	}
+	
+	public int getMarginalsCount() {
+		return this.marginals;
+	}
+	
+	public int getMeetsCount() {
+		return this.meets;
+	}
+	
+	public int getExceedsCount() {
+		return this.exceeds;
+	}
+	
 	@Override
 	public int compareTo(Course other) {
 		if(this.courseNum.compareTo(other.courseNum) > 1) {
@@ -87,9 +107,9 @@ public class Course implements Comparable<Course>{
 
 	public String toString() {
 		String template = this.courseNum + ": \t"
-				+ "\t  " + this.other
+				+ "\t  " + this.others
 				+ "\t  " + this.fails
-				+ "\t  " + this.marginal
+				+ "\t  " + this.marginals
 				+ "\t  " + this.meets
 				+ "\t  " + this.exceeds + "\n";
 		
