@@ -47,10 +47,9 @@ public class GUI extends JFrame implements ActionListener {
 	             directory = TranscriptReader.getDirectory();
 	     			
 	             File[] transcriptSet = directory.listFiles();
-	             message.setText("Transcript count: " + transcriptSet.length);
 	     	     System.out.println("Transcript count: " + transcriptSet.length);
 	     	     TranscriptReader.parseTranscripts(transcriptSet);
-	     	     message.setText("Transcripts have been successfully parsed."); //might need a better statement.
+		     message.setText(transcriptSet.length + " transcripts successfully parsed."); //might need a better statement.
 
 	     	        //prints to console
 	     	     System.out.println(CourseList.printRawList());
