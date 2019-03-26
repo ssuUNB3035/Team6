@@ -10,7 +10,7 @@ public class SchemaDriver {
         System.out.println("Marginal grade: " + LevelSchema.getMargin(1));
         System.out.println("Passing grade: " + LevelSchema.getMargin(2));
         System.out.println("Exceptional grade: " + LevelSchema.getMargin(3));
-        System.out.println("Other: " + LevelSchema.getOther());
+        System.out.println("Other: " + LevelSchema.getMargin(4));
 
     }
 }
