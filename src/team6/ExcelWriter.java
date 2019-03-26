@@ -32,7 +32,7 @@ public class ExcelWriter {
 	
 		
 	public static void writeRawList(ArrayList<Course> sortedList) throws FileNotFoundException, IOException {
-		findFile("RawList.xsl");
+		findFile("Results.xsl");
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet("Raw List");
 		HSSFRow row = sheet.createRow(0);
@@ -60,7 +60,7 @@ public class ExcelWriter {
 			}
 		}
 		
-		workbook.write(new FileOutputStream("RawList.xsl"));
+		workbook.write(new FileOutputStream("Results.xsl"));
 		workbook.close();
 		//System.out.println("Courses have been successfully copied to the Raw List sheet.");
 	}
@@ -72,7 +72,9 @@ public class ExcelWriter {
 		
 		HSSFRow row = sheet.createRow(0);
 		
-		String columnHeaders[] = {"Course Number", "Course Name", "Others", "Fails", "Marginals","Meets", "Exceeds"};
+
+		String columnHeaders[] = {"Course Number", "Course Name", "Others", "Fails", "Marginal","Meets", "Exceeds"};
+
 		for(int c = 0; c < columnHeaders.length; c++) {
 			HSSFCell cell = row.createCell(c);
 			cell.setCellValue(columnHeaders[c]);
