@@ -3,56 +3,68 @@ package team6;
 /**
  * @author Keith LeBlanc 3575020
  */
+import java.io.*;
+import java.util.Scanner;
+
 public class LevelSchema {
-    private char failGrade, marginalGrade, meetGrade, exceedGrade;
-    
-    //TODO: pass in default bounds from config files
+   private static final int GRADELIST = 5;
+   private static String[] margins = new String[GRADELIST];
 
-    private char failDefault = 'F';
-    private char marginalDefault = 'D';
-    private char meetDefault = 'C';
-    private char exceedDefault = 'A';
+/**
+* @return dir The path of the config file
+*/
+   public static File getDirectory(){
+       File path = new File("marginsConfig.txt");
+       File dir = null;
+       Scanner sc = null;        
+       
+       try {
+           sc = new Scanner(path);
+       } catch (FileNotFoundException e) {
+           e.printStackTrace();
+       }
+       
+       String directoryPath;
+       directoryPath = sc.nextLine();
+       dir = new File(directoryPath);
+       
+       return dir;
+   }
 
-    private String other;
+/**
+* @param gradesSet The list of grades in the form of a string
+*/
+   public static void setMargins(String gradesSet) {
+       gradesSet.trim();
+       int i=0;
 
-    public LevelSchema(char[] gradeBounds) {
-        this.failGrade = gradeBounds[0] == '\u0000' ? failDefault : gradeBounds[0];
-        this.marginalGrade = gradeBounds[1] == '\u0000' ? marginalDefault : gradeBounds[1];
-        this.meetGrade = gradeBounds[2] == '\u0000' ? meetDefault : gradeBounds[2];
-        this.exceedGrade = gradeBounds[3] == '\u0000' ? exceedDefault : gradeBounds[3];
-    }
-    
-    public LevelSchema(char[] gradeBounds, String other) {
-        this.failGrade = gradeBounds[0] == '\u0000' ? failDefault : gradeBounds[0];
-        this.marginalGrade = gradeBounds[1] == '\u0000' ? failDefault : gradeBounds[1];
-        this.meetGrade = gradeBounds[2] == '\u0000' ? failDefault : gradeBounds[2];
-        this.meetGrade = gradeBounds[3] == '\u0000' ? failDefault : gradeBounds[3];
+       try {
+           for(int j=0; j<gradesSet.length(); j++) {
+               margins[i]=gradesSet.charAt(j) + "";
 
-        if(other != null) {
-            this.other = other;
-        }
-        else {
-            this.other = "";
-        }
-    }
+               if(gradesSet.charAt(j) != ',') {
+                   margins[i]=gradesSet.charAt(j) + "";
+                   i++; 
 
-    public char getFail() {
-        return failGrade;
-    }
+                   if(i>GRADELIST-2) {
+                       break;
+                   }
+               }
+           }
 
-    public char getMarginal() {
-        return marginalGrade;
-    }   
-    
-    public char getMeet() {
-        return meetGrade;
-    }   
-    
-    public char getExceed() {
-        return exceedGrade;
-    }   
-    
-    public String getOther() {
-        return other;
-    }
+           margins[i]=gradesSet.substring(8);
+       }
+
+       catch(NullPointerException e) {
+           e.printStackTrace();
+       }
+   }
+   
+/**
+* @param level The type of grade to be returned (0=fail, 1=marginal, 2=meets, 3=exceeds, 4=other)
+* @return margins[level] The value of the specified grade
+*/
+   public static String getMargin(int level) {
+       return margins[level];
+   }
 }
