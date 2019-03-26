@@ -36,8 +36,11 @@ public class Course implements Comparable<Course>{
 		this.creditHours = courseElements.get(4);
 	}
 	
-	
-	//TODO: use the custom ach. schema
+	/**
+	 * Increments the appropriate level depending on the grade provided
+	 * @param grade - The letter grade achieved by a student taking this course
+	 * @return boolean - If the grade was accounted for successfully or not.
+	 */
 	boolean setGrade(String grade) {
 		grade = grade.replace("-", "").replace("+","");
 
@@ -60,36 +63,68 @@ public class Course implements Comparable<Course>{
 		return true;
 	}
 	
-	public String getCreditHours() {
-		return this.creditHours;
-	}
-	
+	/**
+	 * @return The course number / course code
+	 */
 	public String getCourseNum() {
 		return this.courseNum;
 	}
 	
+	/**
+	 * @return The name of the course
+	 */
 	public String getCourseName() {
 		return this.courseName;
 	}
 	
+	/**
+	 * @return The credit hours tat can be attempted
+	 */
+	public String getCreditHours() {
+		return this.creditHours;
+	}
+	
+	/**
+	 * @return The 'others' level count
+	 */
 	public int getOthersCount() {
 		return this.others;
 	}
 	
+	/**
+	 * @return The 'fails' level count
+	 */
 	public int getFailsCount() {
 		return this.fails;
 	}
 	
+	/**
+	 * @return The 'marginals' level count
+	 */
 	public int getMarginalsCount() {
 		return this.marginals;
 	}
 	
+	/**
+	 * @return The 'meets' level count
+	 */
 	public int getMeetsCount() {
 		return this.meets;
 	}
 	
+	/**
+	 * @return The 'exceeds' level count
+	 */
 	public int getExceedsCount() {
 		return this.exceeds;
+	}
+	
+	/**
+	 * @return levels - The count for each of the levels.
+	 */
+	public int[] getLevels() {
+		int levels[] = {others,fails,marginals,meets,exceeds};
+		return levels;
 	}
 	
 	@Override
