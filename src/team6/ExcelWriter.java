@@ -1,6 +1,7 @@
 package team6;
 /**
  * @author Uwera Ntaganzwa
+ * @author Ryan Nitz
  */
 
 import java.io.FileNotFoundException;
@@ -36,33 +37,27 @@ public class ExcelWriter {
 		HSSFSheet sheet = workbook.createSheet("Raw List");
 		HSSFRow row = sheet.createRow(0);
 		
-		String columnHeaders[] = {"Course Number", "Course Name", "Others", "Fails", "Marginala","Meets", "Exceeds"};
+		String columnHeaders[] = {"Course Number", "Course Name", "Others", "Fails", "Marginals","Meets", "Exceeds"};
 		for(int c = 0; c < columnHeaders.length; c++) {
 			HSSFCell cell = row.createCell(c);
 			cell.setCellValue(columnHeaders[c]);
 		}
 		
 		int n = 0, m = 0;
-		//Is it possible to replace this with a row iterator even though the for-each loop works fine?
 		for(Course courseIn: sortedList) {
 			n++;
 			HSSFRow nextRow = sheet.createRow(n);
 			
 			HSSFCell numCell = nextRow.createCell(m);
 			HSSFCell nameCell = nextRow.createCell(m+1);
-			HSSFCell othersCell = nextRow.createCell(m+2);
-			HSSFCell failsCell = nextRow.createCell(m+3);
-			HSSFCell marginalsCell = nextRow.createCell(m+4);
-			HSSFCell meetsCell = nextRow.createCell(m+5);
-			HSSFCell exceedsCell = nextRow.createCell(m+6);
-			
 			numCell.setCellValue(courseIn.getCourseNum());
 			nameCell.setCellValue(courseIn.getCourseName());
-			othersCell.setCellValue(courseIn.getOthersCount());
-			failsCell.setCellValue(courseIn.getFailsCount());
-			marginalsCell.setCellValue(courseIn.getMarginalsCount());
-			meetsCell.setCellValue(courseIn.getMeetsCount());
-			exceedsCell.setCellValue(courseIn.getExceedsCount());
+			
+			int[] levels = courseIn.getLevels();
+			for(int c = 0; c < levels.length; c++) {
+				HSSFCell cell = nextRow.createCell(c+2);
+				cell.setCellValue(levels[c]);
+			}
 		}
 		
 		workbook.write(new FileOutputStream("Results.xsl"));
@@ -77,39 +72,29 @@ public class ExcelWriter {
 		
 		HSSFRow row = sheet.createRow(0);
 		
+
 		String columnHeaders[] = {"Course Number", "Course Name", "Others", "Fails", "Marginal","Meets", "Exceeds"};
+
 		for(int c = 0; c < columnHeaders.length; c++) {
 			HSSFCell cell = row.createCell(c);
 			cell.setCellValue(columnHeaders[c]);
 		}
-		/*
-		HSSFCell courseNum = row.createCell(0);
-		HSSFCell courseName = row.createCell(1);
-		courseNum.setCellValue("Course Number");
-		courseName.setCellValue("Course Name");
-		*/
 		
 		int n = 0, m = 0;
-		//Is it possible to replace this with a row iterator even though the for-each loop works fine?
 		for(Course courseIn: sortedList) {
 			n++;
 			HSSFRow nextRow = sheet.createRow(n);
 			
 			HSSFCell numCell = nextRow.createCell(m);
 			HSSFCell nameCell = nextRow.createCell(m+1);
-			HSSFCell othersCell = nextRow.createCell(m+2);
-			HSSFCell failsCell = nextRow.createCell(m+3);
-			HSSFCell marginalsCell = nextRow.createCell(m+4);
-			HSSFCell meetsCell = nextRow.createCell(m+5);
-			HSSFCell exceedsCell = nextRow.createCell(m+6);
-			
 			numCell.setCellValue(courseIn.getCourseNum());
 			nameCell.setCellValue(courseIn.getCourseName());
-			othersCell.setCellValue(courseIn.getOthersCount());
-			failsCell.setCellValue(courseIn.getFailsCount());
-			marginalsCell.setCellValue(courseIn.getMarginalsCount());
-			meetsCell.setCellValue(courseIn.getMeetsCount());
-			exceedsCell.setCellValue(courseIn.getExceedsCount());
+			
+			int[] levels = courseIn.getLevels();
+			for(int c = 0; m < levels.length; c++) {
+				HSSFCell cell = nextRow.createCell(c+2);
+				cell.setCellValue(levels[c]);
+			}
 		}
 		
 		workbook.write(new FileOutputStream(fileName));

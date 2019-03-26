@@ -53,7 +53,7 @@ public class GUI extends JFrame implements ActionListener {
 		     message.setText(transcriptSet.length + " transcripts successfully parsed."); //might need a better statement.
 
 	     	        //prints to console
-	     	     System.out.println(CourseList.printRawList());
+	     	     System.out.println(CourseList.printTextRawList());
 	         }
 	         if(event.equals("Write Raw List to Excel")){
 	        	  
