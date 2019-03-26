@@ -8,13 +8,11 @@ import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-//TODO: Add an application/GUI class that will take the main method in this one
+
 public class TranscriptReader{
 	
 	final static int ELEM_SIZE = 6;
-   
-    
-	//TODO: in the future, have the GUI able to change the path in the config file.
+      
 	/**
 	 * Gets the directory that has been specified in the config.txt file.
 	 * @return dir - The directory to the cohort of transcripts.

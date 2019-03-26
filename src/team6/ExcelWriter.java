@@ -1,6 +1,7 @@
 package team6;
 /**
  * @author Uwera Ntaganzwa
+ * @author Ryan Nitz
  */
 
 import java.io.FileNotFoundException;
@@ -43,7 +44,6 @@ public class ExcelWriter {
 		}
 		
 		int n = 0, m = 0;
-		//Is it possible to replace this with a row iterator even though the for-each loop works fine?
 		for(Course courseIn: sortedList) {
 			n++;
 			HSSFRow nextRow = sheet.createRow(n);
@@ -79,7 +79,6 @@ public class ExcelWriter {
 		}
 		
 		int n = 0, m = 0;
-		//Is it possible to replace this with a row iterator even though the for-each loop works fine?
 		for(Course courseIn: sortedList) {
 			n++;
 			HSSFRow nextRow = sheet.createRow(n);
@@ -94,19 +93,6 @@ public class ExcelWriter {
 				HSSFCell cell = nextRow.createCell(c+2);
 				cell.setCellValue(levels[c]);
 			}
-			/*
-			HSSFCell othersCell = nextRow.createCell(m+2);
-			HSSFCell failsCell = nextRow.createCell(m+3);
-			HSSFCell marginalsCell = nextRow.createCell(m+4);
-			HSSFCell meetsCell = nextRow.createCell(m+5);
-			HSSFCell exceedsCell = nextRow.createCell(m+6);
-			
-			othersCell.setCellValue(courseIn.getOthersCount());
-			failsCell.setCellValue(courseIn.getFailsCount());
-			marginalsCell.setCellValue(courseIn.getMarginalsCount());
-			meetsCell.setCellValue(courseIn.getMeetsCount());
-			exceedsCell.setCellValue(courseIn.getExceedsCount());
-			*/
 		}
 		
 		workbook.write(new FileOutputStream(fileName));
