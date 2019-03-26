@@ -1,6 +1,6 @@
-package team6;
+ package team6;
 /**
- * @author: Ryan Nitz
+ * @author: Ryan Nitz, Keith LeBlanc
  */
 
 import java.util.ArrayList;
@@ -37,29 +37,26 @@ public class Course implements Comparable<Course>{
 	}
 	
 	
-	//TODO: set the default or use the custom ach. schema
+	//TODO: use the custom ach. schema
 	boolean setGrade(String grade) {
 		grade = grade.replace("-", "").replace("+","");
-		
-		switch(grade) {
-			case "A":
-				this.exceeds++;
-				break;
-			case "B":
-				this.meets++;
-				break;
-			case "C":
-				this.marginals++;
-				break;
-			case "D":
-				this.fails++;
-				break;
-			case "F":
-				this.fails++;
-				break;
-			default:
-				this.others++;
+
+		if(grade == LevelSchema.getMargin(0)){
+			this.exceeds++;
 		}
+		else if(grade == LevelSchema.getMargin(1)){
+			this.meets++;
+		}
+		else if(grade == LevelSchema.getMargin(2)){
+			this.marginals++;
+		}
+		else if(grade == LevelSchema.getMargin(3)){
+			this.fails++;
+		}
+		else {
+			this.others++;
+		}
+		
 		return true;
 	}
 	
