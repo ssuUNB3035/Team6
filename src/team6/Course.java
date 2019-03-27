@@ -43,21 +43,27 @@ public class Course implements Comparable<Course>{
 	 */
 	boolean setGrade(String grade) {
 		grade = grade.replace("-", "").replace("+","");
+		
 
-		if(grade == LevelSchema.getMargin(0)){
+		if(grade.equals(LevelSchema.getMargin(3))){
 			this.exceeds++;
+			//System.out.println("grade in: " + grade + " = exceeds");
 		}
-		else if(grade == LevelSchema.getMargin(1)){
+		else if(grade.equals(LevelSchema.getMargin(2))){
 			this.meets++;
+			//System.out.println("grade in: " + grade + " = meets");
 		}
-		else if(grade == LevelSchema.getMargin(2)){
+		else if(grade.equals(LevelSchema.getMargin(1))){
 			this.marginals++;
+			//System.out.println("grade in: " + grade + " = marginals");
 		}
-		else if(grade == LevelSchema.getMargin(3)){
+		else if(grade.equals(LevelSchema.getMargin(0))){
 			this.fails++;
+			//System.out.println("grade in: " + grade + " = fails");
 		}
 		else {
 			this.others++;
+			//System.out.println("grade in: " + grade + " = others");
 		}
 		
 		return true;

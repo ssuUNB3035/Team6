@@ -89,7 +89,7 @@ public class ExcelWriter {
 			nameCell.setCellValue(courseIn.getCourseName());
 			
 			int[] levels = courseIn.getLevels();
-			for(int c = 0; m < levels.length; c++) {
+			for(int c = 0; c < levels.length; c++) {
 				HSSFCell cell = nextRow.createCell(c+2);
 				cell.setCellValue(levels[c]);
 			}
