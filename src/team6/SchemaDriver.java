@@ -1,3 +1,5 @@
+package team6;
+
 import java.io.*;
 
 public class SchemaDriver {
