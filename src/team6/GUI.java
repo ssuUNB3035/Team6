@@ -1,3 +1,4 @@
+package team6;
 /**
  * @author Uwera Ntaganzwa
  */
@@ -52,14 +53,15 @@ public class GUI extends JFrame implements ActionListener {
 		     message.setText(transcriptSet.length + " transcripts successfully parsed."); //might need a better statement.
 
 	     	        //prints to console
-	     	     System.out.println(CourseList.printRawList());
+	     	     System.out.println(CourseList.printTextRawList());
 	         }
 	         if(event.equals("Write Raw List to Excel")){
 	        	  
 	        	  sortedList = CourseList.getCourseList();
+
 	        	  sortedList.sort(null);
 	        	  try {
-					ExcelWriter.writeToExcel(sortedList);
+					ExcelWriter.writeRawList(sortedList);
 					message2.setText("A Raw List spreadsheet has been created.");
 				} catch (FileNotFoundException e1) {
 					message.setText("Failed to write to excel. File not found.");

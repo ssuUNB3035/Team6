@@ -1,0 +1,17 @@
+
+  CS1073     FR04A  INTR COMP PROG I (IN JAVA)                  A-      4.00      2017/FA          
+  CS1083     FR03B  INTRO COMP PROG II (IN JAVA)                A-      4.00      2018/WI          
+  CS1203     FR01A  OVERVIEW OF COMPUTER SCIENCE                A       3.00      2017/FA          
+  CS1303     FR01B  DISCRETE STRUCTURES                         B       4.00      2018/WI                  
+
+  CSCOOP     FR01A  CO-OP WORK TERM                                     0.00      2018/FA          
+
+  ENGL1103   FR02A  FUND'LS OF CLEAR WRITING                    B-      3.00      2017/FA          
+
+  FR1184     FR01A  LANG. AND LITERATURE I                      B       3.00      2017/FA          
+  FR1194     FR03B  LANG.AND LITERATURE II                      B+      3.00      2018/WI          
+
+  INFO1103   FR02B  DATA & INFORMATION MANAGEMENT               A-      4.00      2018/WI                    
+
+  MATH1003   FR12A  INTRO TO CALCULUS I                         F       3.00      2017/FA          
+  MATH1003   FR01B  INTRO TO CALCULUS I                         A-      3.00      2018/WI
