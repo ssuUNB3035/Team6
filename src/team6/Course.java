@@ -44,26 +44,21 @@ public class Course implements Comparable<Course>{
 	boolean setGrade(String grade) {
 		grade = grade.replace("-", "").replace("+","");
 		
-
-		if(grade.equals(LevelSchema.getMargin(3))){
-			this.exceeds++;
-			//System.out.println("grade in: " + grade + " = exceeds");
-		}
-		else if(grade.equals(LevelSchema.getMargin(2))){
-			this.meets++;
-			//System.out.println("grade in: " + grade + " = meets");
-		}
-		else if(grade.equals(LevelSchema.getMargin(1))){
-			this.marginals++;
-			//System.out.println("grade in: " + grade + " = marginals");
-		}
-		else if(grade.equals(LevelSchema.getMargin(0))){
-			this.fails++;
+		if(grade.compareTo(LevelSchema.getMargin(0)) == 0 || grade.compareTo(LevelSchema.getMargin(1)) == 1) {
 			//System.out.println("grade in: " + grade + " = fails");
-		}
-		else {
-			this.others++;
+			this.fails++;
+		}else if(grade.compareTo(LevelSchema.getMargin(1)) == 0 || grade.compareTo(LevelSchema.getMargin(2)) == 1) {
+			//System.out.println("grade in: " + grade + " = marginals");
+			this.marginals++;
+		}else if(grade.compareTo(LevelSchema.getMargin(2)) == 0 || grade.compareTo(LevelSchema.getMargin(3)) == 1) {
+			//System.out.println("grade in: " + grade + " = meets");
+			this.meets++;
+		}else if(grade.compareTo(LevelSchema.getMargin(3)) == 0) {
+			//System.out.println("grade in: " + grade + " = exceeds");
+			this.exceeds++;
+		}else if(grade.compareTo(LevelSchema.getMargin(0)) == -1 || grade.compareTo(LevelSchema.getMargin(3)) == 1) {
 			//System.out.println("grade in: " + grade + " = others");
+			this.others++;
 		}
 		
 		return true;
@@ -84,7 +79,7 @@ public class Course implements Comparable<Course>{
 	}
 	
 	/**
-	 * @return The credit hours tat can be attempted
+	 * @return The credit hours that can be attempted
 	 */
 	public String getCreditHours() {
 		return this.creditHours;
