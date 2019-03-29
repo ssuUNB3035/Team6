@@ -44,7 +44,9 @@ public class Course implements Comparable<Course>{
 	boolean setGrade(String grade) {
 		grade = grade.replace("-", "").replace("+","");
 		
-		if(grade.compareTo(LevelSchema.getMargin(0)) == 0 || grade.compareTo(LevelSchema.getMargin(1)) == 1) {
+		if(grade.length() > 1) {
+			this.others++;
+		}else if(grade.compareTo(LevelSchema.getMargin(0)) == 0 || grade.compareTo(LevelSchema.getMargin(1)) == 1) {
 			//System.out.println("grade in: " + grade + " = fails");
 			this.fails++;
 		}else if(grade.compareTo(LevelSchema.getMargin(1)) == 0 || grade.compareTo(LevelSchema.getMargin(2)) == 1) {
