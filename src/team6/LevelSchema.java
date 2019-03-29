@@ -11,24 +11,20 @@ public class LevelSchema {
    private static String[] margins = new String[GRADELIST];
 
 /**
-* @return dir The path of the config file
+*@return dir The path of the config file
 */
-   public static File getDirectory(){
-       File path = new File("marginsConfig.txt");
-       File dir = null;
+   public static void getSchemaConfig(){
+       File marginConfig = new File("marginsConfig.txt");
        Scanner sc = null;        
        
        try {
-           sc = new Scanner(path);
+           sc = new Scanner(marginConfig);
        } catch (FileNotFoundException e) {
            e.printStackTrace();
        }
+       String schemaConfig = sc.nextLine();
+       setMargins(schemaConfig);
        
-       String directoryPath;
-       directoryPath = sc.nextLine();
-       dir = new File(directoryPath);
-       
-       return dir;
    }
 
 /**

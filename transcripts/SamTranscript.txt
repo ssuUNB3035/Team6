@@ -1,0 +1,21 @@
+     
+  CS1073     FR02A  INTR COMP PROG I (IN JAVA)                  A-      4.00      2017/FA          
+  CS1083     FR03B  INTRO COMP PROG II (IN JAVA)                A-      4.00      2018/WI          
+  CS1203     FR01A  OVERVIEW OF COMPUTER SCIENCE                A+      3.00      2017/FA          
+  CS1303     FR01B  DISCRETE STRUCTURES                         A+      4.00      2018/WI          
+  CS2253     FRE1A  MACHINE LEVEL PROGRAMMING                   B+      4.00      2018/SM          
+  CS2263     FRE1A  SYSTEMS SOFTWARE DEVELOPMENT                A-      4.00      2018/SM          
+  CS2333     FR01B  COMPUTAB.& FORMAL LANG.                     W       4.00      2019/WI          
+
+  CSCOOP     FR01A  CO-OP WORK TERM                                     0.00      2018/FA          
+
+  FILM2998   FR01A  DIGITAL FILM PRODUCTION I                   A-      3.00      2017/FA          
+
+  INFO1103   FR03B  DATA & INFORMATION MANAGEMENT               B+      4.00      2018/WI          
+
+  MAAC2095   FR01B  INTRODUCTION TO VIDEO GAMES                 A-      3.00      2018/WI          
+  MAAC3601   FRE1D  GAME DESIGN I                               A+      3.00      2018/SM          
+
+  MATH1003   FR20A  INTRO TO CALCULUS I                         A       3.00      2017/FA          
+  MATH1013   FR14B  INTRO TO CALCULUS II                        A-      3.00      2018/WI          
+  MATH1503   FR02A  INTRODUC.TO LINEAR ALGEBRA                  A       3.00      2017/FA          
