@@ -49,17 +49,19 @@ public class GUI extends JFrame implements ActionListener {
 	     			
 	             File[] transcriptSet = directory.listFiles();
 	     	     System.out.println("Transcript count: " + transcriptSet.length);
+	     	     
+	     	     LevelSchema.getSchemaConfig();
 	     	     TranscriptReader.parseTranscripts(transcriptSet);
-		     message.setText(transcriptSet.length + " transcripts successfully parsed."); //might need a better statement.
+	     	     message.setText(transcriptSet.length + " transcripts successfully parsed."); //might need a better statement.
 
-	     	        //prints to console
+	     	     //prints to console
 	     	     System.out.println(CourseList.printTextRawList());
 	         }
+	         
 	         if(event.equals("Write Raw List to Excel")){
 	        	  
 	        	  sortedList = CourseList.getCourseList();
-
-	        	  sortedList.sort(null);
+	        	  
 	        	  try {
 					ExcelWriter.writeRawList(sortedList);
 					message2.setText("A Raw List spreadsheet has been created.");
