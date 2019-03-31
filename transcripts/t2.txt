@@ -1,0 +1,56 @@
+  APSC1023   SJ01B  MECHANICS II                                B-      5.00      2011/WI          
+  APSC2023   SJ01B  SURVEY 19TH & 20TH C PHYSICS                B+      3.00      2012/WI          
+  APSC2028   SJ01B  SURVEY OF 19TH/20TH C. PHY LAB              A+      2.00      2012/WI          
+
+  CE3963     FR01B  ENGINEERING ECONOMY                         B       3.00      2014/WI          
+
+  CHE2501    SJ01A  GENERAL MATERIALS SCIENCE                   A       3.00      2011/FA          
+
+  CHEM1882   SJ02B  GEN CHEM/PHYSICAL & INORGANIC               A+      5.00      2011/WI          
+
+  CMPE2412   SJ01B  SIMULATION & ENG. ANALYSIS                  A-      4.00      2012/WI          
+
+  CS1003     SJ01A  INTRO COMPUTER PROGRAMMING                  B+      4.00      2010/FA          
+  CS1023     SJ01B  DATA STRUCTURES & ALGORITHMS                A       4.00      2011/WI          
+
+  ECE3031    FR01A  ELECTRICAL & CMPE ENG DESIGN                A-      4.00      2012/FA          
+  ECE3111    FR02A  ELECTRONICS I                               AUD     0.00      2012/FA          
+  ECE3122    FR01B  ELECTRONICS II                              B+      4.00      2013/WI          
+  ECE3221    FR01A  COMPUTER ORGANIZATION                       D       4.00      2012/FA          
+  ECE3221    FRE1A  COMPUTER ORGANIZATION                       A       4.00      2013/SM          
+  ECE3232    FR01B  EMBEDDED SYSTEMS DESIGN                     A-      4.00      2014/WI          
+  ECE3312    FR02B  SYSTEMS AND CONTROL                         A+      4.00      2013/WI          
+  ECE3511    FR02A  SIGNALS                                     C       4.00      2012/FA          
+  ECE3612    FR02B  ELECTRIC MACHINES & DESIGN                  A-      4.00      2013/WI          
+  ECE3821    FR01A  ELECTROMAGNETICS I                          B       4.00      2012/FA          
+  ECE3832    FR01B  ELECTROMAGNETICS II                         B       4.00      2013/WI          
+  ECE4040    FR01X  ELECT & CMPE DESIGN PROJECT                 CTN     0.00      2013/FA          
+  ECE4040    FR01Y  ELECT & CMPE DESIGN PROJECT                 B       7.00      2014/WI          
+  ECE4273    FR01B  VLSI SYSTEMS DESIGN                         A-      4.00      2013/WI          
+  ECE4323    FR01B  INDUSTRIAL CONTROL SYSTEMS                  A+      4.00      2014/WI          
+  ECE4633    FR03A  POWER SYSTEM ANALYSIS                       A+      4.00      2013/FA          
+  ECE4823    FR01A  COMM'NS.NETWORK ENGINEERING                 A       4.00      2013/FA          
+
+  ECON1023   SJ01A  INTRO ECON: MACRO                           A+      3.00      2011/SP          
+
+  EE2711     SJ01A  ELECTRIC CIRCUITS                           AUD     0.00      2011/FA          
+  EE2722     SJ01B  CIRCUITS AND SYSTEMS                        B+      4.00      2012/WI          
+
+  ENGG4013   FRE1A  LAW AND ETHICS FOR ENGINEERS                A-      3.00      2013/SM          
+
+  ESL1301    SJ04A  ENGLISH SUPPORT I                           B+      0.00      2010/FA          
+  ESL1302    SJ04A  ENGLISH SUPPORT II                          A-      0.00      2010/FA          
+  ESL1303    SJ04A  ENGLISH SUPPORT III                         B+      0.00      2010/FA          
+
+  MATH1013   SJ02B  INTRO TO CALCULUS II                        A       3.00      2011/WI          
+  MATH1503   SJ01A  INTRO TO LINEAR ALGEBRA                     A       3.00      2010/FA          
+  MATH2513   SJ01A  MULTIVARIATE CALCULUS FOR ENG.              A       4.00      2011/FA          
+  MATH3243   FR01A  COMPLEX ANALYSIS                            A       3.00      2013/FA          
+  MATH3503   SJ01B  DIFFERENTIAL EQUATIONS FOR ENG              A-      3.00      2012/WI          
+
+  SOCI1001   SJ01A  INTRODUCTION TO SOCIOLOGY I                 A-      3.00      2011/SP          
+  SOCI2534   FRE1C  TECH & SOCIAL CHANGE                        B       3.00      2013/SM          
+
+  SPAN1203   SJ01A  INTROD'Y SPANISH I                          A-      3.00      2011/FA          
+
+  STAT2593   SJ01A  PROB. & STAT. FOR ENGINEERS                 B+      3.00      2011/FA   

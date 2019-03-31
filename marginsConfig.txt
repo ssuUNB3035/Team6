@@ -1,0 +1,3 @@
+F,D,C,A,AUD
+
+fails, marginals, meets, exceeds, other
