@@ -17,20 +17,20 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import org.apache.poi.hssf.usermodel.*;
 
-public class ExcelWriter {
+public class FileHandler {
 	private static ArrayList<String> createdFiles = new ArrayList<>();
 	
 	//Can this be replace with a file.exists method?		
 	public static boolean findFile(String name){
 		boolean success = false;
 		for(String names : createdFiles) {
-			if(names == "RawList.xsl") {
+			if(names == "Results.xsl") {
 				//then the file exists and can be written to
 				success = true;
 			}
 		}
 		if(success == false) {
-			String fName = "RawList.xsl";
+			String fName = "Results.xsl";
 			createdFiles.add(fName);
 			success = true;
 		}
@@ -41,8 +41,7 @@ public class ExcelWriter {
 		BufferedReader reader = new BufferedReader(new FileReader(fileName)); 
 		BufferedWriter writer = new BufferedWriter(new FileWriter(configFile));
 		String str; 
-		while ((str = reader.readLine()) != null) {
-		    System.out.println(str); 
+		while ((str = reader.readLine()) != null) { 
 		    writer.write(str);
 		}
 		reader.close();
@@ -117,6 +116,5 @@ public class ExcelWriter {
 		
 		workbook.write(new FileOutputStream(fileName));
 		workbook.close();
-		//System.out.println("Courses have been successfully copied to the Raw List sheet.");
 	}
 }
