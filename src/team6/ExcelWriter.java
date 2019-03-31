@@ -4,9 +4,16 @@ package team6;
  * @author Ryan Nitz
  */
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import org.apache.poi.hssf.usermodel.*;
 
@@ -29,7 +36,18 @@ public class ExcelWriter {
 		}
 		return success;
 	}
-	
+	public static void addConfigFile(File fileName) throws IOException {
+		File configFile = new File("config.txt");
+		BufferedReader reader = new BufferedReader(new FileReader(fileName)); 
+		BufferedWriter writer = new BufferedWriter(new FileWriter(configFile));
+		String str; 
+		while ((str = reader.readLine()) != null) {
+		    System.out.println(str); 
+		    writer.write(str);
+		}
+		reader.close();
+		writer.close();
+	}
 		
 	public static void writeRawList(ArrayList<Course> sortedList) throws FileNotFoundException, IOException {
 		findFile("Results.xsl");
