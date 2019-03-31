@@ -61,6 +61,7 @@ public class GUI extends JFrame implements ActionListener {
 	    	 String event = e.getActionCommand(); 
 	    	 
 	    	 if (event.equals("Add a Config File")) {
+	    		
 	    		 JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 	    		 int returnValue = chooser.showOpenDialog(null);
 

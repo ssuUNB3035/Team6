@@ -24,13 +24,13 @@ public class FileHandler {
 	public static boolean findFile(String name){
 		boolean success = false;
 		for(String names : createdFiles) {
-			if(names == "Results.xsl") {
+			if(names == "Results.xslx") {
 				//then the file exists and can be written to
 				success = true;
 			}
 		}
 		if(success == false) {
-			String fName = "Results.xsl";
+			String fName = "Results.xslx";
 			createdFiles.add(fName);
 			success = true;
 		}
@@ -49,7 +49,7 @@ public class FileHandler {
 	}
 		
 	public static void writeRawList(ArrayList<Course> sortedList) throws FileNotFoundException, IOException {
-		findFile("Results.xsl");
+		findFile("Results.xslx");
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet("Raw List");
 		HSSFRow row = sheet.createRow(0);
@@ -77,7 +77,7 @@ public class FileHandler {
 			}
 		}
 		
-		workbook.write(new FileOutputStream("Results.xsl"));
+		workbook.write(new FileOutputStream("Results.xslx"));
 		workbook.close();
 		//System.out.println("Courses have been successfully copied to the Raw List sheet.");
 	}
