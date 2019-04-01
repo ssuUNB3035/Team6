@@ -66,16 +66,16 @@ public class GUI extends JFrame implements ActionListener {
 
 	    		 if (returnValue == JFileChooser.APPROVE_OPTION) {
 	    			File selectedFile = chooser.getSelectedFile();
-	    			try {
-						FileHandler.addConfigFile(selectedFile);
+	    			//try {
+						//FileHandler.addConfigFile(selectedFile);
 						fileMsg.setText("Config file successfully added. Transcripts can now be parsed.");
 						parseButton.setVisible(true);
 						message.setVisible(true);
 						
-					} catch (IOException e1) {
+					//} catch (IOException e1) {
 						//TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+						//e1.printStackTrace();
+					//}
 	    		}
 	    		 
 	    	 }
