@@ -36,9 +36,9 @@ public class FileHandler {
 		}
 		return success;
 	}
-	public static void addConfigFile(File fileName) throws IOException {
-		File configFile = new File("config.txt");
-		BufferedReader reader = new BufferedReader(new FileReader(fileName)); 
+	public static void addConfigFile(File file) throws IOException {
+		File configFile = file;
+		BufferedReader reader = new BufferedReader(new FileReader(file)); 
 		BufferedWriter writer = new BufferedWriter(new FileWriter(configFile));
 		String str; 
 		while ((str = reader.readLine()) != null) { 
