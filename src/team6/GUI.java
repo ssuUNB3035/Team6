@@ -73,7 +73,7 @@ public class GUI extends JFrame implements ActionListener {
 						message.setVisible(true);
 						
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
+						//TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	    		}
