@@ -45,8 +45,8 @@ public class TranscriptReader{
 	 */
 	public static boolean parseTranscripts(File[] transcriptSet) {
 		ArrayList<String> gradeElements = new ArrayList<String>(ELEM_SIZE);
-		ArrayList<Transcript> transcriptList = new ArrayList<Transcript>();
 	    Scanner sc = null;
+	    Cohort cohort = new Cohort(getDirectory().getAbsolutePath());
 	        
 		for (File transcript : transcriptSet) {
 				
@@ -56,8 +56,8 @@ public class TranscriptReader{
 	    		f.printStackTrace();
 	            System.out.println("Error opening file, skipping: " + transcript.getName());
 	        }
-	    		
-	    	Transcript tempTranscript = new Transcript(getDirectory().getName());
+	    	
+	    	Transcript tempTranscript = new Transcript();
 	    		
 	        while(sc.hasNext()){
 	        	String line = sc.nextLine();
@@ -70,7 +70,7 @@ public class TranscriptReader{
 	            }
 	        }
 	        
-	        transcriptList.add(tempTranscript);
+	        cohort.addTranscript(tempTranscript);
 	        System.out.println(tempTranscript.toString());    
 	        
 		}	
