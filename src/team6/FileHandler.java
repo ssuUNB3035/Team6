@@ -10,8 +10,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -22,6 +20,8 @@ import java.util.Iterator;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 import org.apache.poi.sl.usermodel.Sheet;
+import org.apache.poi.ss.formula.functions.Column;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -32,42 +32,18 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class FileHandler {
-	private static ArrayList<String> createdFiles = new ArrayList<>();
 	
-	//Can this be replace with a file.exists method?		
-	public static boolean findFile(String name){
-		boolean success = false;
-		for(String names : createdFiles) {
-			if(names == "Results.xsl") {
-				//then the file exists and can be written to
-				success = true;
-			}
-		}
-		if(success == false) {
-			String fName = "Results.xsl";
-			createdFiles.add(fName);
-			success = true;
-		}
-		return success;
-	}
-	public static void addConfigFile(File file) throws IOException {
-		File configFile = file;
-		BufferedReader reader = new BufferedReader(new FileReader(file)); 
-		BufferedWriter writer = new BufferedWriter(new FileWriter(configFile));
-		String str; 
-		while ((str = reader.readLine()) != null) { 
-		    writer.write(str);
-		}
-		reader.close();
-		writer.close();
-	}
-		
+	static HSSFWorkbook workbook = new HSSFWorkbook();
+	
+	/**
+	 * 	
+	 * @param sortedList The Raw List of courses to be written in Excel
+	 * @throws FileNotFoundException 
+	 * @throws IOException
+	 */
 	public static void writeRawList(ArrayList<Course> sortedList) throws FileNotFoundException, IOException {
-		findFile("Results.xsl");
-		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet("Raw List");
 		HSSFRow row = sheet.createRow(0);
-		
 		String columnHeaders[] = {"Course Number", "Course Name", "Others", "Fails", "Marginals","Meets", "Exceeds"};
 		for(int c = 0; c < columnHeaders.length; c++) {
 			HSSFCell cell = row.createCell(c);
@@ -97,7 +73,6 @@ public class FileHandler {
 	}
 	
 	public static void writeRawList(ArrayList<Course> sortedList, String fileName) throws FileNotFoundException, IOException {
-		findFile(fileName);
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet("Raw List");
 		
@@ -132,17 +107,62 @@ public class FileHandler {
 		workbook.close();
 	}
 	
-	public static void readAreas(String fileName, String area) throws IOException, FileNotFoundException {
+	
+	//File name is not used until excel config is being read. 
+	//TODO: Check if areaConfig should be the string name of the actual file
+	//This method is to get the area group once you know the area names.
+	public static ArrayList<String> readArea(String areaConfig, String area) throws IOException, FileNotFoundException {
 		
 		InputStream ExcelFileToRead = new FileInputStream("results_EE2014.xlsx");
         XSSFWorkbook  wb = new XSSFWorkbook(ExcelFileToRead);
         XSSFSheet sheet = wb.getSheet("Areas");
         
+        ArrayList<String> areaCourses = new ArrayList<String>();
         Iterator<Row> rowIterator = sheet.iterator();
+        Row row = rowIterator.next();
+    	Iterator <Cell> cellIterator = row.cellIterator();
+    	
+    	int areaColumnIndex = 0;
+    	
+    	while(cellIterator.hasNext()) {
+    		Cell cell = cellIterator.next();
+    		if(area.equals(cell.getStringCellValue())) {
+    			areaColumnIndex = cell.getColumnIndex();
+    		}
+    	}
         
-        while(rowIterator.hasNext()) {
-        	System.out.println(rowIterator.next().getCell(0).getStringCellValue());
-        }
+    	while(rowIterator.hasNext()) {
+    		row = rowIterator.next();
+    		if(row.getCell(areaColumnIndex) != null) {
+    			String course = row.getCell(areaColumnIndex).getStringCellValue();
+    			areaCourses.add(course);
+    		}else {
+    			break;
+    		}
+    	}
+    	
+    	System.out.println(areaCourses.toString());
+    	return areaCourses;
+	}
+	
+	//TODO: Check if areaConfig should be the string name of the actual file
+	public static ArrayList<String> getAreaNames(String areaConfig) throws IOException{
 		
+		InputStream ExcelFileToRead = new FileInputStream("results_EE2014.xlsx");
+        XSSFWorkbook  wb = new XSSFWorkbook(ExcelFileToRead);
+        XSSFSheet sheet = wb.getSheet("Areas");
+        
+        ArrayList<String> areaNames = new ArrayList<String>();
+        Row row = sheet.getRow(0);
+        Iterator<Cell> cellIterator = row.cellIterator();
+    	
+    	
+    	while(cellIterator.hasNext()) {
+    		Cell cell = cellIterator.next();
+    		areaNames.add(cell.getStringCellValue());
+    	}
+		
+    	System.out.println(areaNames.toString());
+		return areaNames;
 	}
 }
