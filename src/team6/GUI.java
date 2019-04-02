@@ -23,10 +23,10 @@ public class GUI extends JFrame implements ActionListener {
 	    	
 	    	
 	    	//THIS IS THE TESTING BLOCK FOR READING AREA FROM EXCEL.
-	    	//CHECK CONSOLE ON LAUNCH
+	    	//CHECK CONSOLE ON LAUNCH, rand = placeholder for hardcoded file name
 	    	try{
 	    		ArrayList<String> areaNames = FileHandler.getAreaNames("rand");
-				FileHandler.readArea("rand", areaNames.get(1));
+				FileHandler.getAreaCourses("rand", areaNames.get(1));
 			}catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}catch (IOException e) {
