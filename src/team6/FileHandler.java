@@ -7,15 +7,29 @@ package team6;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.xssf.usermodel.*;
+import org.apache.poi.sl.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class FileHandler {
 	private static ArrayList<String> createdFiles = new ArrayList<>();
@@ -116,5 +130,19 @@ public class FileHandler {
 		
 		workbook.write(new FileOutputStream(fileName));
 		workbook.close();
+	}
+	
+	public static void readAreas(String fileName, String area) throws IOException, FileNotFoundException {
+		
+		InputStream ExcelFileToRead = new FileInputStream("results_EE2014.xlsx");
+        XSSFWorkbook  wb = new XSSFWorkbook(ExcelFileToRead);
+        XSSFSheet sheet = wb.getSheet("Areas");
+        
+        Iterator<Row> rowIterator = sheet.iterator();
+        
+        while(rowIterator.hasNext()) {
+        	System.out.println(rowIterator.next().getCell(0).getStringCellValue());
+        }
+		
 	}
 }

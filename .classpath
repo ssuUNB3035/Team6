@@ -5,5 +5,6 @@
 	<classpathentry kind="lib" path="Lib/poi-4.0.1.jar"/>
 	<classpathentry kind="lib" path="Lib/poi-excelant-4.0.1.jar"/>
 	<classpathentry kind="lib" path="Lib/poi-ooxml-4.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan Nitz/Downloads/poi-bin-4.0.1-20181203.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
