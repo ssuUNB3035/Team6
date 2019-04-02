@@ -20,6 +20,20 @@ public class GUI extends JFrame implements ActionListener {
 		ArrayList<Course> sortedList = new ArrayList<>();
 		GUI(){}
 	    public static void main(String args[]){
+	    	
+	    	
+	    	//THIS IS THE TESTING BLOCK FOR READING AREA FROM EXCEL.
+	    	//CHECK CONSOLE ON LAUNCH
+	    	try{
+	    		ArrayList<String> areaNames = FileHandler.getAreaNames("rand");
+				FileHandler.readArea("rand", areaNames.get(1));
+			}catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
+	    	
+	    	
 	       JFrame frame = new JFrame("Student Transcript Analyser");
 	       JPanel panel = new JPanel();
 	       frame.setSize(500,450);
