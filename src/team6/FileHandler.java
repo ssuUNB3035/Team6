@@ -12,22 +12,15 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
-import org.apache.poi.sl.usermodel.Sheet;
-import org.apache.poi.ss.formula.functions.Column;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
+
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -111,7 +104,15 @@ public class FileHandler {
 	//File name is not used until excel config is being read. 
 	//TODO: Check if areaConfig should be the string name of the actual file
 	//This method is to get the area group once you know the area names.
-	public static ArrayList<String> readArea(String areaConfig, String area) throws IOException, FileNotFoundException {
+	/**
+	 * This will return a list of all courses that exist in a specified area.
+	 * @param areaConfig - The excel file that will be opened to extract data from.
+	 * @param area - The area header to establish the area courses to be extracted.
+	 * @return areaCourses - The list of courses that were in the specified area.
+	 * @throws IOException
+	 * @throws FileNotFoundException - When the specified file name does not exist.
+	 */
+	public static ArrayList<String> getAreaCourses(String areaConfig, String area) throws IOException, FileNotFoundException {
 		
 		InputStream ExcelFileToRead = new FileInputStream("results_EE2014.xlsx");
         XSSFWorkbook  wb = new XSSFWorkbook(ExcelFileToRead);
@@ -146,6 +147,12 @@ public class FileHandler {
 	}
 	
 	//TODO: Check if areaConfig should be the string name of the actual file
+	/**
+	 * This method will get all of the areas that are defined within the excel sheet - 'Areas'
+	 * @param areaConfig - The excel file that will be opened to extract data from.
+	 * @return areaNames - The names of all the areas that can be accessed. 
+	 * @throws IOException
+	 */
 	public static ArrayList<String> getAreaNames(String areaConfig) throws IOException{
 		
 		InputStream ExcelFileToRead = new FileInputStream("results_EE2014.xlsx");
