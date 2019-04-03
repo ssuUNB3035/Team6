@@ -23,10 +23,10 @@ public class GUI extends JFrame implements ActionListener {
 	    	
 	    	
 	    	//THIS IS THE TESTING BLOCK FOR READING AREA FROM EXCEL.
-	    	//CHECK CONSOLE ON LAUNCH
+	    	//CHECK CONSOLE ON LAUNCH, rand = placeholder for hardcoded file name
 	    	try{
 	    		ArrayList<String> areaNames = FileHandler.getAreaNames("rand");
-				FileHandler.readArea("rand", areaNames.get(1));
+				FileHandler.getAreaCourses("rand", areaNames.get(1));
 			}catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}catch (IOException e) {
@@ -72,12 +72,13 @@ public class GUI extends JFrame implements ActionListener {
 	     	     System.out.println("Transcript count: " + transcriptSet.length);
 	     	     
 	     	     LevelSchema.getSchemaConfig();
-	     	     TranscriptReader.parseTranscripts(transcriptSet);
+	     	     Cohort cohort = TranscriptReader.parseTranscripts(transcriptSet);
 	     	     message.setText(transcriptSet.length + " transcripts successfully parsed."); //might need a better statement.
 	     	     excelButton.setVisible(true);
 	     	     message2.setVisible(true);
 	     	     //prints to console
 	     	     System.out.println(CourseList.printTextRawList());
+	     	     FileHandler.printGlobalDistribution(cohort);
 	         }
 	         
 	         if(event.equals("Write Raw List to Excel")){

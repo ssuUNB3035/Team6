@@ -1,0 +1,52 @@
+APSC2023   FR01B  SURVEY OF 19TH & 20TH C PHYSIC              A       3.00      2015/WI          
+  APSC2028   FR01B  SURV.OF 19TH & 20TH C.PHYS.LAB              B       2.00      2015/WI          
+  CHE2501    FR01A  GENERAL MATERIALS SCIENCE                   A+      3.00      2012/FA          
+  CHE2506    FR02A  MATERIALS SCIENCE LABORATORY                A+      1.00      2012/FA          
+  CHEM1982   FR01B  GENERAL APPLIED CHEMISTRY                   A       3.00      2012/WI          
+  CHEM1987   FR04B  GENERAL APPLIED CHEMISTRY LAB               A+      2.00      2012/WI          
+  CS1003     FR01A  INTRO.TO COMPUTER PROGRM'G.                 C+      4.00      2011/FA          
+  CS1023     FR01B  DATA STRUCTURES & ALGORITHMS                A-      4.00      2013/WI          
+  ECE2213    FR01A  DIGITAL SYSTEMS                             A+      4.00      2013/FA          
+  ECE2412    FR01B  SIMULATION & ENG. ANALYSIS                  A+      4.00      2013/WI          
+  ECE2711    FR01A  ELECTRIC CIRCUITS                           A       4.00      2012/FA          
+  ECE2722    FR01B  CIRCUITS AND SYSTEMS                        A-      4.00      2013/WI          
+  ECE3031    FR01B  ELECTRICAL & CMPE ENG DESIGN                A-      4.00      2014/WI          
+  ECE3111    FR01A  ELECTRONICS I                               A-      4.00      2013/FA          
+  ECE3122    FR01B  ELECTRONICS II                              A       4.00      2014/WI          
+  ECE3221    FR01A  COMPUTER ORGANIZATION                       B+      4.00      2013/FA          
+  ECE3232    FR02B  EMBEDDED SYSTEMS DESIGN                     A-      4.00      2014/WI          
+  ECE3312    FR01B  SYSTEMS AND CONTROL                         A       4.00      2014/WI          
+  ECE3511    FR01A  SIGNALS                                     A       4.00      2013/FA          
+  ECE3612    FR02A  ELECTRIC MACHINES & DESIGN                  A       4.00      2013/FA          
+  ECE3812    FR01B  DATA COMMUNIC'NS.& NETWORKING               B       4.00      2015/WI          
+  ECE3821    FR01A  ELECTROMAGNETICS I                          A+      4.00      2013/FA          
+  ECE3832    FR01B  ELECTROMAGNETICS II                         A-      4.00      2014/WI          
+  ECE4040    FR01X  ELECT & CMPE DESIGN PROJECT                 CTN     0.00      2014/FA          
+  ECE4040    FR01Y  ELECT & CMPE DESIGN PROJECT                 B       7.00      2015/WI          
+  ECE4133    FRE1A  INSTRUMENTATION DESIGN                      A       4.00      2014/FA          
+  ECE4333    FR01B  ROBOTICS                                    B+      4.00      2015/WI          
+  ECE4523    FR01A  COMMUNICATIONS SYSTEMS                      A       4.00      2014/FA          
+  ECE4833    FR01A  MICROWAVE ENGINEERING                       A       4.00      2014/FA          
+  ECECOOP    FR01   ECE WORK TERM                                       0.00      2013/SM          
+  ECECOOP    FR01   ECE WORK TERM                                       0.00      2014/SM          
+  EE1813     FR01B  ELECTRICITY & MAGNETISM                     A       4.00      2012/WI          
+  ENGG1001   FR01A  ENG PRACTICE LECTURE SERIES                 CR      0.00      2011/FA          
+  ENGG1003   FR01A  ENG. TECHNICAL COMMUNICATIONS               A+      4.00      2011/FA          
+  ENGG1015   FR01A  INTRO TO ENG DESIGN & PROB SOL              A+      2.00      2011/FA          
+  ENGG1082   FR01B  MECHANICS FOR ENGINEERS                     B+      4.00      2012/WI          
+  ENGG4013   FR01A  LAW AND ETHICS FOR ENGINEERS                A       3.00      2014/FA          
+  FILM2022   FR01A  THE ART OF FILM                             C       3.00      2014/FA          
+  HIST1305   FRE1B  PROHIB'N & RUM-RUNNING                      B       3.00      2014/WI          
+  MATH1003   FR01A  INTROD TO CALCULUS I                        B+      3.00      2011/FA          
+  MATH1013   FR02B  INTRO TO CALCULUS II                        B       3.00      2012/WI          
+  MATH1503   FR01A  INTRODUC.TO LINEAR ALGEBRA                  B+      3.00      2011/FA          
+  MATH2513   FR02A  MULTIVARIABLE CALC.FOR ENG.                 B+      4.00      2012/FA          
+  MATH3503   FR01B  DIFF EQUATS FOR ENG                         B       3.00      2013/WI          
+  ME1312     FR03B  COMPUTER AIDED DESIGN                       B+      4.00      2012/WI          
+  ME2003     FR01A  DYNAMICS FOR ENGINEERS                      A       4.00      2012/FA          
+  ME2111     FR01A  MECHANICS OF MATERIALS I                    A-      3.00      2012/FA          
+  ME3232     FR01B  ENGINEERING ECONOMICS                       A       3.00      2015/WI          
+  PHYS1081   FR03A  FOUNDATIONS OF PHYS FOR ENGG                A+      5.00      2011/FA          
+  RUSS1013   FR01A  INTROD'Y RUSSIAN I                          A       3.00      2013/FA          
+  STAT2593   FR01B  PROB & STAT FOR ENG                         C       3.00      2015/WI          
+  STS1003    ST01A  SCIENCE, TECHNOLOGY & SOCIETY               A-      3.00      2014/FA          

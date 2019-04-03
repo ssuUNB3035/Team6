@@ -132,10 +132,10 @@ public class Course implements Comparable<Course>{
 	
 	@Override
 	public int compareTo(Course other) {
-		if(this.courseNum.compareTo(other.courseNum) > 1) {
-			return 1;
-		}else if(this.courseNum.compareTo(other.courseNum) < 0) {
+		if(this.courseNum.compareTo(other.courseNum) < 0) {
 			return -1;
+		}else if(this.courseNum.compareTo(other.courseNum) > 0) {
+			return 1;
 		}
 		return 0;
 	}
