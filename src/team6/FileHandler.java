@@ -54,10 +54,13 @@ public class FileHandler {
 			nameCell.setCellValue(courseIn.getCourseName());
 			
 			int[] levels = courseIn.getLevels();
-			for(int c = 0; c < levels.length; c++) {
+			int c = 0;
+			for(c = 0; c < levels.length; c++) {
 				HSSFCell cell = nextRow.createCell(c+2);
 				cell.setCellValue(levels[c]);
 			}
+			
+			HSSFCell globalCell = nextRow.createCell(c+1);
 		}
 		
 		workbook.write(new FileOutputStream("Results.xsl"));
@@ -172,4 +175,15 @@ public class FileHandler {
     	System.out.println(areaNames.toString());
 		return areaNames;
 	}
+	
+	//TODO: add a method to print to excel
+		public static void printGlobalDistribution(Cohort cohort) {
+			int[] global = cohort.getGlobalDistribution();
+			String globalString = "Global: \t\t";
+			for(int i = 0; i < global.length; i++) {
+				globalString += global[i] + ",\t";
+			}
+			System.out.println(globalString);
+		}
+	
 }

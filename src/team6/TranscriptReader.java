@@ -43,7 +43,7 @@ public class TranscriptReader{
 	 * @param transcriptSet The list of transcripts in the directory.
 	 * @return boolean - If the transcripts were parsed or not.
 	 */
-	public static boolean parseTranscripts(File[] transcriptSet) {
+	public static Cohort parseTranscripts(File[] transcriptSet) {
 		ArrayList<String> gradeElements = new ArrayList<String>(ELEM_SIZE);
 	    Scanner sc = null;
 	    Cohort cohort = new Cohort(getDirectory().getAbsolutePath());
@@ -74,7 +74,8 @@ public class TranscriptReader{
 	        System.out.println(tempTranscript.toString());    
 	        
 		}	
-		return true;	
+		cohort.calculateCourseLevels();
+		return cohort;	
 	}
 	
 	/**
