@@ -1,0 +1,59 @@
+ APSC1013   SJ01A  MECHANICS I                                 C       5.00      2007/FA          
+  APSC1023   SJ01B  MECHANICS II                                B       5.00      2008/WI          
+  APSC2023   SJ01B  SURVEY 19TH & 20TH C PHYSICS                A-      3.00      2009/WI          
+  APSC2028   SJ01B  SURVEY OF 19TH/20TH C. PHY LAB              A-      2.00      2009/WI          
+  CE3963     FRLB   ENGINEERING ECONOMY                         F       3.00      2011/WI          
+  CE3963     FRLB   ENGINEERING ECONOMY                         D       3.00      2012/WI          
+  CE3963     FRL    ENGINEERING ECONOMY                         C+      3.00      2014/FA          
+  CHE2501    SJ01A  GENERAL MATERIALS SCIENCE                   C       3.00      2008/FA          
+  CHEM1882   SJ01B  GEN CHEM/PHYSICAL & INORGANIC               C       5.00      2008/WI          
+  CMPE2213   SJ01A  DIGITAL SYSTEMS                             C       4.00      2008/FA          
+  CMPE2412   SJ01B  SIMULATION & ENG. ANALYSIS                  B-      4.00      2009/WI          
+  CMPE3221   FR01A  COMPUTER ORGANIZATION                       D       4.00      2009/FA          
+  CMPE3221   FR01A  COMPUTER ORGANIZATION                       F       4.00      2010/FA          
+  CMPE3221   FR01A  COMPUTER ORGANIZATION                       D       4.00      2011/FA          
+  CMPE3232   FR01B  EMBEDDED SYSTEMS DESIGN                     A       4.00      2011/WI          
+  CMPE3812   FR02B  DATA COMMUNIC'NS.& NETWORKING               B-      4.00      2012/WI          
+  CMPE4823   FR01A  COMM'NS.NETWORK ENGINEERING                 B       4.00      2011/FA          
+  CS1073     SJ01A  INTRO COMP PROG IN JAVA                     B-      4.00      2007/FA          
+  CS1083     SJ01B  COMP SC CONCEPTS/JAVA                       C+      4.00      2008/WI          
+  CS3853     FR01B  COMP ARCHITECTURE & ORGANIZAT               B       4.00      2012/WI          
+  ECE3122    FR01B  ELECTRONICS II                              F       4.00      2013/WI          
+  ECE3122    FR02B  ELECTRONICS II                              C+      4.00      2014/WI          
+  ECE4040    FR01X  ELECT & CMPE DESIGN PROJECT                 CTN     0.00      2012/FA          
+  ECE4040    FR01Y  ELECT & CMPE DESIGN PROJECT                 C       7.00      2013/WI          
+  EE1813     SJ01B  ELECTRICITY & MAGNETISM                     C       4.00      2008/WI          
+  EE2711     SJ01A  ELECTRIC CIRCUITS                           B       4.00      2008/FA          
+  EE2722     SJ01B  CIRCUITS AND SYSTEMS                        C+      4.00      2009/WI          
+  EE3031     FR01A  ELECTRICAL DESIGN                           A-      4.00      2009/FA          
+  EE3111     FR02A  ELECTRONICS I                               F       4.00      2009/FA          
+  EE3111     FR02A  ELECTRONICS I                               B       4.00      2010/FA          
+  EE3122     FR02B  ELECTRONICS II                              D       4.00      2011/WI          
+  EE3122     FR02B  ELECTRONICS II                              F       4.00      2012/WI          
+  EE3312     FR02B  SYSTEMS AND CONTROL                         C+      4.00      2010/WI          
+  EE3511     FR01A  SIGNALS                                     F       4.00      2009/FA          
+  EE3511     FR01A  SIGNALS                                     C+      4.00      2010/FA          
+  EE3612     FR01B  ELECTRIC MACHINES                           C       4.00      2010/WI          
+  EE3821     FR01A  ELECTROMAGNETICS I                          D       4.00      2009/FA          
+  EE3821     FR01A  ELECTROMAGNETICS I                          C       4.00      2010/FA          
+  EE3832     FR01B  ELECTROMAGNETICS II                         C       4.00      2010/WI          
+  EE4633     FR01A  POWER SYSTEM ANALYSIS                       C+      4.00      2011/FA          
+  EE4923     FR01B  INTRO.TO BIOMEDICAL ENG.                    F       4.00      2011/WI          
+  ENGG1013   SJ01A  DESIGN AND COMMUNICATION                    B       6.00      2007/FA          
+  ENGG4013   FR02A  LAW AND ETHICS FOR ENGINEERS                A       3.00      2011/FA          
+  FNAT2113   FRE1B  INTRODUCTION TO MUSIC                       A       3.00      2010/WI          
+  HIST3925   FR01B  TECHNOLOGY AND SOCIETY                      F       3.00      2010/WI          
+  HIST3925   FR01A  TECHNOLOGY AND SOCIETY                      C       3.00      2011/FA          
+  MATH1003   SJ02A  INTRO TO CALC I                             B       3.00      2007/FA          
+  MATH1013   SJ01B  INTRO CALC II                               C       3.00      2008/WI          
+  MATH1013   SJ01A  INTRO TO CALCULUS II                        A-      3.00      2008/SP          
+  MATH1503   SJ01A  INTRODUC.TO LINEAR ALGEBRA                  A-      3.00      2007/FA          
+  MATH2513   SJ01A  MULTIVARIATE CALCULUS FOR ENG.              C       4.00      2008/FA          
+  MATH3373   FR01B  INTRO TO GAME THEORY                        B       3.00      2012/WI          
+  MATH3503   SJ01B  DIFF EQUATIONS FOR ENG                      C       3.00      2009/WI          
+  ME3232     SJ01B  ENGINEERING ECONOMICS                       W       3.00      2009/WI          
+  ME3232     FR01B  ENGINEERING ECONOMICS                       F       3.00      2013/WI          
+  ME5393     FR01B  PRODUCT QUALITY                             C+      4.00      2012/WI          
+  SOCI1503   FR01A  SOCIOLOGICAL PERSPECTIVES                   C       3.00      2012/FA          
+  SPAN1203   FRE2B  INTROD'Y SPANISH I                          C       3.00      2010/WI          
+  STAT2593   SJ01A  PROB. & STAT. FOR ENGINEERS                 C+      3.00      2008/FA     
