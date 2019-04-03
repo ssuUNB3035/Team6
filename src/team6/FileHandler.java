@@ -61,7 +61,8 @@ public class FileHandler {
 			nameCell.setCellValue(courseIn.getCourseName());
 			
 			int[] levels = courseIn.getLevels();
-			for(int c = 0; c < levels.length; c++) {
+			int c = 0;
+			for(c = 0; c < levels.length; c++) {
 				XSSFCell cell = nextRow.createCell(c+2);
 				cell.setCellValue(levels[c]);
 			}
