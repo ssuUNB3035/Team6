@@ -177,13 +177,18 @@ public class FileHandler {
 	}
 	
 	//TODO: add a method to print to excel
-		public static void printGlobalDistribution(Cohort cohort) {
-			int[] global = cohort.getGlobalDistribution();
-			String globalString = "Global: \t\t";
-			for(int i = 0; i < global.length; i++) {
-				globalString += global[i] + ",\t";
-			}
-			System.out.println(globalString);
+	//TODO: handle printing to file.
+	/**
+	 * Prints the global distribution to the console.
+	 * @param cohort
+	 */
+	public static void printGlobalDistribution(Cohort cohort) {
+		int[] global = cohort.getGlobalDistribution();
+		String globalString = "Global: \t\t";
+		for(int i = 0; i < global.length; i++) {
+			globalString += global[i] + ",\t";
 		}
+		System.out.println(globalString);
+	}
 	
 }

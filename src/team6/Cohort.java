@@ -98,26 +98,50 @@ public class Cohort {
 		return yearCounts;
 	}
 	
+	/**
+	 * Increases the others level in the cohort;
+	 * @param othersIncrease
+	 */
 	public void increaseGlobalOthers(int othersIncrease) {
 		this.globalOthers += othersIncrease;
 	}
 	
+	/**
+	 * Increases the fails level in the cohort;
+	 * @param othersIncrease
+	 */
 	public void increaseGlobalFails(int failsIncrease) {
 		this.globalFails += failsIncrease;
 	}
 
+	/**
+	 * Increases the marginals level in the cohort;
+	 * @param othersIncrease
+	 */
 	public void increaseGlobalMarginals(int marginalsIncrease) {
 		this.globalMarginals += marginalsIncrease;
 	}
 
+	/**
+	 * Increases the meets level in the cohort;
+	 * @param othersIncrease
+	 */
 	public void increaseGlobalMeets(int meetsIncrease) {
 		this.globalMeets += meetsIncrease;
 	}
 
+	/**
+	 * Increases the exceeds level in the cohort;
+	 * @param othersIncrease
+	 */
 	public void increaseGlobalExceeds(int exceedsIncrease) {
 		this.globalExceeds += exceedsIncrease;
 	}
 	
+	/**
+	 * Increases all of the levels for the cohort, where applicable
+	 * @param levels - The array of numbers to increase each level by.
+	 */
 	public void increaseGlobalDistribution(int levels[]) {
 		System.out.println(levels[2]);
 		this.globalOthers += levels[0];
@@ -127,11 +151,17 @@ public class Cohort {
 		this.globalExceeds += levels[4];
 	}
 	
+	/**
+	 * @return distribution - The level distribution of the cohort in an array
+	 */
 	public int[] getGlobalDistribution() {
 		int distribution[] = {this.globalOthers, this.globalFails, this.globalMarginals, this.globalMeets, this.globalExceeds};
 		return distribution;
 	}
 	
+	/**
+	 * Itterates through the courses in the cohort to update the cohort's distribution
+	 */
 	public void calculateCourseLevels(){
 		ArrayList<Course> courses = CourseList.getCourseList();
 		for(Course course : courses) {
