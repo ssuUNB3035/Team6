@@ -1,0 +1,57 @@
+ADM1113    FRE1A  ADMINISTRATION                              B+      3.00      2014/SM          
+  ANTH1001   FR01B  INTRO SOC & CULTURAL ANTH                   C+      3.00      2013/WI          
+  APSC1013   SJ01A  MECHANICS I                                 A       5.00      2010/FA          
+  APSC1023   SJ01B  MECHANICS II                                C       5.00      2011/WI          
+  APSC2023   SJ01B  SURVEY 19TH & 20TH C PHYSICS                C       3.00      2012/WI          
+  APSC2028   SJ01B  SURVEY OF 19TH/20TH C. PHY LAB              A-      2.00      2012/WI          
+  CE3403     FR01A  ENVIRONMENTAL ENGINEERING                   C+      4.00      2014/FA          
+  CE3963     FR01B  ENGINEERING ECONOMY                         B       3.00      2014/WI          
+  CHE2501    SJ01A  GENERAL MATERIALS SCIENCE                   B-      3.00      2011/FA          
+  CHE5264    FR01A  OIL SANDS TECHNOLOGY                        B-      3.00      2014/FA          
+  CHEM1882   SJ03B  GEN CHEM/PHYSICAL & INORGANIC               W       5.00      2010/WI          
+  CHEM1882   SJ02B  GEN CHEM/PHYSICAL & INORGANIC               A       5.00      2011/WI          
+  CMPE2213   SJ01A  DIGITAL SYSTEMS                             C       4.00      2011/FA          
+  CMPE2412   SJ01B  SIMULATION & ENG. ANALYSIS                  B-      4.00      2012/WI          
+  CS1003     SJ01A  INTRO COMPUTER PROGRAMMING                  B-      4.00      2010/FA          
+  CS1023     SJ01B  DATA STRUCTURES & ALGORITHMS                B       4.00      2011/WI          
+  ECE3031    FR01A  ELECTRICAL & CMPE ENG DESIGN                B-      4.00      2012/FA          
+  ECE3111    FR02A  ELECTRONICS I                               B-      4.00      2012/FA          
+  ECE3122    FR02B  ELECTRONICS II                              D       4.00      2013/WI          
+  ECE3122    FR02B  ELECTRONICS II                              B-      4.00      2014/WI          
+  ECE3221    FR01A  COMPUTER ORGANIZATION                       F       4.00      2012/FA          
+  ECE3221    FRE1A  COMPUTER ORGANIZATION                       B       4.00      2013/SM          
+  ECE3232    FR01B  EMBEDDED SYSTEMS DESIGN                     B       4.00      2014/WI          
+  ECE3242    FR01B  COMPUTER ARCHITECTURE                       A-      4.00      2014/WI          
+  ECE3312    FR02B  SYSTEMS AND CONTROL                         A       4.00      2013/WI          
+  ECE3511    FR02A  SIGNALS                                     C       4.00      2012/FA          
+  ECE3612    FR01B  ELECTRIC MACHINES & DESIGN                  B-      4.00      2013/WI          
+  ECE3821    FR01A  ELECTROMAGNETICS I                          D       4.00      2012/FA          
+  ECE3821    FR01A  ELECTROMAGNETICS I                          A-      4.00      2013/FA          
+  ECE3832    FR01B  ELECTROMAGNETICS II                         B-      4.00      2013/WI          
+  ECE4040    FR01X  ELECT & CMPE DESIGN PROJECT                 CTN     0.00      2013/FA          
+  ECE4040    FR01Y  ELECT & CMPE DESIGN PROJECT                 C+      7.00      2014/WI          
+  ECE4523    FR01A  COMMUNICATIONS SYSTEMS                      C       4.00      2013/FA          
+  ECE4633    FR01A  POWER SYSTEM ANALYSIS                       A-      4.00      2013/FA          
+  ECON1013   FRE1B  INTRO TO ECON: MICRO                        W       3.00      2013/SM          
+  EE1813     SJ01B  ELECTRICITY & MAGNETISM                     B+      4.00      2011/WI          
+  EE2711     SJ01A  ELECTRIC CIRCUITS                           C       4.00      2011/FA          
+  EE2722     SJ01B  CIRCUITS AND SYSTEMS                        C+      4.00      2012/WI          
+  ENGG1013   SJ01A  DESIGN AND COMMUNICATION                    C       6.00      2010/FA          
+  ENGG4013   FRE1A  LAW AND ETHICS FOR ENGINEERS                B-      3.00      2013/SM          
+  ESL1301    SJ02A  ENGLISH SUPPORT I                           F       0.00      2009/FA          
+  ESL1301    SJ01B  ENGLISH SUPPORT I                           B       0.00      2010/WI          
+  ESL1302    SJ02A  ENGLISH SUPPORT II                          F       0.00      2009/FA          
+  ESL1302    SJ02B  ENGLISH SUPPORT II                          C+      0.00      2010/WI          
+  ESL1303    SJ03A  ENGLISH SUPPORT III                         F       0.00      2009/FA          
+  ESL1303    SJ02B  ENGLISH SUPPORT III                         C+      0.00      2010/WI          
+  MATH1003   SJ01B  INTRO TO CALC I                             B       3.00      2010/WI          
+  MATH1013   SJ01A  INTRO TO CALCULUS II                        C+      3.00      2010/SP          
+  MATH1503   SJ01A  INTRO TO LINEAR ALGEBRA                     C+      3.00      2010/SP          
+  MATH1863   SJ01A  PRECALCULUS MATH                            A-      3.00      2009/FA          
+  MATH2513   SJ01A  MULTIVARIATE CALCULUS FOR ENG.              B       4.00      2010/FA          
+  MATH3503   SJ01B  DIFFERENTIAL EQUATIONS FOR ENG              B       3.00      2012/WI          
+  SOCI2534   FRE1A  TECH & SOCIAL CHANGE                        C       3.00      2014/SM          
+  SPAN1203   SJ01A  INTROD'Y SPANISH I                          B       3.00      2011/SP          
+  STAT2593   SJ01A  PROB. & STAT. FOR ENGINEERS                 F       3.00      2011/FA          
+  STAT2593   FRE1   PROB STATS FOR ENGIN                        B-      3.00      2012/IN          
+  STS1003    ST0A   SCIENCE, TECHNOLOGY & SOCIETY               W       3.00      2013/FA   

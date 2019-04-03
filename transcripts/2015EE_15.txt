@@ -1,0 +1,50 @@
+APSC2023   FR01B  SURVEY OF 19TH & 20TH C PHYSIC              A+      3.00      2012/WI          
+  APSC2028   FR01B  SURV.OF 19TH & 20TH C.PHYS.LAB              A+      2.00      2012/WI          
+  CHE2501    FR01A  GENERAL MATERIALS SCIENCE                   A+      3.00      2011/FA          
+  CHEM1982   FR01B  GENERAL APPLIED CHEMISTRY                   A+      3.00      2011/WI          
+  CHEM1987   FR02B  GENERAL APPLIED CHEMISTRY LAB               A+      2.00      2011/WI          
+  CMPE2213   FR01A  DIGITAL SYSTEMS                             A+      4.00      2011/FA          
+  CMPE2412   FR01B  SIMULATION & ENG. ANALYSIS                  B+      4.00      2012/WI          
+  CS1003     FR01A  INTRO.TO COMPUTER PROGRM'G.                 A       4.00      2010/FA          
+  CS1023     FR01B  DATA STRUCTURES & ALGORITHMS                A+      4.00      2012/WI          
+  ECE3031    FR01A  ELECTRICAL & CMPE ENG DESIGN                A+      4.00      2012/FA          
+  ECE3111    FR02A  ELECTRONICS I                               A+      4.00      2012/FA          
+  ECE3122    FR01B  ELECTRONICS II                              A+      4.00      2014/WI          
+  ECE3221    FR01A  COMPUTER ORGANIZATION                       A+      4.00      2012/FA          
+  ECE3232    FR01B  EMBEDDED SYSTEMS DESIGN                     A+      4.00      2014/WI          
+  ECE3312    FR01B  SYSTEMS AND CONTROL                         A+      4.00      2014/WI          
+  ECE3511    FR02A  SIGNALS                                     A+      4.00      2012/FA          
+  ECE3612    FR03A  ELECTRIC MACHINES & DESIGN                  A+      4.00      2014/FA          
+  ECE3821    FR01A  ELECTROMAGNETICS I                          A+      4.00      2012/FA          
+  ECE3832    FR01B  ELECTROMAGNETICS II                         A+      4.00      2014/WI          
+  ECE4333    FR01B  ROBOTICS                                    A+      4.00      2015/WI          
+  ECE4433    FR01A  SAFETY-CRITICAL SYSTEM DESIGN               A+      4.00      2014/FA          
+  ECE4523    FR02A  COMMUNICATIONS SYSTEMS                      A+      4.00      2014/FA          
+  ECE4643    FR01B  POWER ELECTRONICS                           A+      4.00      2015/WI          
+  ECE4913    FR01B  WIRELESS NETWORK FOR MICROGRID              A+      4.00      2014/WI          
+  ECECOOP    FR01B  ECE WORK TERM                                       0.00      2013/WI          
+  ECECOOP    FR01   ECE WORK TERM                                       0.00      2013/SM          
+  ECECOOP    FR01A  ECE WORK TERM                                       0.00      2013/FA          
+  ECON1073   FRL    ECONOMICS FOR ENGINEERS                     A       3.00      2015/WI          
+  EE1813     FR03B  ELECTRICITY & MAGNETISM                     A+      4.00      2011/WI          
+  EE2711     FR01A  ELECTRIC CIRCUITS                           A+      4.00      2011/FA          
+  EE2722     FR01B  CIRCUITS AND SYSTEMS                        A+      4.00      2012/WI          
+  ENGG1001   FR01A  ENG PRACTICE LECTURE SERIES                 CR      0.00      2010/FA          
+  ENGG1003   FR01A  ENG. TECHNICAL COMMUNICATIONS               B+      4.00      2010/FA          
+  ENGG1015   FR02A  INTRO TO ENG DESIGN & PROB SOL              A-      2.00      2010/FA          
+  ENGG1082   FR01B  MECHANICS FOR ENGINEERS                     A+      4.00      2011/WI          
+  ENGG4013   FR02A  LAW AND ETHICS FOR ENGINEERS                A+      3.00      2014/FA          
+  MATH1003   FR01A  INTROD TO CALCULUS I                        A+      3.00      2010/FA          
+  MATH1013   FR02B  INTRO TO CALCULUS II                        A+      3.00      2011/WI          
+  MATH1503   FR01A  INTRODUC.TO LINEAR ALGEBRA                  A+      3.00      2010/FA          
+  MATH2513   FR01A  MULTIVARIABLE CALC.FOR ENG.                 B+      4.00      2011/FA          
+  MATH3503   FR01B  DIFF EQUATS FOR ENG                         B+      3.00      2012/WI          
+  ME1312     FR03B  COMPUTER AIDED DESIGN                       A+      4.00      2011/WI          
+  ME3232     FR01B  ENGINEERING ECONOMICS                       A+      3.00      2015/WI          
+  PHYS1081   FR03A  FOUNDATIONS OF PHYS FOR ENGG                A+      5.00      2010/FA          
+  PSYC1013   FR02A  INTRO. TO PSYCHOLOGY I                      A+      3.00      2011/FA          
+  SOCI1583   FR01A  CURRENT SOCIAL ISSUES                       A       3.00      2011/FA          
+  STAT2593   FR01B  PROB & STAT FOR ENG                         A+      3.00      2012/WI          
+  STS1003    ST01A  SCIENCE, TECHNOLOGY & SOCIETY               A       3.00      2014/FA          
+  TME4025    FR01X  PRODUCT DESIGN & DEVELOPMENT                CTN     0.00      2014/FA          
+  TME4025    FR01Y  PRODUCT DESIGN & DEVELOPMENT                A+      8.00      2015/WI 

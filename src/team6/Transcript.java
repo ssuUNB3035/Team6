@@ -14,6 +14,8 @@ public class Transcript {
 	
 	private int transcriptID;
 	
+	private String transcriptName;
+	
 	private double attemptedCreditHours;
 	
 	private double achievedCreditHours;
@@ -32,8 +34,9 @@ public class Transcript {
 	/**
 	 * Will hold a temporary transcript for student data calculations.
 	 */
-	public Transcript(){
+	public Transcript(String transcriptName){
 		this.transcriptID = transcriptCount++;
+		this.transcriptName = transcriptName;
 		this.attemptedCreditHours = 0.00;
 		this.gradeStrings = new ArrayList<String>();
 		//this.gradeElements = new ArrayList<String[]>();
@@ -149,12 +152,13 @@ public class Transcript {
 	 * @return template - The string template to display the transcripts details.
 	 */
 	public String toString() {
-		String template = "Transcript: " + this.transcriptID + "\n";
+		String template = "Transcript ID: " + this.transcriptID + "\n"
+				+ "Transcript Name: " + this.transcriptName + "\n";
 		for(String grade : gradeStrings) {
 			template += grade + "\n";
 		}
 		return template += "Credit Hours: " + attemptedCreditHours + "\n"
-				+ "Cumulative GPA: " + this.gpaNumber + " / " + this.getGPALetter() + "\n";
+				+ "Cumulative GPA: " + this.getGPANumber() + " / " + this.getGPALetter() + "\n";
 	}
 	
 }

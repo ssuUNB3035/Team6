@@ -57,7 +57,7 @@ public class TranscriptReader{
 	            System.out.println("Error opening file, skipping: " + transcript.getName());
 	        }
 	    	
-	    	Transcript tempTranscript = new Transcript();
+	    	Transcript tempTranscript = new Transcript(transcript.getName());
 	    		
 	        while(sc.hasNext()){
 	        	String line = sc.nextLine();
