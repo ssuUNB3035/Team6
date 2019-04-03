@@ -7,53 +7,36 @@ package team6;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.xssf.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class FileHandler {
-	private static ArrayList<String> createdFiles = new ArrayList<>();
 	
-	//Can this be replace with a file.exists method?		
-	public static boolean findFile(String name){
-		boolean success = false;
-		for(String names : createdFiles) {
-			if(names == "Results.xsl") {
-				//then the file exists and can be written to
-				success = true;
-			}
-		}
-		if(success == false) {
-			String fName = "Results.xsl";
-			createdFiles.add(fName);
-			success = true;
-		}
-		return success;
-	}
-	public static void addConfigFile(File file) throws IOException {
-		File configFile = file;
-		BufferedReader reader = new BufferedReader(new FileReader(file)); 
-		BufferedWriter writer = new BufferedWriter(new FileWriter(configFile));
-		String str; 
-		while ((str = reader.readLine()) != null) { 
-		    writer.write(str);
-		}
-		reader.close();
-		writer.close();
-	}
-		
+	static HSSFWorkbook workbook = new HSSFWorkbook();
+	
+	/**
+	 * 	
+	 * @param sortedList The Raw List of courses to be written in Excel
+	 * @throws FileNotFoundException 
+	 * @throws IOException
+	 */
 	public static void writeRawList(ArrayList<Course> sortedList) throws FileNotFoundException, IOException {
-		findFile("Results.xsl");
-		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet("Raw List");
 		HSSFRow row = sheet.createRow(0);
-		
 		String columnHeaders[] = {"Course Number", "Course Name", "Others", "Fails", "Marginals","Meets", "Exceeds"};
 		for(int c = 0; c < columnHeaders.length; c++) {
 			HSSFCell cell = row.createCell(c);
@@ -71,10 +54,13 @@ public class FileHandler {
 			nameCell.setCellValue(courseIn.getCourseName());
 			
 			int[] levels = courseIn.getLevels();
-			for(int c = 0; c < levels.length; c++) {
+			int c = 0;
+			for(c = 0; c < levels.length; c++) {
 				HSSFCell cell = nextRow.createCell(c+2);
 				cell.setCellValue(levels[c]);
 			}
+			
+			HSSFCell globalCell = nextRow.createCell(c+1);
 		}
 		
 		workbook.write(new FileOutputStream("Results.xsl"));
@@ -83,7 +69,6 @@ public class FileHandler {
 	}
 	
 	public static void writeRawList(ArrayList<Course> sortedList, String fileName) throws FileNotFoundException, IOException {
-		findFile(fileName);
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet("Raw List");
 		
@@ -117,4 +102,93 @@ public class FileHandler {
 		workbook.write(new FileOutputStream(fileName));
 		workbook.close();
 	}
+	
+	
+	//File name is not used until excel config is being read. 
+	//TODO: Check if areaConfig should be the string name of the actual file
+	//This method is to get the area group once you know the area names.
+	/**
+	 * This will return a list of all courses that exist in a specified area.
+	 * @param areaConfig - The excel file that will be opened to extract data from.
+	 * @param area - The area header to establish the area courses to be extracted.
+	 * @return areaCourses - The list of courses that were in the specified area.
+	 * @throws IOException
+	 * @throws FileNotFoundException - When the specified file name does not exist.
+	 */
+	public static ArrayList<String> getAreaCourses(String areaConfig, String area) throws IOException, FileNotFoundException {
+		
+		InputStream ExcelFileToRead = new FileInputStream("results_EE2014.xlsx");
+        XSSFWorkbook  wb = new XSSFWorkbook(ExcelFileToRead);
+        XSSFSheet sheet = wb.getSheet("Areas");
+        
+        ArrayList<String> areaCourses = new ArrayList<String>();
+        Iterator<Row> rowIterator = sheet.iterator();
+        Row row = rowIterator.next();
+    	Iterator <Cell> cellIterator = row.cellIterator();
+    	
+    	int areaColumnIndex = 0;
+    	
+    	while(cellIterator.hasNext()) {
+    		Cell cell = cellIterator.next();
+    		if(area.equals(cell.getStringCellValue())) {
+    			areaColumnIndex = cell.getColumnIndex();
+    		}
+    	}
+        
+    	while(rowIterator.hasNext()) {
+    		row = rowIterator.next();
+    		if(row.getCell(areaColumnIndex) != null) {
+    			String course = row.getCell(areaColumnIndex).getStringCellValue();
+    			areaCourses.add(course);
+    		}else {
+    			break;
+    		}
+    	}
+    	
+    	System.out.println(areaCourses.toString());
+    	return areaCourses;
+	}
+	
+	//TODO: Check if areaConfig should be the string name of the actual file
+	/**
+	 * This method will get all of the areas that are defined within the excel sheet - 'Areas'
+	 * @param areaConfig - The excel file that will be opened to extract data from.
+	 * @return areaNames - The names of all the areas that can be accessed. 
+	 * @throws IOException
+	 */
+	public static ArrayList<String> getAreaNames(String areaConfig) throws IOException{
+		
+		InputStream ExcelFileToRead = new FileInputStream("results_EE2014.xlsx");
+        XSSFWorkbook  wb = new XSSFWorkbook(ExcelFileToRead);
+        XSSFSheet sheet = wb.getSheet("Areas");
+        
+        ArrayList<String> areaNames = new ArrayList<String>();
+        Row row = sheet.getRow(0);
+        Iterator<Cell> cellIterator = row.cellIterator();
+    	
+    	
+    	while(cellIterator.hasNext()) {
+    		Cell cell = cellIterator.next();
+    		areaNames.add(cell.getStringCellValue());
+    	}
+		
+    	System.out.println(areaNames.toString());
+		return areaNames;
+	}
+	
+	//TODO: add a method to print to excel
+	//TODO: handle printing to file.
+	/**
+	 * Prints the global distribution to the console.
+	 * @param cohort
+	 */
+	public static void printGlobalDistribution(Cohort cohort) {
+		int[] global = cohort.getGlobalDistribution();
+		String globalString = "Global: \t\t";
+		for(int i = 0; i < global.length; i++) {
+			globalString += global[i] + ",\t";
+		}
+		System.out.println(globalString);
+	}
+	
 }
