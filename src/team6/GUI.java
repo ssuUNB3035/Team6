@@ -72,12 +72,13 @@ public class GUI extends JFrame implements ActionListener {
 	     	     System.out.println("Transcript count: " + transcriptSet.length);
 	     	     
 	     	     LevelSchema.getSchemaConfig();
-	     	     TranscriptReader.parseTranscripts(transcriptSet);
+	     	     Cohort cohort = TranscriptReader.parseTranscripts(transcriptSet);
 	     	     message.setText(transcriptSet.length + " transcripts successfully parsed."); //might need a better statement.
 	     	     excelButton.setVisible(true);
 	     	     message2.setVisible(true);
 	     	     //prints to console
 	     	     System.out.println(CourseList.printTextRawList());
+	     	     FileHandler.printGlobalDistribution(cohort);
 	         }
 	         
 	         if(event.equals("Write Raw List to Excel")){
