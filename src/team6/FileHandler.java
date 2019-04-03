@@ -56,7 +56,7 @@ public class FileHandler {
 			int[] levels = courseIn.getLevels();
 			int c = 0;
 			for(c = 0; c < levels.length; c++) {
-				HSSFCell cell = nextRow.createCell(c+2);
+				XSSFCell cell = nextRow.createCell(c+2);
 				cell.setCellValue(levels[c]);
 			}
 			
