@@ -154,7 +154,7 @@ public class Transcript {
 			template += grade + "\n";
 		}
 		return template += "Credit Hours: " + attemptedCreditHours + "\n"
-				+ "Cumulative GPA: " + this.gpaNumber + " / " + this.getGPALetter() + "\n";
+				+ "Cumulative GPA: " + this.getGPANumber() + " / " + this.getGPALetter() + "\n";
 	}
 	
 }
