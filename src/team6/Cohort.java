@@ -143,7 +143,6 @@ public class Cohort {
 	 * @param levels - The array of numbers to increase each level by.
 	 */
 	public void increaseGlobalDistribution(int levels[]) {
-		System.out.println(levels[2]);
 		this.globalOthers += levels[0];
 		this.globalFails += levels[1];
 		this.globalMarginals += levels[2];
