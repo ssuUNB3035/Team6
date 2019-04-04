@@ -84,7 +84,7 @@ public class Cohort {
 	}
 	
 	/**
-	 * @return	fourthYearCount - The number of transcripts that in their fourth year.
+	 * @return	fourthYearCount - The number of transcripts that are in their fourth year.
 	 */
 	public int getFourthYearCount() {
 		return fourthYearCount;
