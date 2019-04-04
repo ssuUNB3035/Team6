@@ -32,12 +32,12 @@ class CourseList {
 		if(courseExists) {
 			courseList.get(courseIndex).setGrade(gradeElements.get(3));
 		}else {
-			if (gradeElements.get(3).equals("null")) {
+			if (gradeElements.get(3).equals("")) {
 				//Do nothing :D
 			}
 			else {
 				Course course = new Course(gradeElements);
-			courseList.add(course);
+				courseList.add(course);
 			}
 		}
 		
