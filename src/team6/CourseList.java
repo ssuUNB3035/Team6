@@ -32,8 +32,13 @@ class CourseList {
 		if(courseExists) {
 			courseList.get(courseIndex).setGrade(gradeElements.get(3));
 		}else {
-			Course course = new Course(gradeElements);
+			if (gradeElements.get(3).equals("null")) {
+				//Do nothing :D
+			}
+			else {
+				Course course = new Course(gradeElements);
 			courseList.add(course);
+			}
 		}
 		
 		return true;
