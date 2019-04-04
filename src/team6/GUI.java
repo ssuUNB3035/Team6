@@ -88,7 +88,7 @@ public class GUI extends JFrame implements ActionListener{
 		     	     FileHandler.writeYearDistribution(cohort);
 		     	     parseCount++; 
 		        } catch (IllegalArgumentException e1) {
-		        	message.setText("new message");
+		        	message.setText("Error parsing transcripts. One or more files may be corrupted.");
 		        	e1.printStackTrace();
 		        }
 	         }
