@@ -3,16 +3,14 @@ package team6;
  * @author Uwera Ntaganzwa
  */
 import javax.swing.*;
-import javax.swing.filechooser.FileSystemView;
-
-import java.awt.Desktop;
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GUI extends JFrame implements ActionListener {
+public class GUI extends JFrame implements ActionListener{
+		private static int parseCount;
 		private static JButton parseButton;
 		private static JButton excelButton;
 		private static JLabel message;
@@ -33,7 +31,7 @@ public class GUI extends JFrame implements ActionListener {
 				e.printStackTrace();
 			}
 	    	
-	    	
+	    
 	       JFrame frame = new JFrame("Student Transcript Analyser");
 	       JPanel panel = new JPanel();
 	       frame.setSize(500,450);
@@ -44,6 +42,7 @@ public class GUI extends JFrame implements ActionListener {
 	       panel.add(parseButton);
 	       message = new JLabel("No transcripts parsed yet.");
 	       panel.add(message);
+	       parseCount = 0;
 	       
 	       excelButton = new JButton("Write Raw List to Excel");
 	       message2 = new JLabel("No Raw List spreadsheet yet.");
@@ -61,24 +60,33 @@ public class GUI extends JFrame implements ActionListener {
 	       frame.setVisible(true);
 	    }
 	    
-	    public void actionPerformed(ActionEvent e){
+	    public void actionPerformed(ActionEvent e) throws IllegalArgumentException{
 	    	 String event = e.getActionCommand(); 
 
 	         if (event.equals("Parse Transcripts")) { 
-	             File directory = null;
-	             directory = TranscriptReader.getDirectory();
-	     			
-	             File[] transcriptSet = directory.listFiles();
-	     	     System.out.println("Transcript count: " + transcriptSet.length);
-	     	     
-	     	     LevelSchema.getSchemaConfig();
-	     	     Cohort cohort = TranscriptReader.parseTranscripts(transcriptSet);
-	     	     message.setText(transcriptSet.length + " transcripts successfully parsed."); //might need a better statement.
-	     	     excelButton.setVisible(true);
-	     	     message2.setVisible(true);
-	     	     //prints to console
-	     	     System.out.println(CourseList.printTextRawList());
-	     	     FileHandler.printGlobalDistribution(cohort);
+		        if (parseCount > 0) {
+		        	message.setText("Transcripts in this cohort have already been parsed.");
+		        	throw new IllegalArgumentException();
+		        }
+		        try {	 
+		             File directory = null;
+		             directory = TranscriptReader.getDirectory();
+		     			
+		             File[] transcriptSet = directory.listFiles();
+		     	     System.out.println("Transcript count: " + transcriptSet.length);
+		     	     
+		     	     LevelSchema.getSchemaConfig();
+		     	     Cohort cohort = TranscriptReader.parseTranscripts(transcriptSet);
+		     	     message.setText(transcriptSet.length + " transcripts successfully parsed."); //might need a better statement.
+		     	     excelButton.setVisible(true);
+		     	     message2.setVisible(true);
+		     	     //prints to console
+		     	     System.out.println(CourseList.printTextRawList());
+		     	     FileHandler.printGlobalDistribution(cohort);
+		     	     parseCount++; 
+		        } catch (IllegalArgumentException e1) {
+		        	message.setText("new message");
+		        }
 	         }
 	         
 	         if(event.equals("Write Raw List to Excel")){
@@ -87,13 +95,15 @@ public class GUI extends JFrame implements ActionListener {
 	        	  
 	        	  try {
 					FileHandler.writeRawList(sortedList);
-					message2.setText("A Raw List spreadsheet has been created and added.");
+					message2.setText("A Raw List spreadsheet has been added to a Results workbook.");
 				} catch (FileNotFoundException e1) {
-					message.setText("Failed to write to excel. File not found.");
+					message.setText("Failed to write to excel. Results file not found.");
 					e1.printStackTrace();
 				} catch (IOException e1) {
-					message.setText("Failed to write to excel.");
+					message2.setText("Failed to write to excel.");
 					e1.printStackTrace();
+				} catch (IllegalArgumentException e1) {
+					message2.setText("The workbook already contains a sheet named 'Raw List'");
 				}
 	         }
 	    }

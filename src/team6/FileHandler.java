@@ -15,7 +15,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -29,9 +28,9 @@ public class FileHandler {
 	static XSSFWorkbook workbook = new XSSFWorkbook();
 	
 	/**
-	 * 	
-	 * @param sortedList The Raw List of courses to be written in Excel
-	 * @throws FileNotFoundException 
+	 * Writes a Raw List of courses to Excel and includes the raw distribution for each course in the Master List
+	 * @param sortedList - The Raw List of courses to be written in Excel (This is also the Master List)
+	 * @throws FileNotFoundException - Thrown when "Results.xslx" is not found
 	 * @throws IOException
 	 */
 	public static void writeRawList(ArrayList<Course> sortedList) throws FileNotFoundException, IOException {
@@ -60,13 +59,19 @@ public class FileHandler {
 				cell.setCellValue(levels[c]);
 			}
 			
-			HSSFCell globalCell = nextRow.createCell(c+1);
+			XSSFCell globalCell = nextRow.createCell(c+1);
 		}
-		
 		workbook.write(new FileOutputStream("Results.xslx"));
 		workbook.close();
 		//System.out.println("Courses have been successfully copied to the Raw List sheet.");
 	}
+	/**
+	 * 
+	 * @param sortedList - The Raw List of courses to be written in Excel. (This is also the Master List)
+	 * @param fileName - A specific File to which the results should be written
+	 * @throws FileNotFoundException - Thrown when the specified file is not valid
+	 * @throws IOException
+	 */
 	
 	public static void writeRawList(ArrayList<Course> sortedList, String fileName) throws FileNotFoundException, IOException {
 		XSSFWorkbook workbook = new XSSFWorkbook();
@@ -94,7 +99,7 @@ public class FileHandler {
 			
 			int[] levels = courseIn.getLevels();
 			for(int c = 0; c < levels.length; c++) {
-				HSSFCell cell = nextRow.createCell(c+2);
+				XSSFCell cell = nextRow.createCell(c+2);
 				cell.setCellValue(levels[c]);
 			}
 		}
