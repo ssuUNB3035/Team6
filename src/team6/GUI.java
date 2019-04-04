@@ -83,7 +83,9 @@ public class GUI extends JFrame implements ActionListener{
 		     	     message2.setVisible(true);
 		     	     //prints to console
 		     	     System.out.println(CourseList.printTextRawList());
-		     	     FileHandler.printGlobalDistribution(cohort);
+		     	     //NOTE: automatically prints cohorts global to the excel. might want to change?
+		     	     FileHandler.writeGlobalDistribution(cohort);
+		     	     FileHandler.writeYearDistribution(cohort);
 		     	     parseCount++; 
 		        } catch (IllegalArgumentException e1) {
 		        	message.setText("new message");
