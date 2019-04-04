@@ -26,7 +26,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class FileHandler {
 	
 	static XSSFWorkbook workbook = new XSSFWorkbook();
-	
 	/**
 	 * Writes a Raw List of courses to Excel and includes the raw distribution for each course in the Master List
 	 * @param sortedList - The Raw List of courses to be written in Excel (This is also the Master List)
@@ -194,6 +193,32 @@ public class FileHandler {
 			globalString += global[i] + ",\t";
 		}
 		System.out.println(globalString);
+	}
+	/**
+	 * Returns a list of all the stored files; config files and output excel files
+	 * @return retrievedFiles - A list of the files stored in the current working directory
+	 */
+	public static ArrayList<File> retrieveStoredFiles(){
+		String directoryPath;
+		ArrayList<File> retrievedFiles = new ArrayList<File>();
+		try {
+			directoryPath = new java.io.File( "." ).getCanonicalPath();
+			File directory = new File(directoryPath);
+			File [] storedFiles = directory.listFiles();
+			for(File f : storedFiles) {
+				if ((f.getName().endsWith(".xslx") || (f.getName().endsWith(".txt")))){
+					retrievedFiles.add(f);
+					System.out.println(f.getName());
+				}
+			}
+			if(storedFiles.length == 0) {
+				System.out.print("There are no stored files.");
+			}
+		} catch (IOException e) {
+			System.out.println("Directory not found.");
+			e.printStackTrace();
+		}
+		return retrievedFiles;
 	}
 	
 }
