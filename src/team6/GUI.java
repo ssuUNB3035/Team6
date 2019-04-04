@@ -80,7 +80,8 @@ public class GUI extends JFrame implements ActionListener {
 					message2.setVisible(true);
 					//prints to console
 					System.out.println(CourseList.printTextRawList());
-					FileHandler.printGlobalDistribution(cohort);
+					FileHandler.writeGlobalDistribution(cohort);
+					FileHandler.writeYearDistribution(cohort);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
