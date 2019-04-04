@@ -10,8 +10,7 @@ public class Course implements Comparable<Course>{
 	private String courseNum;
 
 	private String courseName;
-
-	//TODO: set these to a raw distribution class. 
+ 
 	private int others;
 	
 	private int fails;
@@ -21,10 +20,6 @@ public class Course implements Comparable<Course>{
 	private int meets;
 	
 	private int exceeds;
-	
-	
-	//TODO: Is this if a student had retaken a course? because equivalences aren't checked here I think?
-	//private String replaces = "";
 
 	//NOTE: yes keep the array of all the information so that we can do something with it if ever we need to. 
 	public Course(ArrayList<String> courseElements) {
@@ -76,8 +71,7 @@ public class Course implements Comparable<Course>{
 	public String getCourseName() {
 		return this.courseName;
 	}
-	
-	
+
 	/**
 	 * @return The 'others' level count
 	 */
