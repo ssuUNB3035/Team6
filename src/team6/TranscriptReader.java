@@ -88,7 +88,7 @@ public class TranscriptReader{
         	
 		for(int i = 0; i < ELEM_SIZE-1; i++){
 			String element = line.substring(0, line.indexOf("  "));
-                
+			
 			if(i == 3 && element.length() == 4){
 				//TODO: Mark what a no grade will be??
 				elementSet.add("");
