@@ -4,14 +4,14 @@ APSC1081   SJ01A  INTRODUCTION TO MECHANICS                   C+      4.00      
   APSC2023   FR01B  SURVEY OF 19TH & 20TH C PHYSIC              C+      3.00      2013/WI          
   APSC2028   FR02B  SURV.OF 19TH & 20TH C.PHYS.LAB              C       2.00      2013/WI          
   CE3963     FR01B  ENGINEERING ECONOMY                         B-      3.00      2015/WI          
-  CHE2501    FR01A  GENERAL MATERIALS SCIENCE                   F       3.00      2012/FA          
+  CHE2501    FR01A  GENERAL MATERIALS SCIENCE                   F       3.00 #    2012/FA          
   CHEM1872   SJ01B  GENERAL PHYSICAL & INORGANIC                B-      3.00      2012/WI          
   CHEM1877   SJ04B  GEN PHYSICAL & INORGAINC LAB                C+      2.00      2012/WI          
   CS1003     SJ01A  INTRO COMPUTER PROGRAMMING                  D       4.00      2011/SP          
   CS1003     SJ01A  INTRO COMPUTER PROGRAMMING                  B-      4.00      2011/FA          
   CS1023     SJ01B  DATA STRUCTURES & ALGORITHMS                C       4.00      2012/WI          
   CS2033     FR01A  SOFTWARE DESIGN FOR ENGINEERS               C       4.00      2014/FA          
-  ECE2213    FR02A  DIGITAL SYSTEMS                             F       4.00      2012/FA          
+  ECE2213    FR02A  DIGITAL SYSTEMS                             F       4.00 #    2012/FA          
   ECE2213    SJ01A  DIGITAL SYSTEMS                             B+      4.00      2013/SM          
   ECE2412    FR01B  SIMULATION & ENG. ANALYSIS                  C       4.00      2013/WI          
   ECE2711    FR02A  ELECTRIC CIRCUITS                           B-      4.00      2012/FA          
