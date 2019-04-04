@@ -50,7 +50,7 @@ class CourseList {
 	/**
 	 * Prints the Raw Course alphabetically list in a text format.
 	 */
-	//TODO: Change this to output to a .txt file.
+	//TODO: add to output to a .txt file in fileHandler.
 	public static String printTextRawList() {
 		courseList.sort(null);
 		
