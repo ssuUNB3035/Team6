@@ -15,7 +15,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -26,75 +25,80 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class FileHandler {
 	
-	static HSSFWorkbook workbook = new HSSFWorkbook();
-	
+	static XSSFWorkbook workbook = new XSSFWorkbook();
 	/**
-	 * 	
-	 * @param sortedList The Raw List of courses to be written in Excel
-	 * @throws FileNotFoundException 
+	 * Writes a Raw List of courses to Excel and includes the raw distribution for each course in the Master List
+	 * @param sortedList - The Raw List of courses to be written in Excel (This is also the Master List)
+	 * @throws FileNotFoundException - Thrown when "Results.xslx" is not found
 	 * @throws IOException
 	 */
 	public static void writeRawList(ArrayList<Course> sortedList) throws FileNotFoundException, IOException {
-		HSSFSheet sheet = workbook.createSheet("Raw List");
-		HSSFRow row = sheet.createRow(0);
+		XSSFSheet sheet = workbook.createSheet("Raw List");
+		XSSFRow row = sheet.createRow(0);
 		String columnHeaders[] = {"Course Number", "Course Name", "Others", "Fails", "Marginals","Meets", "Exceeds"};
 		for(int c = 0; c < columnHeaders.length; c++) {
-			HSSFCell cell = row.createCell(c);
+			XSSFCell cell = row.createCell(c);
 			cell.setCellValue(columnHeaders[c]);
 		}
 		
 		int n = 0, m = 0;
 		for(Course courseIn: sortedList) {
 			n++;
-			HSSFRow nextRow = sheet.createRow(n);
+			XSSFRow nextRow = sheet.createRow(n);
 			
-			HSSFCell numCell = nextRow.createCell(m);
-			HSSFCell nameCell = nextRow.createCell(m+1);
+			XSSFCell numCell = nextRow.createCell(m);
+			XSSFCell nameCell = nextRow.createCell(m+1);
 			numCell.setCellValue(courseIn.getCourseNum());
 			nameCell.setCellValue(courseIn.getCourseName());
 			
 			int[] levels = courseIn.getLevels();
 			int c = 0;
 			for(c = 0; c < levels.length; c++) {
-				HSSFCell cell = nextRow.createCell(c+2);
+				XSSFCell cell = nextRow.createCell(c+2);
 				cell.setCellValue(levels[c]);
 			}
 			
-			HSSFCell globalCell = nextRow.createCell(c+1);
+			XSSFCell globalCell = nextRow.createCell(c+1);
 		}
-		
-		workbook.write(new FileOutputStream("Results.xsl"));
+		workbook.write(new FileOutputStream("Results.xslx"));
 		workbook.close();
 		//System.out.println("Courses have been successfully copied to the Raw List sheet.");
 	}
+	/**
+	 * 
+	 * @param sortedList - The Raw List of courses to be written in Excel. (This is also the Master List)
+	 * @param fileName - A specific File to which the results should be written
+	 * @throws FileNotFoundException - Thrown when the specified file is not valid
+	 * @throws IOException
+	 */
 	
 	public static void writeRawList(ArrayList<Course> sortedList, String fileName) throws FileNotFoundException, IOException {
-		HSSFWorkbook workbook = new HSSFWorkbook();
-		HSSFSheet sheet = workbook.createSheet("Raw List");
+		XSSFWorkbook workbook = new XSSFWorkbook();
+		XSSFSheet sheet = workbook.createSheet("Raw List");
 		
-		HSSFRow row = sheet.createRow(0);
+		XSSFRow row = sheet.createRow(0);
 		
 
 		String columnHeaders[] = {"Course Number", "Course Name", "Others", "Fails", "Marginal","Meets", "Exceeds"};
 
 		for(int c = 0; c < columnHeaders.length; c++) {
-			HSSFCell cell = row.createCell(c);
+			XSSFCell cell = row.createCell(c);
 			cell.setCellValue(columnHeaders[c]);
 		}
 		
 		int n = 0, m = 0;
 		for(Course courseIn: sortedList) {
 			n++;
-			HSSFRow nextRow = sheet.createRow(n);
+			XSSFRow nextRow = sheet.createRow(n);
 			
-			HSSFCell numCell = nextRow.createCell(m);
-			HSSFCell nameCell = nextRow.createCell(m+1);
+			XSSFCell numCell = nextRow.createCell(m);
+			XSSFCell nameCell = nextRow.createCell(m+1);
 			numCell.setCellValue(courseIn.getCourseNum());
 			nameCell.setCellValue(courseIn.getCourseName());
 			
 			int[] levels = courseIn.getLevels();
 			for(int c = 0; c < levels.length; c++) {
-				HSSFCell cell = nextRow.createCell(c+2);
+				XSSFCell cell = nextRow.createCell(c+2);
 				cell.setCellValue(levels[c]);
 			}
 		}
@@ -189,6 +193,32 @@ public class FileHandler {
 			globalString += global[i] + ",\t";
 		}
 		System.out.println(globalString);
+	}
+	/**
+	 * Returns a list of all the stored files; config files and output excel files
+	 * @return retrievedFiles - A list of the files stored in the current working directory
+	 */
+	public static ArrayList<File> retrieveStoredFiles(){
+		String directoryPath;
+		ArrayList<File> retrievedFiles = new ArrayList<File>();
+		try {
+			directoryPath = new java.io.File( "." ).getCanonicalPath();
+			File directory = new File(directoryPath);
+			File [] storedFiles = directory.listFiles();
+			for(File f : storedFiles) {
+				if ((f.getName().endsWith(".xslx") || (f.getName().endsWith(".txt")))){
+					retrievedFiles.add(f);
+					System.out.println(f.getName());
+				}
+			}
+			if(storedFiles.length == 0) {
+				System.out.print("There are no stored files.");
+			}
+		} catch (IOException e) {
+			System.out.println("Directory not found.");
+			e.printStackTrace();
+		}
+		return retrievedFiles;
 	}
 	
 }
