@@ -74,6 +74,7 @@ public class TranscriptReader{
 	            	}
 	            	
 	            	CourseList.addCourse(gradeElements);
+	            	cohort.addCourseToMaster(gradeElements.get(0));
 	            	tempTranscript.addGrade(gradeElements);             
 	            }
 	        }
