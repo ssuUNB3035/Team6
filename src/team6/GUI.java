@@ -3,14 +3,16 @@ package team6;
  * @author Uwera Ntaganzwa
  */
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
+
+import java.awt.Desktop;
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GUI extends JFrame implements ActionListener{
-		private static int parseCount;
+public class GUI extends JFrame implements ActionListener {
 		private static JButton parseButton;
 		private static JButton excelButton;
 		private static JLabel message;
@@ -25,14 +27,13 @@ public class GUI extends JFrame implements ActionListener{
 	    	try{
 	    		ArrayList<String> areaNames = FileHandler.getAreaNames("rand");
 				FileHandler.getAreaCourses("rand", areaNames.get(1));
-				FileHandler.retrieveStoredFiles();
 			}catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}catch (IOException e) {
 				e.printStackTrace();
 			}
 	    	
-	    
+	    	
 	       JFrame frame = new JFrame("Student Transcript Analyser");
 	       JPanel panel = new JPanel();
 	       frame.setSize(500,450);
@@ -43,7 +44,6 @@ public class GUI extends JFrame implements ActionListener{
 	       panel.add(parseButton);
 	       message = new JLabel("No transcripts parsed yet.");
 	       panel.add(message);
-	       parseCount = 0;
 	       
 	       excelButton = new JButton("Write Raw List to Excel");
 	       message2 = new JLabel("No Raw List spreadsheet yet.");
@@ -61,11 +61,11 @@ public class GUI extends JFrame implements ActionListener{
 	       frame.setVisible(true);
 	    }
 	    
-	    public void actionPerformed(ActionEvent e) throws IllegalArgumentException{
+	    public void actionPerformed(ActionEvent e){
 	    	 String event = e.getActionCommand(); 
 
 	         if (event.equals("Parse Transcripts")) { 
-		        if (parseCount > 0) {
+	            	if (parseCount > 0) {
 		        	message.setText("Transcripts in this cohort have already been parsed.");
 		        	throw new IllegalArgumentException();
 		        }
@@ -99,15 +99,13 @@ public class GUI extends JFrame implements ActionListener{
 	        	  
 	        	  try {
 					FileHandler.writeRawList(sortedList);
-					message2.setText("A Raw List spreadsheet has been added to a Results workbook.");
+					message2.setText("A Raw List spreadsheet has been created and added.");
 				} catch (FileNotFoundException e1) {
-					message.setText("Failed to write to excel. Results file not found.");
+					message.setText("Failed to write to excel. File not found.");
 					e1.printStackTrace();
 				} catch (IOException e1) {
-					message2.setText("Failed to write to excel.");
+					message.setText("Failed to write to excel.");
 					e1.printStackTrace();
-				} catch (IllegalArgumentException e1) {
-					message2.setText("The workbook already contains a sheet named 'Raw List'");
 				}
 	         }
 	    }

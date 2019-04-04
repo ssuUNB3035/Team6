@@ -8,12 +8,9 @@ import java.util.ArrayList;
 public class Course implements Comparable<Course>{
 	
 	private String courseNum;
-	
-	private String creditHours;
 
 	private String courseName;
-
-	//TODO: set these to a raw distribution class. 
+ 
 	private int others;
 	
 	private int fails;
@@ -23,17 +20,12 @@ public class Course implements Comparable<Course>{
 	private int meets;
 	
 	private int exceeds;
-	
-	
-	//TODO: Is this if a student had retaken a course? because equivalences aren't checked here I think?
-	//private String replaces = "";
 
 	//NOTE: yes keep the array of all the information so that we can do something with it if ever we need to. 
 	public Course(ArrayList<String> courseElements) {
 		this.courseNum = courseElements.get(0);
 		this.courseName = courseElements.get(2);
 		setGrade(courseElements.get(3));
-		this.creditHours = courseElements.get(4);
 	}
 	
 	/**
@@ -79,14 +71,7 @@ public class Course implements Comparable<Course>{
 	public String getCourseName() {
 		return this.courseName;
 	}
-	
-	/**
-	 * @return The credit hours that can be attempted
-	 */
-	public String getCreditHours() {
-		return this.creditHours;
-	}
-	
+
 	/**
 	 * @return The 'others' level count
 	 */
