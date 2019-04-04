@@ -3,6 +3,8 @@ package team6;
  * @author Uwera Ntaganzwa
  */
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
+import java.awt.Desktop;
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,6 +17,7 @@ public class GUI extends JFrame implements ActionListener{
 		private static JButton excelButton;
 		private static JLabel message;
 		private static JLabel message2;
+		private static JFileChooser jchooser;
 		ArrayList<Course> sortedList = new ArrayList<>();
 		GUI(){}
 	    public static void main(String args[]){
@@ -52,9 +55,9 @@ public class GUI extends JFrame implements ActionListener{
 	       excelButton.setVisible(false);
 	       message2.setVisible(false);
 	       
-	       GUI fileChooser = new GUI();
-	       parseButton.addActionListener(fileChooser);
-	       excelButton.addActionListener(fileChooser);
+	       GUI filejchooser = new GUI();
+	       parseButton.addActionListener(filejchooser);
+	       excelButton.addActionListener(filejchooser);
 	       
 	       
 	       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,14 +73,35 @@ public class GUI extends JFrame implements ActionListener{
 		        	throw new IllegalArgumentException();
 		        }
 		        try {	 
-		             File directory = null;
-		             directory = TranscriptReader.getDirectory();
-		     			
+		        	jchooser = new JFileChooser(); 
+		        	 jchooser.setCurrentDirectory(new java.io.File("."));
+		        	 jchooser.setDialogTitle("Select Transcript Directory");
+		        	 jchooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		        	 jchooser.setAcceptAllFileFilterUsed(false);
+
+		        	 if (jchooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) { 
+		        		 System.out.println("You're path: " + jchooser.getSelectedFile() + "\\");
+		        	 }
+		        	 else {
+		        		 System.out.println("No Selection ");
+		        	 }
+		             
+		             String directoryName = jchooser.getSelectedFile() + "\\";
+		             System.out.println(directoryName);
+		             File directory = new File(directoryName);
+		             directory.mkdir();
+		             
 		             File[] transcriptSet = directory.listFiles();
 		     	     System.out.println("Transcript count: " + transcriptSet.length);
 		     	     
 		     	     LevelSchema.getSchemaConfig();
-		     	     Cohort cohort = TranscriptReader.parseTranscripts(transcriptSet);
+		     	     Cohort cohort = null;
+					try {
+						cohort = TranscriptReader.parseTranscripts(transcriptSet);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 		     	     message.setText(transcriptSet.length + " transcripts successfully parsed."); //might need a better statement.
 		     	     excelButton.setVisible(true);
 		     	     message2.setVisible(true);

@@ -261,6 +261,44 @@ public class FileHandler {
 		}
 	}
 	
+	public static ArrayList<ArrayList<String>> getEquivalentCourses(String areaConfig) throws IOException, FileNotFoundException {
+		
+		InputStream ExcelFileToRead = new FileInputStream("results_EE2014.xlsx");
+        XSSFWorkbook  wb = new XSSFWorkbook(ExcelFileToRead);
+        XSSFSheet sheet = wb.getSheet("Equivelents");
+        
+        ArrayList<ArrayList<String>> courses = new ArrayList<ArrayList<String>>();
+        
+        int rowStart = Math.min(15, sheet.getFirstRowNum());
+        int rowEnd = Math.max(1400, sheet.getLastRowNum());
+
+        for (int rowNum = rowStart; rowNum < rowEnd-2; rowNum++) {
+           Row r = sheet.getRow(rowNum);
+           
+           if (r == null) {
+               break;
+           }
+           
+           int lastColumn = Math.max(r.getLastCellNum(), 0);
+           ArrayList<String> temp = new ArrayList<String>();
+           
+           for (int cn = 0; cn < lastColumn; cn++) {
+
+        	   Cell c = r.getCell(cn);
+               if (c == null) {
+                  temp.add("NULL");
+               } else {
+            	  temp.add(r.getCell(cn).getStringCellValue());
+               }
+           }
+
+           courses.add(temp);
+        }
+        
+    	return courses;
+	}
+
+	
 	/**
 	 * Returns a list of all the stored files; config files and output excel files
 	 * @return retrievedFiles - A list of the files stored in the current working directory
