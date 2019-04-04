@@ -69,13 +69,17 @@ public class TranscriptReader{
 	            if(!line.isEmpty()) {
 	            	gradeElements = getGradeElements(line);
 	            	
-	            	if (e.hasEquivalence(gradeElements.get(0)) != gradeElements.get(0)) {
-	            		gradeElements.set(0, e.hasEquivalence(gradeElements.get(0)));
+	            	if(gradeElements != null) {
+	            		
+	            		if (e.hasEquivalence(gradeElements.get(0)) != gradeElements.get(0)) {
+		            		gradeElements.set(0, e.hasEquivalence(gradeElements.get(0)));
+		            	}
+		            	
+		            	CourseList.addCourse(gradeElements);
+		            	cohort.addCourseToMaster(gradeElements.get(0));
+		            	tempTranscript.addGrade(gradeElements); 
 	            	}
-	            	
-	            	CourseList.addCourse(gradeElements);
-	            	cohort.addCourseToMaster(gradeElements.get(0));
-	            	tempTranscript.addGrade(gradeElements);             
+	            	  
 	            }
 	        }
 	        
@@ -98,12 +102,16 @@ public class TranscriptReader{
 		for(int i = 0; i < ELEM_SIZE-1; i++){
 			String element = line.substring(0, line.indexOf("  "));
                 
+			if(i == 4 && element.contains("#")) {
+				return null;
+			}
+			
 			if(i == 3 && element.length() == 4){
-				//TODO: Mark what a no grade will be??
-				elementSet.add("");
+					//TODO: Mark what a no grade will be??
+					elementSet.add("");
 			}else{
-				elementSet.add(element);
-				line = line.substring(line.indexOf("  "), line.length()).trim();
+					elementSet.add(element);
+					line = line.substring(line.indexOf("  "), line.length()).trim();
 			}
                 
 		}
