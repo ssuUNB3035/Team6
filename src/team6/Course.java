@@ -8,8 +8,6 @@ import java.util.ArrayList;
 public class Course implements Comparable<Course>{
 	
 	private String courseNum;
-	
-	private String creditHours;
 
 	private String courseName;
 
@@ -33,7 +31,6 @@ public class Course implements Comparable<Course>{
 		this.courseNum = courseElements.get(0);
 		this.courseName = courseElements.get(2);
 		setGrade(courseElements.get(3));
-		this.creditHours = courseElements.get(4);
 	}
 	
 	/**
@@ -80,12 +77,6 @@ public class Course implements Comparable<Course>{
 		return this.courseName;
 	}
 	
-	/**
-	 * @return The credit hours that can be attempted
-	 */
-	public String getCreditHours() {
-		return this.creditHours;
-	}
 	
 	/**
 	 * @return The 'others' level count
