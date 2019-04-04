@@ -89,6 +89,7 @@ public class GUI extends JFrame implements ActionListener{
 		     	     parseCount++; 
 		        } catch (IllegalArgumentException e1) {
 		        	message.setText("new message");
+		        	e1.printStackTrace();
 		        }
 	         }
 	         
