@@ -18,8 +18,7 @@ import java.util.Iterator;
 import org.apache.poi.xssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-
-
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -52,13 +51,11 @@ public class FileHandler {
 			nameCell.setCellValue(courseIn.getCourseName());
 			
 			int[] levels = courseIn.getLevels();
-			int c = 0;
-			for(c = 0; c < levels.length; c++) {
+			for(int c = 0; c < levels.length; c++) {
 				XSSFCell cell = nextRow.createCell(c+2);
 				cell.setCellValue(levels[c]);
 			}
 			
-			XSSFCell globalCell = nextRow.createCell(c+1);
 		}
 		workbook.write(new FileOutputStream("Results.xslx"));
 		workbook.close();
@@ -180,20 +177,91 @@ public class FileHandler {
 		return areaNames;
 	}
 	
-	//TODO: add a method to print to excel
-	//TODO: handle printing to file.
+	//TODO: handle printing to a txt file.
 	/**
 	 * Prints the global distribution to the console.
-	 * @param cohort
+	 * @param cohort - A set of transcripts
 	 */
 	public static void printGlobalDistribution(Cohort cohort) {
 		int[] global = cohort.getGlobalDistribution();
 		String globalString = "Global: \t\t";
 		for(int i = 0; i < global.length; i++) {
-			globalString += global[i] + ",\t";
+			globalString += global[i] + "\t";
 		}
 		System.out.println(globalString);
 	}
+	
+	//TODO: Handle printing to a txt file
+	/**
+	 * Prints the year distribution to the console
+	 * @param cohort - A set of transcripts
+	 */
+	public static void printYearDistribution(Cohort cohort) {
+		int[] yearDist = cohort.getYearDistribution();
+		String yearString = "Students in year: 1, 2, 3, 4";
+		for(int i = 0; i < yearDist.length; i++) {
+			yearString += yearDist[i] + ", ";
+		}
+	}
+	
+	//TODO: Handle case where the other Distributions sheet method could be called first which would create many issues
+	/**
+	 * Creates a new sheet for cohort data to be displayed and fills global distribution data
+	 * @param cohort - A set of transcripts
+	 */
+	public static void writeGlobalDistribution(Cohort cohort) {
+		XSSFSheet sheet = workbook.createSheet("Distributions");
+		XSSFRow row = sheet.createRow(0);
+		XSSFCell cell = row.createCell(0);
+		
+		cell.setCellValue("Global Distributions");//data header
+		
+		String[] headers = {"Others", "Fails", "Marginals", "Meets", "Exceeds"};
+		int[] globalDistribution = cohort.getGlobalDistribution();
+		
+		row = sheet.createRow(1);//levels titles
+		for(int c = 0; c < headers.length; c++) {
+			cell = row.createCell(c);
+			cell.setCellValue(headers[c]);
+		}
+		
+		row = sheet.createRow(2);//level counts
+		for(int i = 0; i < globalDistribution.length; i++) {
+			cell = row.createCell(i);
+			cell.setCellValue(globalDistribution[i]);
+		}
+	}
+	
+	//TODO: Handle the case where distributions sheet may not exist when this method is called
+	/**
+	 * Writes the number of students in the year that they are currently in (or completed). 
+	 * @param cohort - A set of transcripts
+	 */
+	public static void writeYearDistribution(Cohort cohort) {
+		//Each global distribution output will take up 4 rows. Use this as the buffer
+		//if row(0).cell(0) contains content, then push down 4 rows. 
+		XSSFSheet sheet = workbook.getSheet("Distributions");
+		XSSFRow row = sheet.createRow(4);
+		XSSFCell cell = row.createCell(0);
+		
+		cell.setCellValue("Year Distribution");
+		
+		String[] headers = {"First", "Second", "Third", "Fourth"};
+		int[] yearDistribution = cohort.getYearDistribution();
+		
+		row = sheet.createRow(5);
+		for(int c = 0; c < headers.length; c++) {
+			cell = row.createCell(c);
+			cell.setCellValue(headers[c]);
+		}
+		
+		row = sheet.createRow(6);
+		for(int i = 0; i < yearDistribution.length; i++) {
+			cell = row.createCell(i);
+			cell.setCellValue(yearDistribution[i]);
+		}
+	}
+	
 	/**
 	 * Returns a list of all the stored files; config files and output excel files
 	 * @return retrievedFiles - A list of the files stored in the current working directory
