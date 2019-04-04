@@ -101,7 +101,7 @@ public class TranscriptReader{
         	
 		for(int i = 0; i < ELEM_SIZE-1; i++){
 			String element = line.substring(0, line.indexOf("  "));
-                
+       
 			if(i == 4 && element.contains("#")) {
 				return null;
 			}
