@@ -25,6 +25,7 @@ public class GUI extends JFrame implements ActionListener{
 	    	try{
 	    		ArrayList<String> areaNames = FileHandler.getAreaNames("rand");
 				FileHandler.getAreaCourses("rand", areaNames.get(1));
+				FileHandler.retrieveStoredFiles();
 			}catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}catch (IOException e) {
