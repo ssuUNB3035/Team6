@@ -22,6 +22,7 @@ public class Cohort {
 	
 	private String cohortName;
 	private ArrayList<Transcript> transcripts;
+	private ArrayList<String> masterList;
 	
 	/**
 	 * @param cohortName - The name of the cohort file.
@@ -29,6 +30,7 @@ public class Cohort {
 	public Cohort(String cohortName) {
 		this.cohortName = cohortName;
 		this.transcripts = new ArrayList<Transcript>();
+		this.masterList = new ArrayList<String>();
 	}
 	
 	/**
@@ -53,6 +55,18 @@ public class Cohort {
 		}
 		
 		return false;
+	}
+	
+	public boolean addCourseToMaster(String courseNum) {
+		if(!masterList.contains(courseNum)) {
+			return masterList.add(courseNum);
+		}
+		return false;
+	}
+	
+	public ArrayList<String> getMasterList(){
+		masterList.sort(null);
+		return masterList;
 	}
 	
 	/**
