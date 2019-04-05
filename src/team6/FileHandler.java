@@ -136,7 +136,7 @@ public class FileHandler {
 	 */
 	public static void writeYearDistribution(Cohort cohort) {
 		//Each global distribution output will take up 4 rows. Use this as the buffer
-		//if row(0).cell(0) contains content, then push down 4 rows. 
+		//if row(0).cell(0) contains content, then push down 4 rows.
 		XSSFSheet sheet = workbook.getSheet("Distributions");
 		XSSFRow row = sheet.createRow(4);
 		XSSFCell cell = row.createCell(0);
