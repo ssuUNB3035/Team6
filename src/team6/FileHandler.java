@@ -201,6 +201,7 @@ public class FileHandler {
 		for(int i = 0; i < yearDist.length; i++) {
 			yearString += yearDist[i] + ", ";
 		}
+		System.out.println(yearString);
 	}
 	
 	//TODO: Handle case where the other Distributions sheet method could be called first which would create many issues
