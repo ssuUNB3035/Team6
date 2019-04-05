@@ -3,6 +3,7 @@ package team6;
  * @author: Ryan Nitz
  */
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 class CourseList {
@@ -51,6 +52,20 @@ class CourseList {
 		courseList.sort(null);
 		return courseList;
 	}
+	/**
+	 * Uwera trying stuff - ignore
+
+	public static ArrayList<String> getAreaList(){
+		ArrayList<String> arealist = new ArrayList<>();
+		try {
+			arealist = FileHandler.getAreaNames("results_EE2014.xslx");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.print("Could not get Areas.");
+			e.printStackTrace();
+		}
+		return arealist;
+	}*/
 	
 	/**
 	 * Prints the Raw Course alphabetically list in a text format.

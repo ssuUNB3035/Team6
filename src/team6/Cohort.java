@@ -39,16 +39,17 @@ public class Cohort {
 	 * @return boolean - If the transcript wad added to the list successfully.
 	 */
 	public boolean addTranscript(Transcript transcript) {
+		rankSchema.getRankSchema();
 		double creditHours = 0.00;
 		if(transcripts.add(transcript)) {
 			creditHours = transcript.getAttemptedCreditHours();
-			if(creditHours < 40) {
+			if(creditHours < rankSchema.getSecondYearMin()) {
 				firstYearCount++;
-			}else if(creditHours < 80) {
+			}else if(creditHours < rankSchema.getThirdYearMin()) {
 				secondYearCount++;
-			}else if(creditHours < 120) {
+			}else if(creditHours < rankSchema.getFourthYearMin()) {
 				thirdYearCount++;
-			}else if(creditHours >= 120){
+			}else if(creditHours >= rankSchema.getFourthYearMin()){
 				fourthYearCount++;
 			}
 			return true;
@@ -173,7 +174,7 @@ public class Cohort {
 	}
 	
 	/**
-	 * Itterates through the courses in the cohort to update the cohort's distribution
+	 * Iterates through the courses in the cohort to update the cohort's distribution
 	 */
 	public void calculateCourseLevels(){
 		ArrayList<Course> courses = CourseList.getCourseList();
