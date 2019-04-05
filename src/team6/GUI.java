@@ -19,20 +19,17 @@ public class GUI extends JFrame implements ActionListener {
 		private static int writeCount;
 		private static JButton parseButton;
 		private static JButton excelButton;
-		private static JButton viewResultsButton;
 		private static JButton retrieveFilesButton;
 		private static JLabel message;
 		private static JLabel message2;
-		private static JLabel viewMessage;
 		private static JLabel retrieveMessage;
-		private static List list;
+		private static JLabel listedFiles;
 		ArrayList<Course> sortedList = new ArrayList<>();
 		GUI(){}
 	    public static void main(String args[]){
 	    	
 	    	/**
 	    	 * To clean out:
-	    	 */
 	    	//THIS IS THE TESTING BLOCK FOR READING AREA FROM EXCEL.
 	    	//CHECK CONSOLE ON LAUNCH, rand = placeholder for hardcoded file name
 	    	try{
@@ -43,7 +40,8 @@ public class GUI extends JFrame implements ActionListener {
 			}catch (IOException e) {
 				e.printStackTrace();
 			}
-	    	//until here
+	    	 * until here
+	    	 */
 	    	
 	       JFrame frame = new JFrame("Student Transcript Analyser");
 	       JPanel panel = new JPanel();
@@ -66,19 +64,15 @@ public class GUI extends JFrame implements ActionListener {
 	       excelButton.setVisible(false);
 	       message2.setVisible(false);
 	       
-	       /**viewResultsButton = new JButton("View Distributions");
-	       viewMessage = new JLabel("");
-	       panel.add(viewResultsButton);
-	       panel.add(viewMessage);
-	       viewResultsButton.setVisible(false);
-	       viewMessage.setVisible(false);*/
-	       
 	       retrieveFilesButton = new JButton("Retrieve Stored Files");
 	       retrieveMessage = new JLabel("");
+	       listedFiles = new JLabel("");
 	       panel.add(retrieveFilesButton);
 	       panel.add(retrieveMessage);
+	       panel.add(listedFiles);
 	       retrieveFilesButton.setVisible(false);
 	       retrieveMessage.setVisible(false);
+	       listedFiles.setVisible(false);
 	       
 	       GUI fileChooser = new GUI();
 	       parseButton.addActionListener(fileChooser);
@@ -142,6 +136,7 @@ public class GUI extends JFrame implements ActionListener {
 					message2.setText("Results have been written to an excel workbook.");
 					retrieveFilesButton.setVisible(true);
 					retrieveMessage.setVisible(true);
+					listedFiles.setVisible(true);
 				} catch (FileNotFoundException e1) {
 					message.setText("File not found.");
 					e1.printStackTrace();
@@ -153,8 +148,7 @@ public class GUI extends JFrame implements ActionListener {
 	         
 	         if(event.equals("Retrieve Stored Files")){
 	        	 retrieveMessage.setText("The following files are available for further processing:\n");
-	        	 FileHandler.retrieveStoredFiles();
-	        	 
+	        	 listedFiles.setText(FileHandler.retrieveStoredFiles());
 	         }
 	    }
 }

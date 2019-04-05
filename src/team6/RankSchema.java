@@ -5,7 +5,7 @@ package team6;
 import java.io.*;
 import java.util.Scanner;
 
-public class rankSchema {
+public class RankSchema {
 	private static final int RANKS = 3;
 	private static int[] rankMargins = new int[RANKS];
 	static int secondYearMin;
