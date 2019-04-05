@@ -116,7 +116,7 @@ public class GUI extends JFrame implements ActionListener {
 		     	     //NOTE: automatically prints cohorts global to the excel. might want to change?
 		     	     FileHandler.writeGlobalDistribution(cohort);
 		     	     FileHandler.writeYearDistribution(cohort);
-		     	     CourseList.getAreaList();
+		     	     //CourseList.getAreaList();
 		     	     parseCount++; 
 		        } catch (IllegalArgumentException e1) {
 		        	message.setText("Error parsing transcripts. One or more files may be corrupted.");
