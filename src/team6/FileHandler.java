@@ -298,10 +298,12 @@ public class FileHandler {
 	
 	/**
 	 * Returns a list of all the stored files; config files and output excel files
-	 * @return retrievedFiles - A list of the files stored in the current working directory
+	 * @return files - A list of the files stored in the current working directory
 	 */
-	public static ArrayList<File> retrieveStoredFiles(){
+	public static String retrieveStoredFiles(){
+		int count = 1;
 		String directoryPath;
+		String files = "";
 		ArrayList<File> retrievedFiles = new ArrayList<File>();
 		try {
 			directoryPath = new java.io.File( "." ).getCanonicalPath();
@@ -313,6 +315,10 @@ public class FileHandler {
 					System.out.println(f.getName());
 				}
 			}
+			for(File f: retrievedFiles) {
+				files += "*" + f.getName() + "\n";
+				count++;
+			}
 
 			if(storedFiles.length == 0) {
 				System.out.print("There are no stored files.");
@@ -321,7 +327,7 @@ public class FileHandler {
 			System.out.println("Directory not found.");
 			e.printStackTrace();
 		}
-		return retrievedFiles;
+		return files;
 	}
 	
 }
