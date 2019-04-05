@@ -77,7 +77,6 @@ public class GUI extends JFrame implements ActionListener {
 	       GUI fileChooser = new GUI();
 	       parseButton.addActionListener(fileChooser);
 	       excelButton.addActionListener(fileChooser);
-	       //viewResultsButton.addActionListener(fileChooser);
 	       retrieveFilesButton.addActionListener(fileChooser);
 	       
 	       
@@ -131,7 +130,7 @@ public class GUI extends JFrame implements ActionListener {
 	        	  
 	        	  try {
 					FileHandler.writeRawList(sortedList);
-					//FileHandler.writeAreaDistribution(sortedList);
+					FileHandler.writeAreaDistribution(sortedList);
 					FileHandler.workbook.close();
 					message2.setText("Results have been written to an excel workbook.");
 					retrieveFilesButton.setVisible(true);

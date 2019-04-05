@@ -107,7 +107,7 @@ public class FileHandler {
 	 * @param cohort - A set of transcripts
 	 */
 	public static void writeGlobalDistribution(Cohort cohort) {
-		XSSFSheet sheet = workbook.createSheet("Distributions");
+		XSSFSheet sheet = workbook.createSheet("Global Distributions");
 		XSSFRow row = sheet.createRow(0);
 		XSSFCell cell = row.createCell(0);
 		
@@ -137,7 +137,7 @@ public class FileHandler {
 	public static void writeYearDistribution(Cohort cohort) {
 		//Each global distribution output will take up 4 rows. Use this as the buffer
 		//if row(0).cell(0) contains content, then push down 4 rows.
-		XSSFSheet sheet = workbook.getSheet("Distributions");
+		XSSFSheet sheet = workbook.getSheet("Global Distributions");
 		XSSFRow row = sheet.createRow(4);
 		XSSFCell cell = row.createCell(0);
 		
@@ -157,6 +157,36 @@ public class FileHandler {
 			cell = row.createCell(i);
 			cell.setCellValue(yearDistribution[i]);
 		}
+	}
+	
+	public static void writeAreaDistribution(ArrayList<Course> sortedList) throws FileNotFoundException, IOException {
+		XSSFSheet sheet = workbook.createSheet("Area Distribution");
+		XSSFRow row = sheet.createRow(0);
+		String columnHeaders[] = {"Area", "Others", "Fails", "Marginals","Meets", "Exceeds"};
+		for(int c = 0; c < columnHeaders.length; c++) {
+			XSSFCell cell = row.createCell(c);
+			cell.setCellValue(columnHeaders[c]);
+		}
+		
+		int n = 0, m = 0;
+		/*
+		for(Course courseIn: sortedList) {
+			n++;
+			XSSFRow nextRow = sheet.createRow(n);
+			
+			XSSFCell numCell = nextRow.createCell(m);
+			XSSFCell nameCell = nextRow.createCell(m+1);
+			numCell.setCellValue(courseIn.getCourseNum());
+			nameCell.setCellValue(courseIn.getCourseName());
+			
+			int[] levels = courseIn.getLevels();
+			for(int c = 0; c < levels.length; c++) {
+				XSSFCell cell = nextRow.createCell(c+2);
+				cell.setCellValue(levels[c]);
+			}
+			
+		}*/
+		workbook.write(new FileOutputStream("Results.xslx"));
 	}
 	
 	//File name is not used until excel config is being read. 
