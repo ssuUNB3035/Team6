@@ -24,7 +24,6 @@ public class LevelSchema {
        }
        String schemaConfig = sc.nextLine();
        setMargins(schemaConfig);
-       
    }
 
 /**

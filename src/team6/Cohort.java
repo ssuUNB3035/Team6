@@ -173,7 +173,7 @@ public class Cohort {
 	}
 	
 	/**
-	 * Itterates through the courses in the cohort to update the cohort's distribution
+	 * Iterates through the courses in the cohort to update the cohort's distribution
 	 */
 	public void calculateCourseLevels(){
 		ArrayList<Course> courses = CourseList.getCourseList();
