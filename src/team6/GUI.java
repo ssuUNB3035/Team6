@@ -3,18 +3,29 @@ package team6;
  * @author Uwera Ntaganzwa
  */
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
+
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.awt.Desktop;
 import java.awt.event.*;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class GUI extends JFrame implements ActionListener {
 		Cohort cohort;
+		static String fileDictName = "";
 		private static int parseCount;
 		private static int writeCount;
 		private static JButton parseButton;
@@ -134,9 +145,30 @@ public class GUI extends JFrame implements ActionListener {
 			        }
 	        	  sortedList = CourseList.getCourseList();
 	        	  
-	        	  
+	        	  XSSFWorkbook workbook;
+
+	              JFileChooser fileChooser = new JFileChooser();
+	              fileChooser.setDialogTitle("Open the file"); //name for chooser
+	              FileNameExtensionFilter filter = new FileNameExtensionFilter("Files", ".xlsx"); //filter to show only that
+	              fileChooser.setAcceptAllFileFilterUsed(false); //to show or not all other files
+	              fileChooser.addChoosableFileFilter(filter);
+	              fileChooser.setSelectedFile(new File(fileDictName)); //when you want to show the name of file into the chooser
+	              fileChooser.setVisible(true);
+	              int result = fileChooser.showOpenDialog(fileChooser);
+	              
+	              if (result == JFileChooser.APPROVE_OPTION) {
+	                  fileDictName = fileChooser.getSelectedFile().getAbsolutePath();
+	              } else {
+	                  return;
+	              }
+	              
+	        	  String fileName = fileChooser.getSelectedFile().getAbsolutePath();
+	        	  if (fileName.substring(fileName.lastIndexOf("."), fileName.length()) != ".xlsx") {
+	        		  fileName = fileName.replace(fileName.substring(fileName.lastIndexOf("."), fileName.length()), ".xlsx");
+	        		  System.out.println(fileName);
+	        	  }
 	        	  try {
-					FileHandler.writeRawList(sortedList);
+					FileHandler.writeRawList(sortedList, fileName);
 					//FileHandler.writeAreaDistribution(sortedList);
 					FileHandler.workbook.close();
 					message2.setText("Results have been written to an excel workbook.");

@@ -59,27 +59,6 @@ public class FileHandler {
 		//System.out.println("Courses have been successfully copied to the Raw List sheet.");
 	}
 	
-	public static void writeAreaList(ArrayList<Course> sortedList) throws FileNotFoundException, IOException {
-		XSSFSheet sheet = workbook.createSheet("Raw List");
-		XSSFRow row = sheet.createRow(0);
-		String columnHeaders[] = {"Area", "Others", "Fails", "Marginals","Meets", "Exceeds"};
-		Equivalence e = new Equivalence();
-		
-		for(int c = 0; c < columnHeaders.length; c++) {
-			XSSFCell cell = row.createCell(c);
-			cell.setCellValue(columnHeaders[c]);
-		}
-		
-		
-		for(Course courseIn: sortedList) {
-			
-			
-		}
-		workbook.write(new FileOutputStream("Results.xslx"));
-		//workbook.close(); - if we close this we won't be able to write multiple results at the same time
-		//System.out.println("Courses have been successfully copied to the Raw List sheet.");
-	}
-	
 	/**
 	 * 
 	 * @param sortedList - The Raw List of courses to be written in Excel. (This is also the Master List)
