@@ -98,14 +98,38 @@ public class FileHandler {
 		workbook.write(new FileOutputStream(fileName));
 	}
 	
-	//TODO: Handle case where the other Distributions sheet method could be called first which would create many issues
+	public static void writeMasterList(Cohort cohort) {
+		XSSFSheet sheet = workbook.createSheet("MasterList");
+		XSSFRow row;
+		XSSFCell cell;
+		
+		ArrayList<String> master = cohort.getMasterList();
+		
+		for(int i = 0; i < master.size(); i++) {
+			row = sheet.createRow(i);
+			cell = row.createCell(0);
+			cell.setCellValue(master.get(i));
+		}
+		
+	}
+	
+	public static void writeGlobalDistributions(Cohort cohort){
+		XSSFSheet sheet = workbook.createSheet("Global Distributions");
+		int rowIndex = 0;
+		rowIndex = writeGlobalDistribution(cohort, rowIndex);
+		rowIndex = writeYearDistribution(cohort, rowIndex);
+		rowIndex = writeLocationDistribution(cohort, rowIndex);
+		
+	}
+	
 	/**
 	 * Creates a new sheet for cohort data to be displayed and fills global distribution data
 	 * @param cohort - A set of transcripts
 	 */
-	public static void writeGlobalDistribution(Cohort cohort) {
-		XSSFSheet sheet = workbook.createSheet("Global Distributions");
-		XSSFRow row = sheet.createRow(0);
+	public static int writeGlobalDistribution(Cohort cohort, int index) {
+		int rowIndex = index;
+		XSSFSheet sheet = workbook.getSheet("Global Distributions");
+		XSSFRow row = sheet.createRow(rowIndex);
 		XSSFCell cell = row.createCell(0);
 		
 		cell.setCellValue("Global Distributions");//data header
@@ -113,29 +137,29 @@ public class FileHandler {
 		String[] headers = {"Others", "Fails", "Marginals", "Meets", "Exceeds"};
 		int[] globalDistribution = cohort.getGlobalDistribution();
 		
-		row = sheet.createRow(1);//levels titles
+		row = sheet.createRow(rowIndex+1);//levels titles
 		for(int c = 0; c < headers.length; c++) {
 			cell = row.createCell(c);
 			cell.setCellValue(headers[c]);
 		}
 		
-		row = sheet.createRow(2);//level counts
+		row = sheet.createRow(rowIndex+2);//level counts
 		for(int i = 0; i < globalDistribution.length; i++) {
 			cell = row.createCell(i);
 			cell.setCellValue(globalDistribution[i]);
 		}
+		
+		return rowIndex + 4;
 	}
 	
-	//TODO: Handle the case where distributions sheet may not exist when this method is called
-	/**
+/**
 	 * Writes the number of students in the year that they are currently in (or completed). 
 	 * @param cohort - A set of transcripts
 	 */
-	public static void writeYearDistribution(Cohort cohort) {
-		//Each global distribution output will take up 4 rows. Use this as the buffer
-		//if row(0).cell(0) contains content, then push down 4 rows.
+	public static int writeYearDistribution(Cohort cohort, int index) {
+		int rowIndex = index;
 		XSSFSheet sheet = workbook.getSheet("Global Distributions");
-		XSSFRow row = sheet.createRow(4);
+		XSSFRow row = sheet.createRow(rowIndex);
 		XSSFCell cell = row.createCell(0);
 		
 		cell.setCellValue("Year Distribution");
@@ -143,17 +167,44 @@ public class FileHandler {
 		String[] headers = {"First", "Second", "Third", "Fourth"};
 		int[] yearDistribution = cohort.getYearDistribution();
 		
-		row = sheet.createRow(5);
+		row = sheet.createRow(rowIndex+1);
 		for(int c = 0; c < headers.length; c++) {
 			cell = row.createCell(c);
 			cell.setCellValue(headers[c]);
 		}
 		
-		row = sheet.createRow(6);
+		row = sheet.createRow(rowIndex+2);
 		for(int i = 0; i < yearDistribution.length; i++) {
 			cell = row.createCell(i);
 			cell.setCellValue(yearDistribution[i]);
 		}
+		
+		return rowIndex + 4;
+	}
+	
+	public static int writeLocationDistribution(Cohort cohort, int index) {
+		int rowIndex = index;
+		XSSFSheet sheet = workbook.getSheet("Global Distributions");
+		XSSFRow row = sheet.createRow(rowIndex);
+		XSSFCell cell = row.createCell(0);
+		
+		cell.setCellValue("Course Location Distribution");
+		
+		String[] headers = {"Fredericton", "Saint John", "Other"};
+		int[] locationDistribution = {cohort.getFrederictonCount(), cohort.getSaintJohnCount(), cohort.getOtherLocationCount()};
+		
+		row = sheet.createRow(rowIndex+1);
+		for(int c = 0; c < headers.length; c++) {
+			cell = row.createCell(c);
+			cell.setCellValue(headers[c]);
+		}
+		
+		row = sheet.createRow(rowIndex+2);
+		for(int i = 0; i < locationDistribution.length; i++) {
+			cell = row.createCell(i);
+			cell.setCellValue(locationDistribution[i]);
+		}
+		return rowIndex + 4;
 	}
 	/**
 	 * Creates an Area Distribution sheet and writes the area distribution to it
@@ -200,8 +251,8 @@ public class FileHandler {
 	 * @throws FileNotFoundException - When the specified file name does not exist.
 	 */
 	 public static ArrayList<String> getAreaCourses(String areaConfig, String area) throws IOException, FileNotFoundException {
-			
-		InputStream ExcelFileToRead = new FileInputStream(areaConfig);
+
+	    InputStream ExcelFileToRead = new FileInputStream(areaConfig);
 	    XSSFWorkbook  wb = new XSSFWorkbook(ExcelFileToRead);
 	    XSSFSheet sheet = wb.getSheet("Areas");
 	        

@@ -87,9 +87,10 @@ public class GUI extends JFrame implements ActionListener {
 		     	     message2.setVisible(true);
 		     	     //prints to console
 		     	     System.out.println(CourseList.printTextRawList());
-		     	     //automatically prints cohorts global to the excel.
-		     	     FileHandler.writeGlobalDistribution(cohort);
-		     	     FileHandler.writeYearDistribution(cohort);
+		     	     //NOTE: automatically prints cohorts global to the excel. might want to change?
+		     	     FileHandler.writeGlobalDistributions(cohort);
+		     	     FileHandler.writeMasterList(cohort);
+		     	     //CourseList.getAreaList();
 		     	     parseCount++; 
 		        } catch (IllegalArgumentException e1) {
 		        	message.setText("Error parsing transcripts. One or more files may be corrupted.");
@@ -106,12 +107,9 @@ public class GUI extends JFrame implements ActionListener {
 			    }
 	        	sortedList = CourseList.getCourseList();
 	        	  
-	        	  
 	        	try {
 					FileHandler.writeRawList(sortedList);
 					FileHandler.writeAreaDistribution(sortedList);
-					//FileHandler.writeGlobalDistribution(cohort);
-					//FileHandler.writeYearDistribution(cohort);
 					FileHandler.workbook.close();
 					message2.setText("Results have been written to an excel workbook.");
 					retrieveFilesButton.setVisible(true);

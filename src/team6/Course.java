@@ -22,10 +22,10 @@ public class Course implements Comparable<Course>{
 	private int exceeds;
 
 	//NOTE: yes keep the array of all the information so that we can do something with it if ever we need to. 
-	public Course(ArrayList<String> courseElements) {
-		this.courseNum = courseElements.get(0);
-		this.courseName = courseElements.get(2);
-		setGrade(courseElements.get(3));
+	public Course(Grade grade) {
+		this.courseNum = grade.getCourseNumber();
+		this.courseName = grade.getCourseName();
+		setGrade(grade.getLetterGrade());
 	}
 	
 	/**
