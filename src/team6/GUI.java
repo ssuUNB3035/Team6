@@ -110,6 +110,8 @@ public class GUI extends JFrame implements ActionListener {
 	        	try {
 					FileHandler.writeRawList(sortedList);
 					FileHandler.writeAreaDistribution(sortedList);
+					//FileHandler.writeGlobalDistribution(cohort);
+					//FileHandler.writeYearDistribution(cohort);
 					FileHandler.workbook.close();
 					message2.setText("Results have been written to an excel workbook.");
 					retrieveFilesButton.setVisible(true);
