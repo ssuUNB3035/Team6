@@ -3,9 +3,7 @@ package team6;
  * @author Uwera Ntaganzwa
  */
 import javax.swing.*;
-import javax.swing.filechooser.FileSystemView;
 
-import java.awt.Desktop;
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,22 +25,7 @@ public class GUI extends JFrame implements ActionListener {
 		ArrayList<Course> sortedList = new ArrayList<>();
 		GUI(){}
 	    public static void main(String args[]){
-	    	
-	    	/**
-	    	 * To clean out:
-	    	//THIS IS THE TESTING BLOCK FOR READING AREA FROM EXCEL.
-	    	//CHECK CONSOLE ON LAUNCH, rand = placeholder for hardcoded file name
-	    	try{
-	    		ArrayList<String> areaNames = FileHandler.getAreaNames("rand");
-				FileHandler.getAreaCourses("rand", areaNames.get(1));
-			}catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}catch (IOException e) {
-				e.printStackTrace();
-			}
-	    	 * until here
-	    	 */
-	    	
+
 	       JFrame frame = new JFrame("Student Transcript Analyser");
 	       JPanel panel = new JPanel();
 	       frame.setSize(500,450);
@@ -106,16 +89,14 @@ public class GUI extends JFrame implements ActionListener {
 		     	     message2.setVisible(true);
 		     	     //prints to console
 		     	     System.out.println(CourseList.printTextRawList());
-		     	     //NOTE: automatically prints cohorts global to the excel. might want to change?
+		     	     //Automatically prints cohorts global to the excel. 
 		     	     FileHandler.writeGlobalDistribution(cohort);
 		     	     FileHandler.writeYearDistribution(cohort);
-		     	     //CourseList.getAreaList();
 		     	     parseCount++; 
 		        } catch (IllegalArgumentException e1) {
 		        	message.setText("Error parsing transcripts. One or more files may be corrupted.");
 		        	e1.printStackTrace();
 		        } catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 	         }
