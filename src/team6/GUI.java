@@ -3,13 +3,15 @@ package team6;
  * @author Uwera Ntaganzwa
  */
 import javax.swing.*;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1bf3286e502b3e777ba813cc708ef86b1370b041
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class GUI extends JFrame implements ActionListener {
 		Cohort cohort;
@@ -25,7 +27,11 @@ public class GUI extends JFrame implements ActionListener {
 		ArrayList<Course> sortedList = new ArrayList<>();
 		GUI(){}
 	    public static void main(String args[]){
+<<<<<<< HEAD
 
+=======
+	    	
+>>>>>>> 1bf3286e502b3e777ba813cc708ef86b1370b041
 	       JFrame frame = new JFrame("Student Transcript Analyser");
 	       JPanel panel = new JPanel();
 	       frame.setSize(500,450);
@@ -89,9 +95,16 @@ public class GUI extends JFrame implements ActionListener {
 		     	     message2.setVisible(true);
 		     	     //prints to console
 		     	     System.out.println(CourseList.printTextRawList());
+<<<<<<< HEAD
 		     	     //Automatically prints cohorts global to the excel. 
 		     	     FileHandler.writeGlobalDistribution(cohort);
 		     	     FileHandler.writeYearDistribution(cohort);
+=======
+		     	     //NOTE: automatically prints cohorts global to the excel. might want to change?
+		     	     FileHandler.writeGlobalDistributions(cohort);
+		     	     FileHandler.writeMasterList(cohort);
+		     	     //CourseList.getAreaList();
+>>>>>>> 1bf3286e502b3e777ba813cc708ef86b1370b041
 		     	     parseCount++; 
 		        } catch (IllegalArgumentException e1) {
 		        	message.setText("Error parsing transcripts. One or more files may be corrupted.");
@@ -102,14 +115,13 @@ public class GUI extends JFrame implements ActionListener {
 	         }
 	         
 	         if(event.equals("Write Results to Excel")){
-	        	 if (writeCount > 0) {
+	        	if (writeCount > 0) {
 			        	message.setText("A results workbook has already been created.");
 			        	throw new IllegalArgumentException();
-			        }
-	        	  sortedList = CourseList.getCourseList();
+			    }
+	        	sortedList = CourseList.getCourseList();
 	        	  
-	        	  
-	        	  try {
+	        	try {
 					FileHandler.writeRawList(sortedList);
 					FileHandler.writeAreaDistribution(sortedList);
 					FileHandler.workbook.close();

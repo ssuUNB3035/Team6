@@ -51,16 +51,16 @@ public class TranscriptReader{
 	    Cohort cohort = new Cohort(getDirectory().getAbsolutePath());
 	    Equivalence e = new Equivalence();
 	    
-		for (File transcript : transcriptSet) {
+		for (File transcriptFile : transcriptSet) {
 				
 	    	try{
-	    		sc = new Scanner(transcript);
+	    		sc = new Scanner(transcriptFile);
 	    	}catch(FileNotFoundException f){
 	    		f.printStackTrace();
-	            System.out.println("Error opening file, skipping: " + transcript.getName());
+	            System.out.println("Error opening file, skipping: " + transcriptFile.getName());
 	        }
 	    	
-	    	Transcript tempTranscript = new Transcript(transcript.getName());
+	    	Transcript transcript = new Transcript(transcriptFile.getName());
 	    		
 	        while(sc.hasNext()){
 	        	String line = sc.nextLine();
@@ -74,17 +74,18 @@ public class TranscriptReader{
 	            		if (e.hasEquivalence(gradeElements.get(0)) != gradeElements.get(0)) {
 		            		gradeElements.set(0, e.hasEquivalence(gradeElements.get(0)));
 		            	}
-		            	
-		            	CourseList.addCourse(gradeElements);
-		            	cohort.addCourseToMaster(gradeElements.get(0));
-		            	tempTranscript.addGrade(gradeElements); 
+	            		
+	            		Grade grade = new Grade(gradeElements);
+		            	CourseList.addCourse(grade);
+		            	cohort.addCourseToMaster(grade);
+		            	transcript.addGrade(grade); 
 	            	}
 	            	  
 	            }
 	        }
 	        
-	        cohort.addTranscript(tempTranscript);
-	        System.out.println(tempTranscript.toString());    
+	        cohort.addTranscript(transcript);
+	        System.out.println(transcript.toString());    
 	        
 		}	
 		cohort.calculateCourseLevels();
