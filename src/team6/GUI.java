@@ -3,15 +3,11 @@ package team6;
  * @author Uwera Ntaganzwa
  */
 import javax.swing.*;
-import javax.swing.filechooser.FileSystemView;
-
-import java.awt.Desktop;
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class GUI extends JFrame implements ActionListener {
 		Cohort cohort;
@@ -27,21 +23,6 @@ public class GUI extends JFrame implements ActionListener {
 		ArrayList<Course> sortedList = new ArrayList<>();
 		GUI(){}
 	    public static void main(String args[]){
-	    	
-	    	/**
-	    	 * To clean out:
-	    	//THIS IS THE TESTING BLOCK FOR READING AREA FROM EXCEL.
-	    	//CHECK CONSOLE ON LAUNCH, rand = placeholder for hardcoded file name
-	    	try{
-	    		ArrayList<String> areaNames = FileHandler.getAreaNames("rand");
-				FileHandler.getAreaCourses("rand", areaNames.get(1));
-			}catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}catch (IOException e) {
-				e.printStackTrace();
-			}
-	    	 * until here
-	    	 */
 	    	
 	       JFrame frame = new JFrame("Student Transcript Analyser");
 	       JPanel panel = new JPanel();
@@ -115,20 +96,18 @@ public class GUI extends JFrame implements ActionListener {
 		        	message.setText("Error parsing transcripts. One or more files may be corrupted.");
 		        	e1.printStackTrace();
 		        } catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 	         }
 	         
 	         if(event.equals("Write Results to Excel")){
-	        	 if (writeCount > 0) {
+	        	if (writeCount > 0) {
 			        	message.setText("A results workbook has already been created.");
 			        	throw new IllegalArgumentException();
-			        }
-	        	  sortedList = CourseList.getCourseList();
+			    }
+	        	sortedList = CourseList.getCourseList();
 	        	  
-	        	  
-	        	  try {
+	        	try {
 					FileHandler.writeRawList(sortedList);
 					FileHandler.writeAreaDistribution(sortedList);
 					FileHandler.workbook.close();

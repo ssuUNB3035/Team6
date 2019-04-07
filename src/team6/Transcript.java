@@ -44,7 +44,7 @@ public class Transcript {
 	 */
 	public boolean addGrade(Grade grade) {
 		this.updateLocations(grade.getCourseSection());
-		
+		this.grades.add(grade);
 		double attemptedCH = Double.parseDouble(grade.getCreditHours());
 		return updateGPA(grade.getLetterGrade(), attemptedCH);
 		
@@ -169,7 +169,7 @@ public class Transcript {
 	 * @return template - The string template to display the transcripts details.
 	 */
 	public String toString() {
-		String template = "Transcript ID: " + this.transcriptID + "\n"
+		String template = "\nTranscript ID: " + this.transcriptID + "\n"
 				+ "Transcript Name: " + this.transcriptName + "\n";
 		for(Grade grade : grades) {
 			template += grade.toString() + "\n";

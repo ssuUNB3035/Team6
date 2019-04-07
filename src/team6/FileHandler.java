@@ -23,7 +23,7 @@ public class FileHandler {
 	
 	static XSSFWorkbook workbook = new XSSFWorkbook();
 	/**
-	 * Writes a Raw List of courses to Excel and includes the raw distribution for each course in the Master List
+	 * Writes a Raw List of courses to Excel and includes the raw distribution
 	 * @param sortedList - The Raw List of courses to be written in Excel (This is also the Master List)
 	 * @throws FileNotFoundException - Thrown when "Results.xslx" is not found
 	 * @throws IOException
@@ -55,11 +55,9 @@ public class FileHandler {
 			
 		}
 		workbook.write(new FileOutputStream("Results.xslx"));
-		//workbook.close(); - if we close this we won't be able to write multiple results at the same time
-		//System.out.println("Courses have been successfully copied to the Raw List sheet.");
 	}
 	/**
-	 * 
+	 * Writes the Raw List to a specified Excel workbook. 
 	 * @param sortedList - The Raw List of courses to be written in Excel. (This is also the Master List)
 	 * @param fileName - A specific File to which the results should be written
 	 * @throws FileNotFoundException - Thrown when the specified file is not valid
@@ -98,7 +96,6 @@ public class FileHandler {
 		}
 		
 		workbook.write(new FileOutputStream(fileName));
-		//workbook.close();
 	}
 	
 	public static void writeMasterList(Cohort cohort) {
@@ -209,7 +206,12 @@ public class FileHandler {
 		}
 		return rowIndex + 4;
 	}
-	
+	/**
+	 * Creates an Area Distribution sheet and writes the area distribution to it
+	 * @param sortedList - A sorted list of all the areas
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public static void writeAreaDistribution(ArrayList<Course> sortedList) throws FileNotFoundException, IOException {
 		XSSFSheet sheet = workbook.createSheet("Area Distribution");
 		XSSFRow row = sheet.createRow(0);
@@ -240,108 +242,77 @@ public class FileHandler {
 		workbook.write(new FileOutputStream("Results.xslx"));
 	}
 	
-	//File name is not used until excel config is being read. 
-		//TODO: Check if areaConfig should be the string name of the actual file
-		//This method is to get the area group once you know the area names.
-		/**
-		 * This will return a list of all courses that exist in a specified area.
-		 * @param areaConfig - The excel file that will be opened to extract data from.
-		 * @param area - The area header to establish the area courses to be extracted.
-		 * @return areaCourses - The list of courses that were in the specified area.
-		 * @throws IOException
-		 * @throws FileNotFoundException - When the specified file name does not exist.
-		 */
-		public static ArrayList<String> getAreaCourses(String areaConfig, String area) throws IOException, FileNotFoundException {
-			
-			InputStream ExcelFileToRead = new FileInputStream("Template.xlsx");
-	        XSSFWorkbook  wb = new XSSFWorkbook(ExcelFileToRead);
-	        XSSFSheet sheet = wb.getSheet("Areas");
+	/**
+	 * This will return a list of all courses that exist in a specified area.
+	 * @param areaConfig - The excel file that will be opened to extract data from.
+	 * @param area - The area header to establish the area courses to be extracted.
+	 * @return areaCourses - The list of courses that were in the specified area.
+	 * @throws IOException
+	 * @throws FileNotFoundException - When the specified file name does not exist.
+	 */
+	 public static ArrayList<String> getAreaCourses(String areaConfig, String area) throws IOException, FileNotFoundException {
+
+	    InputStream ExcelFileToRead = new FileInputStream(areaConfig);
+	    XSSFWorkbook  wb = new XSSFWorkbook(ExcelFileToRead);
+	    XSSFSheet sheet = wb.getSheet("Areas");
 	        
-	        ArrayList<String> areaCourses = new ArrayList<String>();
-	        Iterator<Row> rowIterator = sheet.iterator();
-	        Row row = rowIterator.next();
-	    	Iterator <Cell> cellIterator = row.cellIterator();
+	    ArrayList<String> areaCourses = new ArrayList<String>();
+	    Iterator<Row> rowIterator = sheet.iterator();
+	    Row row = rowIterator.next();
+	    Iterator <Cell> cellIterator = row.cellIterator();
 	    	
-	    	int areaColumnIndex = 0;
+	    int areaColumnIndex = 0;
 	    	
-	    	while(cellIterator.hasNext()) {
-	    		Cell cell = cellIterator.next();
-	    		if(area.equals(cell.getStringCellValue())) {
-	    			areaColumnIndex = cell.getColumnIndex();
-	    		}
+	    while(cellIterator.hasNext()) {
+	    	Cell cell = cellIterator.next();
+	    	if(area.equals(cell.getStringCellValue())) {
+	    		areaColumnIndex = cell.getColumnIndex();
 	    	}
+	    }
 	        
-	    	while(rowIterator.hasNext()) {
-	    		row = rowIterator.next();
-	    		if(row.getCell(areaColumnIndex) != null) {
-	    			String course = row.getCell(areaColumnIndex).getStringCellValue();
-	    			areaCourses.add(course);
-	    		}else {
-	    			break;
-	    		}
-	    	}
+	    while(rowIterator.hasNext()) {
+	    	row = rowIterator.next();
+	    	if(row.getCell(areaColumnIndex) != null) {
+	    		String course = row.getCell(areaColumnIndex).getStringCellValue();
+	    		areaCourses.add(course);
+	    	}else {
+	    		break;
+	    	 }
+	    }
 	    	
-	    	System.out.println(areaCourses.toString());
-	    	return areaCourses;
-		}
+	    System.out.println(areaCourses.toString());
+	    return areaCourses;
+	}
 		
-		//TODO: Check if areaConfig should be the string name of the actual file
-		/**
-		 * This method will get all of the areas that are defined within the excel sheet - 'Areas'
-		 * @param areaConfig - The excel file that will be opened to extract data from.
-		 * @return areaNames - The names of all the areas that can be accessed. 
-		 * @throws IOException
-		 */
-		public static ArrayList<String> getAreaNames(String areaConfig) throws IOException{
+	/**
+	 * This method will get all of the areas that are defined within the excel sheet - 'Areas'
+	 * @param areaConfig - The excel file that will be opened to extract data from.
+	 * @return areaNames - The names of all the areas that can be accessed. 
+	 * @throws IOException
+	 */
+	 public static ArrayList<String> getAreaNames(String areaConfig) throws IOException{
 			
-			InputStream ExcelFileToRead = new FileInputStream("Template.xlsx");
-	        XSSFWorkbook  wb = new XSSFWorkbook(ExcelFileToRead);
-	        XSSFSheet sheet = wb.getSheet("Areas");
+		InputStream ExcelFileToRead = new FileInputStream(areaConfig);
+	    XSSFWorkbook  wb = new XSSFWorkbook(ExcelFileToRead);
+	    XSSFSheet sheet = wb.getSheet("Areas");
 	        
-	        ArrayList<String> areaNames = new ArrayList<String>();
-	        Row row = sheet.getRow(0);
-	        Iterator<Cell> cellIterator = row.cellIterator();
+	    ArrayList<String> areaNames = new ArrayList<String>();
+	    Row row = sheet.getRow(0);
+	    Iterator<Cell> cellIterator = row.cellIterator();
 	    	
 	    	
-	    	while(cellIterator.hasNext()) {
-	    		Cell cell = cellIterator.next();
-	    		areaNames.add(cell.getStringCellValue());
-	    	}
+	    while(cellIterator.hasNext()) {
+	    	Cell cell = cellIterator.next();
+	    	areaNames.add(cell.getStringCellValue());
+	    }
 			
-	    	System.out.println(areaNames.toString());
-			return areaNames;
-		}
-		
-		//TODO: handle printing to a txt file.
-		/**
-		 * Prints the global distribution to the console.
-		 * @param cohort - A set of transcripts
-		 */
-		public static void printGlobalDistribution(Cohort cohort) {
-			int[] global = cohort.getGlobalDistribution();
-			String globalString = "Global: \t\t";
-			for(int i = 0; i < global.length; i++) {
-				globalString += global[i] + "\t";
-			}
-			System.out.println(globalString);
-		}
-		
-		//TODO: Handle printing to a txt file
-		/**
-		 * Prints the year distribution to the console
-		 * @param cohort - A set of transcripts
-		 */
-		public static void printYearDistribution(Cohort cohort) {
-			int[] yearDist = cohort.getYearDistribution();
-			String yearString = "Students in year: 1, 2, 3, 4";
-			for(int i = 0; i < yearDist.length; i++) {
-				yearString += yearDist[i] + ", ";
-			}
-		}
-		
+	    System.out.println(areaNames.toString());
+		return areaNames;
+	}
+			
 	public static ArrayList<ArrayList<String>> getEquivalentCourses(String areaConfig) throws IOException, FileNotFoundException {
 		
-		InputStream ExcelFileToRead = new FileInputStream("Template.xlsx");
+		InputStream ExcelFileToRead = new FileInputStream(areaConfig);
         XSSFWorkbook  wb = new XSSFWorkbook(ExcelFileToRead);
         XSSFSheet sheet = wb.getSheet("Equivelents");
         
@@ -375,14 +346,39 @@ public class FileHandler {
         
     	return courses;
 	}
-
-	
+	//TODO: Handle printing to a txt file
+	/**
+	 * Prints the global distribution to the console.
+	 * @param cohort - A set of transcripts
+	 */
+	 public static void printGlobalDistribution(Cohort cohort) {
+		 int[] global = cohort.getGlobalDistribution();
+		 String globalString = "Global: \t\t";
+		 for(int i = 0; i < global.length; i++) {
+			globalString += global[i] + "\t";
+		 }
+		 System.out.println(globalString);
+	}
+			
+	//TODO: Handle printing to a txt file
+	/**
+	 * Prints the year distribution to the console
+	 * @param cohort - A set of transcripts
+	 */
+	public static void printYearDistribution(Cohort cohort) {
+		int[] yearDist = cohort.getYearDistribution();
+		String yearString = "Students in year: 1, 2, 3, 4";
+		for(int i = 0; i < yearDist.length; i++) {
+			yearString += yearDist[i] + ", ";
+		}
+	}
+			
 	/**
 	 * Returns a list of all the stored files; config files and output excel files
 	 * @return files - A list of the files stored in the current working directory
+	 * @throws IOException
 	 */
 	public static String retrieveStoredFiles(){
-		int count = 1;
 		String directoryPath;
 		String files = "";
 		ArrayList<File> retrievedFiles = new ArrayList<File>();
@@ -397,8 +393,7 @@ public class FileHandler {
 				}
 			}
 			for(File f: retrievedFiles) {
-				files += "*" + f.getName() + "\n";
-				count++;
+				files += "*" + f.getName() + " \n";
 			}
 
 			if(storedFiles.length == 0) {
