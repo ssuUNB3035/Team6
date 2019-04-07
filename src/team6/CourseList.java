@@ -3,7 +3,6 @@ package team6;
  * @author: Ryan Nitz
  */
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 class CourseList {
