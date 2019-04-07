@@ -11,25 +11,21 @@ import java.util.Arrays;
 public class Transcript {
 	
 	private static int transcriptCount = 1;
-	
 	private int transcriptID;
-	
 	private String transcriptName;
 	
 	private double attemptedCreditHours;
-	
 	private double achievedCreditHours;
-	
 	private double totalCreditHours;
 	
 	private double gpaNumber;
-	
 	private String gpaLetter;
 	
-	//this is used only for output standards
-	private ArrayList<String> gradeStrings;
+	private int saintJohnCount;
+	private int frederictonCount;
+	private int otherInstituteCount;
 	
-	//private ArrayList<String[]> gradeElements;
+	private ArrayList<Grade> grades;
 	
 	/**
 	 * Will hold a temporary transcript for student data calculations.
@@ -38,8 +34,7 @@ public class Transcript {
 		this.transcriptID = transcriptCount++;
 		this.transcriptName = transcriptName;
 		this.attemptedCreditHours = 0.00;
-		this.gradeStrings = new ArrayList<String>();
-		//this.gradeElements = new ArrayList<String[]>();
+		this.grades = new ArrayList<Grade>();
 	}
 	
 	/**
@@ -47,11 +42,11 @@ public class Transcript {
 	 * @param gradeElements - The elements of a grade extracted from the transcript file.
 	 * @return boolean if the grade was 
 	 */
-	public boolean addGrade(ArrayList<String> gradeElements) {
-		this.gradeStrings.add(gradeElements.toString());
-		//this.gradeElements.add((String[]) gradeElements.toArray());
-		double attemptedCH = Double.parseDouble(gradeElements.get(4));
-		return updateGPA(gradeElements.get(3), attemptedCH);
+	public boolean addGrade(Grade grade) {
+		this.updateLocations(grade.getCourseSection());
+		
+		double attemptedCH = Double.parseDouble(grade.getCreditHours());
+		return updateGPA(grade.getLetterGrade(), attemptedCH);
 		
 	}
 	
@@ -112,6 +107,16 @@ public class Transcript {
         }
 	}
 	
+	private void updateLocations(String section) {
+		if(section.contains("FR")) {
+			this.frederictonCount++;
+		}else if(section.contains("SJ")) {
+			this.saintJohnCount++;
+		}else {
+			this.otherInstituteCount++;
+		}
+	}
+	
 	/**
 	 * @return gpaLetter - The letter grade for the GPA
 	 */
@@ -147,6 +152,18 @@ public class Transcript {
 	public double getTotalCreditHours() {
 		return this.totalCreditHours;
 	}
+	
+	public int getFrederictonCount() {
+		return this.frederictonCount;
+	}
+	
+	public int getSaintJohnCount() {
+		return this.saintJohnCount;
+	}
+	
+	public int getOtherLocationCount() {
+		return this.otherInstituteCount;
+	}
 
 	/**
 	 * @return template - The string template to display the transcripts details.
@@ -154,8 +171,8 @@ public class Transcript {
 	public String toString() {
 		String template = "Transcript ID: " + this.transcriptID + "\n"
 				+ "Transcript Name: " + this.transcriptName + "\n";
-		for(String grade : gradeStrings) {
-			template += grade + "\n";
+		for(Grade grade : grades) {
+			template += grade.toString() + "\n";
 		}
 		return template += "Credit Hours: " + attemptedCreditHours + "\n"
 				+ "Cumulative GPA: " + this.getGPANumber() + " / " + this.getGPALetter() + "\n";

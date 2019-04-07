@@ -19,6 +19,10 @@ public class Cohort {
 	private int globalMeets = 0;
 	private int globalExceeds = 0;
 	
+	private int saintJohnCount;
+	private int frederictonCount;
+	private int otherInstituteCount;
+	
 	private String cohortName;
 	private ArrayList<Transcript> transcripts;
 	private ArrayList<String> masterList;
@@ -40,7 +44,9 @@ public class Cohort {
 	public boolean addTranscript(Transcript transcript) {
 		RankSchema.getRankSchema();
 		double creditHours = 0.00;
+		
 		if(transcripts.add(transcript)) {
+			
 			creditHours = transcript.getAttemptedCreditHours();
 			if(creditHours < RankSchema.getSecondYearMin()) {
 				firstYearCount++;
@@ -48,18 +54,23 @@ public class Cohort {
 				secondYearCount++;
 			}else if(creditHours < RankSchema.getFourthYearMin()) {
 				thirdYearCount++;
-			}else if(creditHours >= RankSchema.getFourthYearMin()){
+			}else if(creditHours >= RankSchema.getFourthYearMin()) {
 				fourthYearCount++;
 			}
+			
+			this.frederictonCount += transcript.getFrederictonCount();
+			this.saintJohnCount += transcript.getSaintJohnCount();
+			this.otherInstituteCount += transcript.getOtherLocationCount();
+
 			return true;
 		}
-		
 		return false;
 	}
 	
-	public boolean addCourseToMaster(String courseNum) {
-		if(!masterList.contains(courseNum)) {
-			return masterList.add(courseNum);
+	public boolean addCourseToMaster(Grade grade) {
+		String courseID = grade.getCourseNumber() + ", " + grade.getCourseName();
+		if(!masterList.contains(courseID)) {
+			return masterList.add(courseID);
 		}
 		return false;
 	}
@@ -180,6 +191,18 @@ public class Cohort {
 		for(Course course : courses) {
 			this.increaseGlobalDistribution(course.getLevels());
 		}
+	}
+	
+	public int getFrederictonCount() {
+		return this.frederictonCount;
+	}
+	
+	public int getSaintJohnCount() {
+		return this.saintJohnCount;
+	}
+	
+	public int getOtherLocationCount() {
+		return this.otherInstituteCount;
 	}
 	
 	/**
