@@ -30,10 +30,10 @@ public class Area {
 		}
 		
 		catch(FileNotFoundException e) {
-			System.out.println("FnFoof exception");
+			System.out.println("ERROR: Could not find file");
 		}
 		catch(IOException e) {
-			System.out.println("i-oof exception");
+			System.out.println("ERROR: IO Failure");
 		}
 	}
 	
