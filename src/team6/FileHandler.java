@@ -95,14 +95,14 @@ public class FileHandler {
 	 * @param fileName - The Excel file that the method will be writing too.
 	 * @throws IOException
 	 */
-	public static void writeGlobalDistribution(Cohort cohort, String fileName) throws IllegalArgumentException, IOException {
+	public static void writeGlobalDistributions(Cohort cohort, String fileName) throws IllegalArgumentException, IOException {
 		InputStream ExcelFileToRead = new FileInputStream(fileName);
 		XSSFWorkbook wb = new XSSFWorkbook(ExcelFileToRead);
 		XSSFSheet sheet = wb.createSheet("GLOBAL DIST.");
 		wb.write(new FileOutputStream(fileName));
 		int rowIndex = 0;
 		
-		rowIndex = writeGlobalDistribution(cohort, rowIndex, fileName);
+		rowIndex = writeGlobalLevelDistribution(cohort, rowIndex, fileName);
 		rowIndex = writeYearDistribution(cohort, rowIndex, fileName);
 		rowIndex = writeLocationDistribution(cohort, rowIndex, fileName);
 	}
@@ -114,7 +114,7 @@ public class FileHandler {
 	 * @param fileName - The name of the excel file that the method will write to.
 	 * @throws IOException 
 	 */
-	public static int writeGlobalDistribution(Cohort cohort, int index, String fileName) throws IOException, IllegalArgumentException {
+	public static int writeGlobalLevelDistribution(Cohort cohort, int index, String fileName) throws IOException, IllegalArgumentException {
 		InputStream ExcelFileToRead = new FileInputStream(fileName);
 		XSSFWorkbook wb = new XSSFWorkbook(ExcelFileToRead);
 		int rowIndex = index;

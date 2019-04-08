@@ -89,7 +89,7 @@ public class GUI extends JFrame implements ActionListener {
 		     	     //prints to console
 		     	     System.out.println(CourseList.printTextRawList());
 		     	     //Automatically prints cohorts global to the excel. 
-		     	     FileHandler.writeGlobalDistribution(cohort, fileName);
+		     	     FileHandler.writeGlobalDistributions(cohort, fileName);
 		     	     AreaList.makeAreaList();
 		     	     //FileHandler.writeGlobalDistribution(AreaList, fileName);
 
