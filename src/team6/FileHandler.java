@@ -213,14 +213,14 @@ public class FileHandler {
 	}
 	/**
 	 * Creates an Area Distribution sheet and writes the area distribution to it
-	 * @param sortedList - A sorted list of all the areas
+	 * @param areas - A sorted list of all the areas
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
-	public static void writeAreaDistribution(ArrayList<Course> sortedList, String fileName) throws FileNotFoundException, IOException {
+	public static void writeAreaDistribution(ArrayList<Area> areas, String fileName) throws FileNotFoundException, IOException {
 		InputStream ExcelFileToRead = new FileInputStream(fileName);
 		XSSFWorkbook wb = new XSSFWorkbook(ExcelFileToRead);
-		XSSFSheet sheet = wb.createSheet("Area Distribution");
+		XSSFSheet sheet = wb.createSheet("AREA DIST.");
 		XSSFRow row = sheet.createRow(0);
 		String columnHeaders[] = {"Area", "Others", "Fails", "Marginals","Meets", "Exceeds"};
 		for(int c = 0; c < columnHeaders.length; c++) {
@@ -230,16 +230,15 @@ public class FileHandler {
 		
 		int n = 0, m = 0;
 		
-		for(Course courseIn: sortedList) {
+		for(Area areaIn: areas) {
 			n++;
 			XSSFRow nextRow = sheet.createRow(n);
 			
-			XSSFCell numCell = nextRow.createCell(m);
-			XSSFCell nameCell = nextRow.createCell(m+1);
-			numCell.setCellValue(courseIn.getCourseNum());
-			nameCell.setCellValue(courseIn.getCourseName());
+			XSSFCell nameCell = nextRow.createCell(m);
+			//XSSFCell nameCell = nextRow.createCell(m+1);
+			nameCell.setCellValue(areaIn.getAreaName());
 			
-			int[] levels = courseIn.getLevels();
+			int[] levels = areaIn.getLevels();
 			for(int c = 0; c < levels.length; c++) {
 				XSSFCell cell = nextRow.createCell(c+2);
 				cell.setCellValue(levels[c]);
