@@ -243,7 +243,6 @@ public class FileHandler {
 				XSSFCell cell = nextRow.createCell(c+2);
 				cell.setCellValue(levels[c]);
 			}
-			
 		}
 		wb.write(new FileOutputStream(fileName));
 	}

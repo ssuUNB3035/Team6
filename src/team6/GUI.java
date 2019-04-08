@@ -92,6 +92,7 @@ public class GUI extends JFrame implements ActionListener {
 		     	     //Automatically prints cohorts global to the excel. 
 		     	     FileHandler.writeGlobalDistribution(cohort, fileName);
 		     	     AreaList.makeAreaList();
+		     	     areas = AreaList.getAreaList();
 		     	     //FileHandler.writeGlobalDistribution(AreaList, fileName);
 
 		     	     parseCount++; 

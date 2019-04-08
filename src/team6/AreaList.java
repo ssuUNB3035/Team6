@@ -20,5 +20,8 @@ public class AreaList {
 		catch(IOException e) {
 			System.out.println("IO Error - could not resolve input");
 		}
-	}		
+	}
+	public static ArrayList<Area> getAreaList(){
+		return areaList;
+	}
 }
