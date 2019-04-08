@@ -16,10 +16,10 @@ public class Equivalence {
 		
 		//aClass.get( vertical ).get( horizontal )
 		aClass = new ArrayList<ArrayList<String>>();
-		eClass = FileHandler.getEquivalentCourses("rand");
-		ArrayList<String> aNames = FileHandler.getAreaNames("rand");
+		eClass = FileHandler.getEquivalentCourses("results_EE2014.xlsx");
+		ArrayList<String> aNames = FileHandler.getAreaNames("results_EE2014.xlsx");
 		for (int i = 0;i<aNames.size();i++) {
-			aClass.add(FileHandler.getAreaCourses("rand", aNames.get(i)));
+			aClass.add(FileHandler.getAreaCourses("results_EE2014.xlsx", aNames.get(i)));
 		}
 	}
 	

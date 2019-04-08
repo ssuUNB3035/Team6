@@ -3,48 +3,29 @@ package team6;
  * @author Uwera Ntaganzwa
  */
 import javax.swing.*;
-import javax.swing.filechooser.FileSystemView;
-
-import java.awt.Desktop;
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class GUI extends JFrame implements ActionListener {
 		Cohort cohort;
+		private static String fileDictName = "";
+		private static String fileName = readInFile();
 		private static int parseCount;
 		private static int writeCount;
 		private static JButton parseButton;
 		private static JButton excelButton;
-		private static JButton viewResultsButton;
 		private static JButton retrieveFilesButton;
 		private static JLabel message;
 		private static JLabel message2;
-		private static JLabel viewMessage;
 		private static JLabel retrieveMessage;
-		private static List list;
+		private static JLabel listedFiles;
 		ArrayList<Course> sortedList = new ArrayList<>();
 		GUI(){}
 	    public static void main(String args[]){
-	    	
-	    	/**
-	    	 * To clean out:
-	    	 */
-	    	//THIS IS THE TESTING BLOCK FOR READING AREA FROM EXCEL.
-	    	//CHECK CONSOLE ON LAUNCH, rand = placeholder for hardcoded file name
-	    	try{
-	    		ArrayList<String> areaNames = FileHandler.getAreaNames("rand");
-				FileHandler.getAreaCourses("rand", areaNames.get(1));
-			}catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}catch (IOException e) {
-				e.printStackTrace();
-			}
-	    	//until here
-	    	
 	       JFrame frame = new JFrame("Student Transcript Analyser");
 	       JPanel panel = new JPanel();
 	       frame.setSize(500,450);
@@ -66,24 +47,19 @@ public class GUI extends JFrame implements ActionListener {
 	       excelButton.setVisible(false);
 	       message2.setVisible(false);
 	       
-	       /**viewResultsButton = new JButton("View Distributions");
-	       viewMessage = new JLabel("");
-	       panel.add(viewResultsButton);
-	       panel.add(viewMessage);
-	       viewResultsButton.setVisible(false);
-	       viewMessage.setVisible(false);*/
-	       
 	       retrieveFilesButton = new JButton("Retrieve Stored Files");
 	       retrieveMessage = new JLabel("");
+	       listedFiles = new JLabel("");
 	       panel.add(retrieveFilesButton);
 	       panel.add(retrieveMessage);
+	       panel.add(listedFiles);
 	       retrieveFilesButton.setVisible(false);
 	       retrieveMessage.setVisible(false);
+	       listedFiles.setVisible(false);
 	       
 	       GUI fileChooser = new GUI();
 	       parseButton.addActionListener(fileChooser);
 	       excelButton.addActionListener(fileChooser);
-	       //viewResultsButton.addActionListener(fileChooser);
 	       retrieveFilesButton.addActionListener(fileChooser);
 	       
 	       
@@ -113,16 +89,14 @@ public class GUI extends JFrame implements ActionListener {
 		     	     message2.setVisible(true);
 		     	     //prints to console
 		     	     System.out.println(CourseList.printTextRawList());
-		     	     //NOTE: automatically prints cohorts global to the excel. might want to change?
-		     	     FileHandler.writeGlobalDistribution(cohort);
-		     	     FileHandler.writeYearDistribution(cohort);
+		     	     //Automatically prints cohorts global to the excel. 
+		     	     FileHandler.writeGlobalDistribution(cohort, fileName);
 		     	     //CourseList.getAreaList();
 		     	     parseCount++; 
 		        } catch (IllegalArgumentException e1) {
 		        	message.setText("Error parsing transcripts. One or more files may be corrupted.");
 		        	e1.printStackTrace();
 		        } catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 	         }
@@ -134,14 +108,13 @@ public class GUI extends JFrame implements ActionListener {
 			        }
 	        	  sortedList = CourseList.getCourseList();
 	        	  
-	        	  
 	        	  try {
-					FileHandler.writeRawList(sortedList);
-					//FileHandler.writeAreaDistribution(sortedList);
-					FileHandler.workbook.close();
+					FileHandler.writeRawList(sortedList, fileName);
+					//FileHandler.writeAreaDistribution(sortedList, fileName);
 					message2.setText("Results have been written to an excel workbook.");
 					retrieveFilesButton.setVisible(true);
 					retrieveMessage.setVisible(true);
+					listedFiles.setVisible(true);
 				} catch (FileNotFoundException e1) {
 					message.setText("File not found.");
 					e1.printStackTrace();
@@ -156,5 +129,34 @@ public class GUI extends JFrame implements ActionListener {
 	        	 FileHandler.retrieveStoredFiles();
 	        	 
 	         }
+}
+	    
+	    private static String readInFile() {
+	    	String source = System.getProperty("user.dir");
+	    	JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Select your Config File"); //name for chooser
+            //FileNameExtensionFilter filter = new FileNameExtensionFilter("Files", ".xlsx"); //filter to show only that
+            fileChooser.setAcceptAllFileFilterUsed(false); //to show or not all other files
+            //fileChooser.addChoosableFileFilter(filter);
+            fileChooser.setSelectedFile(new File(source)); //when you want to show the name of file into the chooser
+            fileChooser.setVisible(true);
+            int result = fileChooser.showOpenDialog(fileChooser);
+            
+            if (result == JFileChooser.APPROVE_OPTION) {
+                fileDictName = fileChooser.getSelectedFile().getAbsolutePath();
+            } else {
+                return "NULL";
+            }
+            
+      	  String name = fileChooser.getSelectedFile().getAbsolutePath();
+      	  if (!name.contains(".")) {
+      		  name = name + ".xlsx";
+      	  }
+      	  else if (name.substring(name.lastIndexOf("."), name.length()) != ".xlsx") {
+      		  name = name.replace(name.substring(name.lastIndexOf("."), name.length()), ".xlsx");
+      		  System.out.println(name);
+      	  }
+      	  
+      	  return name;
 	    }
 }
