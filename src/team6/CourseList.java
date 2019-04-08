@@ -1,6 +1,7 @@
 package team6;
 /**
- * @author: Ryan Nitz
+ * @author Ryan Nitz
+ * @author Keith LeBlanc
  */
 
 import java.util.ArrayList;
@@ -43,6 +44,27 @@ class CourseList {
 		
 		return true;
 	}
+	
+	/**
+	 * @param courseNum The identifier of the course
+	 * @return courseIndex The index in the master list of the course being searched
+	 */
+	public static int searchCourse(String courseNum) {
+
+		boolean found = false;
+		int courseIndex = -1;
+		for(int i=0; i<courseList.size() && !found; i++) {
+			//System.out.println(courseList.get(i).getCourseNum() + "/" + courseNum + " search");
+
+			if (courseList.get(i).getCourseNum().equals(courseNum)) {
+				found = true;
+				courseIndex = i;
+				System.out.println("course found");
+			}
+		}
+		
+		return courseIndex;
+ 	}
 	
 	/**
 	 * @return The Raw course List
