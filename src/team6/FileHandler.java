@@ -190,7 +190,7 @@ public class FileHandler {
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
-	public static void writeAreaDistribution(ArrayList<Course> sortedList) throws FileNotFoundException, IOException {
+	public static void writeAreaDistribution(ArrayList<Course> sortedList, String fileName) throws FileNotFoundException, IOException {
 		XSSFSheet sheet = workbook.createSheet("Area Distribution");
 		XSSFRow row = sheet.createRow(0);
 		String columnHeaders[] = {"Area", "Others", "Fails", "Marginals","Meets", "Exceeds"};
@@ -200,7 +200,7 @@ public class FileHandler {
 		}
 		
 		int n = 0, m = 0;
-		/*
+		
 		for(Course courseIn: sortedList) {
 			n++;
 			XSSFRow nextRow = sheet.createRow(n);
@@ -216,7 +216,7 @@ public class FileHandler {
 				cell.setCellValue(levels[c]);
 			}
 			
-		}*/
+		}
 		workbook.write(new FileOutputStream("Results.xslx"));
 	}
 	
