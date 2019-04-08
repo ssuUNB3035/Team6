@@ -72,7 +72,7 @@ public class GUI extends JFrame implements ActionListener {
 	         if (event.equals("Parse Transcripts")) { 
 	            if (parseCount > 0) {
 		        	message.setText("Transcripts in this cohort have already been parsed.");
-		        	throw new IllegalArgumentException();
+		        	throw new IllegalArgumentException("Transcripts in this cohort have already been parsed.");
 		        }
 		        try {	 
 		             File directory = null;
@@ -111,7 +111,7 @@ public class GUI extends JFrame implements ActionListener {
 	        	  try {
 					FileHandler.writeRawList(sortedList, fileName);
 					FileHandler.writeMasterList(cohort, fileName);
-					//FileHandler.writeAreaDistribution(sortedList, fileName);
+					//FileHandler.writeAreaDistribution(areas, fileName);
 					message2.setText("Results have been written to an excel workbook.");
 					retrieveFilesButton.setVisible(true);
 					retrieveMessage.setVisible(true);
