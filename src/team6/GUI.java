@@ -9,8 +9,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
 public class GUI extends JFrame implements ActionListener {
 		Cohort cohort;
+		private static String fileDictName = "";
+		private static String fileName = readInFile();
 		private static int parseCount;
 		private static int writeCount;
 		private static JButton parseButton;
@@ -87,7 +90,7 @@ public class GUI extends JFrame implements ActionListener {
 		     	     //prints to console
 		     	     System.out.println(CourseList.printTextRawList());
 		     	     //Automatically prints cohorts global to the excel. 
-		     	     FileHandler.writeGlobalDistributions(cohort);
+		     	     FileHandler.writeGlobalDistribution(cohort, fileName);
 		     	     //CourseList.getAreaList();
 		     	     parseCount++; 
 		        } catch (IllegalArgumentException e1) {
@@ -99,16 +102,15 @@ public class GUI extends JFrame implements ActionListener {
 	         }
 	         
 	         if(event.equals("Write Results to Excel")){
-	        	if (writeCount > 0) {
+	        	 if (writeCount > 0) {
 			        	message.setText("A results workbook has already been created.");
 			        	throw new IllegalArgumentException();
-			    }
-	        	sortedList = CourseList.getCourseList();
+			        }
+	        	  sortedList = CourseList.getCourseList();
 	        	  
-	        	try {
-					FileHandler.writeRawList(sortedList);
-					FileHandler.writeAreaDistribution(sortedList);
-					FileHandler.workbook.close();
+	        	  try {
+					FileHandler.writeRawList(sortedList, fileName);
+					//FileHandler.writeAreaDistribution(sortedList, fileName);
 					message2.setText("Results have been written to an excel workbook.");
 					retrieveFilesButton.setVisible(true);
 					retrieveMessage.setVisible(true);
@@ -124,7 +126,37 @@ public class GUI extends JFrame implements ActionListener {
 	         
 	         if(event.equals("Retrieve Stored Files")){
 	        	 retrieveMessage.setText("The following files are available for further processing:\n");
-	        	 listedFiles.setText(FileHandler.retrieveStoredFiles());
+	        	 FileHandler.retrieveStoredFiles();
+	        	 
 	         }
+}
+	    
+	    private static String readInFile() {
+	    	String source = System.getProperty("user.dir");
+	    	JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Select your Config File"); //name for chooser
+            //FileNameExtensionFilter filter = new FileNameExtensionFilter("Files", ".xlsx"); //filter to show only that
+            fileChooser.setAcceptAllFileFilterUsed(false); //to show or not all other files
+            //fileChooser.addChoosableFileFilter(filter);
+            fileChooser.setSelectedFile(new File(source)); //when you want to show the name of file into the chooser
+            fileChooser.setVisible(true);
+            int result = fileChooser.showOpenDialog(fileChooser);
+            
+            if (result == JFileChooser.APPROVE_OPTION) {
+                fileDictName = fileChooser.getSelectedFile().getAbsolutePath();
+            } else {
+                return "NULL";
+            }
+            
+      	  String name = fileChooser.getSelectedFile().getAbsolutePath();
+      	  if (!name.contains(".")) {
+      		  name = name + ".xlsx";
+      	  }
+      	  else if (name.substring(name.lastIndexOf("."), name.length()) != ".xlsx") {
+      		  name = name.replace(name.substring(name.lastIndexOf("."), name.length()), ".xlsx");
+      		  System.out.println(name);
+      	  }
+      	  
+      	  return name;
 	    }
 }
