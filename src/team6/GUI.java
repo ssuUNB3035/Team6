@@ -60,8 +60,7 @@ public class GUI extends JFrame implements ActionListener {
 	       GUI fileChooser = new GUI();
 	       parseButton.addActionListener(fileChooser);
 	       excelButton.addActionListener(fileChooser);
-	       retrieveFilesButton.addActionListener(fileChooser);
-	       
+	       retrieveFilesButton.addActionListener(fileChooser);	       
 	       
 	       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	       frame.setVisible(true);
@@ -91,7 +90,9 @@ public class GUI extends JFrame implements ActionListener {
 		     	     System.out.println(CourseList.printTextRawList());
 		     	     //Automatically prints cohorts global to the excel. 
 		     	     FileHandler.writeGlobalDistribution(cohort, fileName);
-		     	     //CourseList.getAreaList();
+		     	     AreaList.makeAreaList();
+		     	     //FileHandler.writeGlobalDistribution(AreaList, fileName);
+
 		     	     parseCount++; 
 		        } catch (IllegalArgumentException e1) {
 		        	message.setText("Error parsing transcripts. One or more files may be corrupted.");
