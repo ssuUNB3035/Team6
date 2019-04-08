@@ -7,25 +7,46 @@ import java.util.ArrayList;
 
 public class Course implements Comparable<Course>{
 	
+	/**
+	 * The course code or course number for the unique instance of this course.
+	 */
 	private String courseNum;
-
+	
+	/**
+	 * The course name for the unique instance of this course.
+	 */
 	private String courseName;
- 
+	
+	/**
+	 * The amount of grades that are not defined in the Level Schema
+	 */
 	private int others;
 	
+	/**
+	 * The amount of grades that are within the failing grades margin
+	 */	
 	private int fails;
 	
+	/**
+	 * The amount of grades that are within the maringal grades margin
+	 */	
 	private int marginals;
 	
+	/**
+	 * The amount of grades that are within the meets grades margin
+	 */	
 	private int meets;
 	
+	/**
+	 * The amount of grades that are within the exceeds grades margin
+	 */	
 	private int exceeds;
 
 	//NOTE: yes keep the array of all the information so that we can do something with it if ever we need to. 
-	public Course(ArrayList<String> courseElements) {
-		this.courseNum = courseElements.get(0);
-		this.courseName = courseElements.get(2);
-		setGrade(courseElements.get(3));
+	public Course(Grade grade) {
+		this.courseNum = grade.getCourseNumber();
+		this.courseName = grade.getCourseName();
+		setGrade(grade.getLetterGrade());
 	}
 	
 	/**
