@@ -89,9 +89,9 @@ public class GUI extends JFrame implements ActionListener {
 		     	     //prints to console
 		     	     System.out.println(CourseList.printTextRawList());
 		     	     //Automatically prints cohorts global to the excel. 
+		     	     
 		     	     FileHandler.writeGlobalDistribution(cohort, fileName);
 		     	     AreaList.makeAreaList();
-		     	     //FileHandler.writeGlobalDistribution(AreaList, fileName);
 
 		     	     parseCount++; 
 		        } catch (IllegalArgumentException e1) {
@@ -111,7 +111,7 @@ public class GUI extends JFrame implements ActionListener {
 	        	  try {
 					FileHandler.writeRawList(sortedList, fileName);
 					FileHandler.writeMasterList(cohort, fileName);
-					//FileHandler.writeAreaDistribution(sortedList, fileName);
+					FileHandler.writeAreaDistribution(AreaList.getAreas(), fileName);
 					message2.setText("Results have been written to an excel workbook.");
 					retrieveFilesButton.setVisible(true);
 					retrieveMessage.setVisible(true);

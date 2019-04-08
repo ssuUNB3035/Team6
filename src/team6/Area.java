@@ -9,8 +9,9 @@ import java.io.*;
 public class Area {
 	private ArrayList<String> areaCourses;
 
+	private static final int GRADELIST = 5;
 	private String areaName;
-	private int others, fails, marginals, meets, exceeds;
+	private int[] gradeAmount = new int[GRADELIST];
 
 	/**
 	 * @param areaName The name of the area
@@ -20,11 +21,10 @@ public class Area {
 		this.areaName = areaName;
 		try {
 			areaCourses = FileHandler.getAreaCourses("results_EE2014.xlsx", areaName);
-			for(int i=0; i<areaCourses.size(); i++) {				
-				for(int j=0; j<CourseList.courseList.size(); j++) {
-					if(areaCourses.contains(CourseList.courseList.get(j).getCourseNum())) {
-						addCourse(CourseList.courseList.get(j));
-					}
+			
+			for(int j=0; j<CourseList.courseList.size(); j++) {
+				if(areaCourses.contains(CourseList.courseList.get(j).getCourseNum())) {
+					addCourse(CourseList.courseList.get(j));
 				}
 			}			
 		}
@@ -47,75 +47,33 @@ public class Area {
 	/**
 	 * @param courseInArea The course with grades to be added to the area distribution
 	 */	
-	public void addCourse(Course courseInArea) {		
-		this.exceeds += courseInArea.getExceedsCount();
-		this.meets += courseInArea.getMeetsCount();
-		this.marginals += courseInArea.getMarginalsCount();
-		this.fails += courseInArea.getFailsCount();
-		this.others += courseInArea.getOthersCount();
+	public void addCourse(Course courseInArea) {
+		this.gradeAmount[4] += courseInArea.getExceedsCount();
+		this.gradeAmount[3] += courseInArea.getMeetsCount();
+		this.gradeAmount[2] += courseInArea.getMarginalsCount();
+		this.gradeAmount[1] += courseInArea.getFailsCount();
+		this.gradeAmount[0] += courseInArea.getOthersCount();
 	}
 
 	/**
-	 * @return The amount of "others" grades
+	 * @param margin The grade type (exceeds, meets, marginals, fails, others) being searched for
+	 * @return The amount of the indexed grades
 	 */
-	public int getOthersCount() {
-		return this.others;
-	}
-	
-	/**
-	 * @return The amount of "fails" grades
-	 */
-	public int getFailsCount() {
-		return this.fails;
-	}
-	
-	/**
-	 * @return The amount of "marginals" grades
-	 */
-	public int getMarginalsCount() {
-		return this.marginals;
-	}
-	
-	/**
-	 * @return The amount of "meets" grades
-	 */
-	public int getMeetsCount() {
-		return this.meets;
-	}
-	
-	/**
-	 * @return The amount of "exceeds" grades
-	 */
-	public int getExceedsCount() {
-		return this.exceeds;
-	}
-	
-	/**
-	 * @return areaAverage - The average GPA in the area
-	 */
-	public double getAverage() {
-		double areaAverage = 0.0;
-		for(int i=0; i<areaCourses.size(); i++) {
-			
-		}
-		
-		return areaAverage;
+	public int getGradesCount(int margin) {
+		return this.gradeAmount[margin];
 	}
 	
 	/**
 	 * @return levels - The amount of each level
-	 */
+	 */ 
 	public int[] getLevels() {
-		int levels[] = {others,fails,marginals,meets,exceeds};
-		return levels;
+		return gradeAmount;
 	}
 	
 	public String toString() {
-		String template = areaName + " ";		
-		//for(int i=0; i<areaCourses.size(); i++) {
-		//	template += areaCourses.get(i) + " ";
-		//}		
-		template += this.others + ", " + this.fails + ", " + this.marginals + ", " + this.meets + ", " + this.exceeds;
+		String template = areaName + " - ";		
+		
+		template += this.gradeAmount[0] + ", " + this.gradeAmount[1] + ", " + this.gradeAmount[2] + ", " + this.gradeAmount[3] + ", " + this.gradeAmount[4];
 		
 		return template;
 	}
