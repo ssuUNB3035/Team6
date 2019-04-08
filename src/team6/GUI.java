@@ -111,6 +111,7 @@ public class GUI extends JFrame implements ActionListener {
 	        	  
 	        	  try {
 					FileHandler.writeRawList(sortedList, fileName);
+					FileHandler.writeMasterList(cohort, fileName);
 					//FileHandler.writeAreaDistribution(sortedList, fileName);
 					message2.setText("Results have been written to an excel workbook.");
 					retrieveFilesButton.setVisible(true);
