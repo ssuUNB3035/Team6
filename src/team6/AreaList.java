@@ -1,4 +1,7 @@
 package team6;
+/**
+ * @author Keith LeBlanc
+ */
 
 import java.util.ArrayList;
 import java.io.IOException;
@@ -20,5 +23,9 @@ public class AreaList {
 		catch(IOException e) {
 			System.out.println("IO Error - could not resolve input");
 		}
-	}		
+	}
+	
+	public static ArrayList<Area> getAreas() {
+		return areaList;
+	}
 }

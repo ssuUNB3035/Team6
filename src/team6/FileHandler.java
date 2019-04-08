@@ -211,41 +211,41 @@ public class FileHandler {
 		wb.write(new FileOutputStream(fileName));
 		return rowIndex + 4;
 	}
+	
 	/**
 	 * Creates an Area Distribution sheet and writes the area distribution to it
 	 * @param sortedList - A sorted list of all the areas
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
-	public static void writeAreaDistribution(ArrayList<Course> sortedList, String fileName) throws FileNotFoundException, IOException {
+	public static void writeAreaDistribution(ArrayList<Area> listOfAreas, String fileName) throws FileNotFoundException, IOException {
 		InputStream ExcelFileToRead = new FileInputStream(fileName);
 		XSSFWorkbook wb = new XSSFWorkbook(ExcelFileToRead);
-		XSSFSheet sheet = wb.createSheet("Area Distribution");
+		XSSFSheet sheet = wb.createSheet("AREA DIST.");
 		XSSFRow row = sheet.createRow(0);
 		String columnHeaders[] = {"Area", "Others", "Fails", "Marginals","Meets", "Exceeds"};
 		for(int c = 0; c < columnHeaders.length; c++) {
 			XSSFCell cell = row.createCell(c);
 			cell.setCellValue(columnHeaders[c]);
-		}
+		}		
 		
-		int n = 0, m = 0;
-		
-		for(Course courseIn: sortedList) {
-			n++;
-			XSSFRow nextRow = sheet.createRow(n);
-			
-			XSSFCell numCell = nextRow.createCell(m);
-			XSSFCell nameCell = nextRow.createCell(m+1);
-			numCell.setCellValue(courseIn.getCourseNum());
-			nameCell.setCellValue(courseIn.getCourseName());
-			
-			int[] levels = courseIn.getLevels();
-			for(int c = 0; c < levels.length; c++) {
-				XSSFCell cell = nextRow.createCell(c+2);
-				cell.setCellValue(levels[c]);
+		int rowIndex=1;
+		for(Area areaIn: listOfAreas) {
+			XSSFRow nextRow = sheet.createRow(rowIndex);
+
+			for(int colIndex=0; colIndex<6; colIndex++) {
+				XSSFCell cell = nextRow.createCell(colIndex);
+
+				if(colIndex==0) {
+					cell.setCellValue(areaIn.getAreaName());
+				}
+				else {
+					cell.setCellValue(areaIn.getGradesCount(colIndex-1));
+				}
 			}
-			
-		}
+			rowIndex++;
+		}		
+		
 		wb.write(new FileOutputStream(fileName));
 	}
 	
