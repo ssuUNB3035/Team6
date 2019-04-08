@@ -24,6 +24,7 @@ public class GUI extends JFrame implements ActionListener {
 		private static JLabel retrieveMessage;
 		private static JLabel listedFiles;
 		ArrayList<Course> sortedList = new ArrayList<>();
+		ArrayList<Area> areas = new ArrayList<>();
 		GUI(){}
 	    public static void main(String args[]){
 	       JFrame frame = new JFrame("Student Transcript Analyser");
@@ -36,7 +37,7 @@ public class GUI extends JFrame implements ActionListener {
 	       panel.add(parseButton);
 	       message = new JLabel("No transcripts parsed yet.");
 	       panel.add(message);
-	       parseCount =0;
+	       parseCount = 0;
 	       
 	       
 	       excelButton = new JButton("Write Results to Excel");
@@ -72,8 +73,9 @@ public class GUI extends JFrame implements ActionListener {
 	         if (event.equals("Parse Transcripts")) { 
 	            if (parseCount > 0) {
 		        	message.setText("Transcripts in this cohort have already been parsed.");
-		        	throw new IllegalArgumentException();
+		        	throw new IllegalArgumentException("Transcripts in this cohort have already been parsed.");
 		        }
+	            
 		        try {	 
 		             File directory = null;
 		             directory = TranscriptReader.getDirectory();
@@ -84,21 +86,20 @@ public class GUI extends JFrame implements ActionListener {
 		     	     LevelSchema.getSchemaConfig();
 		     	     cohort = TranscriptReader.parseTranscripts(transcriptSet);
 		     	     message.setText(transcriptSet.length + " transcripts successfully parsed.");
-		     	     excelButton.setVisible(true);
-		     	     message2.setVisible(true);
 		     	     //prints to console
 		     	     System.out.println(CourseList.printTextRawList());
 		     	     //Automatically prints cohorts global to the excel. 
 		     	     FileHandler.writeGlobalDistribution(cohort, fileName);
 		     	     AreaList.makeAreaList();
-		     	     //FileHandler.writeGlobalDistribution(AreaList, fileName);
-
 		     	     parseCount++; 
-		        } catch (IllegalArgumentException e1) {
-		        	message.setText("Error parsing transcripts. One or more files may be corrupted.");
-		        } catch (IOException e1) {
-					e1.printStackTrace();
-				}
+		     	     excelButton.setVisible(true);
+		     	     message2.setVisible(true);
+		     	     parseCount++;
+		        } catch (IllegalArgumentException e2) {
+		        	e2.printStackTrace();
+		        } catch(IOException e2) {
+		        	e2.printStackTrace();
+		        } 
 	         }
 	         
 	         if(event.equals("Write Results to Excel")){
@@ -111,7 +112,7 @@ public class GUI extends JFrame implements ActionListener {
 	        	  try {
 					FileHandler.writeRawList(sortedList, fileName);
 					FileHandler.writeMasterList(cohort, fileName);
-					//FileHandler.writeAreaDistribution(sortedList, fileName);
+					FileHandler.writeAreaDistribution(areas, fileName);
 					message2.setText("Results have been written to an excel workbook.");
 					retrieveFilesButton.setVisible(true);
 					retrieveMessage.setVisible(true);
@@ -128,9 +129,7 @@ public class GUI extends JFrame implements ActionListener {
 	         }
 	         
 	         if(event.equals("Retrieve Stored Files")){
-	        	 retrieveMessage.setText("The following files are available for further processing:\n");
-	        	 FileHandler.retrieveStoredFiles();
-	        	 
+	        	 retrieveMessage.setText("The following files are available for further processing:\n" + FileHandler.retrieveStoredFiles());
 	         }
 }
 	    
