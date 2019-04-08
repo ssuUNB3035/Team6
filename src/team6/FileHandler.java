@@ -65,8 +65,10 @@ public class FileHandler {
 		wb.write(new FileOutputStream(fileName));
 	}
 	
-	public static void writeMasterList(Cohort cohort) {
-		XSSFSheet sheet = workbook.createSheet("MasterList");
+	public static void writeMasterList(Cohort cohort, String fileName) throws IOException {
+		InputStream ExcelFileToRead = new FileInputStream(fileName);
+		XSSFWorkbook wb = new XSSFWorkbook(ExcelFileToRead);
+		XSSFSheet sheet = wb.createSheet("MasterList");
 		XSSFRow row;
 		XSSFCell cell;
 		
@@ -77,6 +79,7 @@ public class FileHandler {
 			cell = row.createCell(0);
 			cell.setCellValue(master.get(i));
 		}
+		wb.write(new FileOutputStream(fileName));
 		
 	}
 	
