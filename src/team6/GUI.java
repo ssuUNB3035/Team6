@@ -96,7 +96,6 @@ public class GUI extends JFrame implements ActionListener {
 		     	     parseCount++; 
 		        } catch (IllegalArgumentException e1) {
 		        	message.setText("Error parsing transcripts. One or more files may be corrupted.");
-		        	e1.printStackTrace();
 		        } catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -120,7 +119,9 @@ public class GUI extends JFrame implements ActionListener {
 				} catch (FileNotFoundException e1) {
 					message.setText("File not found.");
 					e1.printStackTrace();
-				} catch (IOException e1) {
+				}catch(IllegalArgumentException ia) {
+					message.setText("This excel had already been written to. Please delete output sheets or define a new workbook");
+				}catch (IOException e1) {
 					message.setText("Failed to write to excel.");
 					e1.printStackTrace();
 				}
