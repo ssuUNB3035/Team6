@@ -8,23 +8,68 @@ import java.util.ArrayList;
 
 public class Cohort {
 	
+	/**
+	 * The amount of students that are in their first year based on credit hours
+	 */
 	private int firstYearCount;
+	/**
+	 * The amount of students that are in their second year based on credit hours
+	 */
 	private int secondYearCount;
+	/**
+	 * The amount of students that are in their fourth year based on credit hours
+	 */
 	private int thirdYearCount;
+	/**
+	 * The amount of students that are in their fifth year based on credit hours
+	 */
 	private int fourthYearCount;
 	
+	/**
+	 * The amount of grades that are within the others grades margin
+	 */
 	private int globalOthers = 0;
+	/**
+	 * The amount of grades that are within the failing grades margin
+	 */
 	private int globalFails = 0;
+	/**
+	 * The amount of grades that are within the marginals grades margin
+	 */
 	private int globalMarginals = 0;
+	/**
+	 * The amount of grades that are within the meets grades margin
+	 */
 	private int globalMeets = 0;
+	/**
+	 * The amount of grades that are within the exceeds grades margin
+	 */
 	private int globalExceeds = 0;
 	
+	/**
+	 * The number of courses that were taken in Saint John
+	 */
 	private int saintJohnCount;
+	/**
+	 * The number of courses that were taken in fredericton
+	 */
 	private int frederictonCount;
+	/**
+	 * The number of courses that were taken in other locations
+	 */
 	private int otherInstituteCount;
-	
+
+	/**
+	 * The name of the cohort, or the folder that holds all of the transcripts
+	 */
 	private String cohortName;
+	/**
+	 * A list of transcript objects that exist in the folder/cohort
+	 */
 	private ArrayList<Transcript> transcripts;
+	/**
+	 * A list of all unique courses before being equated with equivalences
+	 */
 	private ArrayList<String> masterList;
 	
 	/**
@@ -67,6 +112,11 @@ public class Cohort {
 		return false;
 	}
 	
+	/**
+	 * Adds a course to the unique master list of courses
+	 * @param grade The grade that holds course values
+	 * @return boolean - If the course was successfully added
+	 */
 	public boolean addCourseToMaster(Grade grade) {
 		String courseID = grade.getCourseNumber() + ", " + grade.getCourseName();
 		if(!masterList.contains(courseID)) {
@@ -75,6 +125,10 @@ public class Cohort {
 		return false;
 	}
 	
+	/**
+	 * Return the master list of all the courses
+	 * @return masterlist - The ArrayList of Strings
+	 */
 	public ArrayList<String> getMasterList(){
 		masterList.sort(null);
 		return masterList;
@@ -193,21 +247,32 @@ public class Cohort {
 		}
 	}
 	
+	/**
+	 * Returns the count of courses that were taken in fredericton
+	 * @return frederictonCount
+	 */
 	public int getFrederictonCount() {
 		return this.frederictonCount;
 	}
 	
+	/**
+	 * Returns the count of courses that were taken in fredericton
+	 * @return saintJohnCount
+	 */
 	public int getSaintJohnCount() {
 		return this.saintJohnCount;
 	}
 	
+	/**
+	 * Returns the count of courses that were taken in fredericton
+	 * @return otherInstituteCount
+	 */
 	public int getOtherLocationCount() {
 		return this.otherInstituteCount;
 	}
 	
 	/**
-	 * 
-	 * @return 
+	 * @return The formated string for year counts.
 	 */
 	public String toString() {
 		String template = "Students in First Year: " + this.firstYearCount + "\n"

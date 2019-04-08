@@ -36,8 +36,6 @@ public class TranscriptReader{
         return dir;
 	}
 	
-	//TODO: Add error handling/ boolean response
-	//TODO: analyze if the iteration of transcripts should be in separate method and the transcript line-by-line reading should be alone too??
 	/**
 	 * Iterates through all of the transcript files in the specified location.
 	 * Assigns the data within the rest of the system.

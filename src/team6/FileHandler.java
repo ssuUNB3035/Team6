@@ -33,7 +33,7 @@ public class FileHandler {
 	public static void writeRawList(ArrayList<Course> sortedList, String fileName) throws FileNotFoundException, IOException {
 		InputStream ExcelFileToRead = new FileInputStream(fileName);
 		XSSFWorkbook wb = new XSSFWorkbook(ExcelFileToRead);
-		XSSFSheet sheet = wb.createSheet("Raw List");
+		XSSFSheet sheet = wb.createSheet("RAW");
 		
 		XSSFRow row = sheet.createRow(0);
 		
@@ -65,10 +65,16 @@ public class FileHandler {
 		wb.write(new FileOutputStream(fileName));
 	}
 	
+	/**
+	 * Write the master list of all unique courses before their are equated to their equivalence
+	 * @param cohort - The set of transcripts that are being analyzed
+	 * @param fileName - The Excel file that the method will be writing too.
+	 * @throws IOException
+	 */
 	public static void writeMasterList(Cohort cohort, String fileName) throws IOException {
 		InputStream ExcelFileToRead = new FileInputStream(fileName);
 		XSSFWorkbook wb = new XSSFWorkbook(ExcelFileToRead);
-		XSSFSheet sheet = wb.createSheet("MasterList");
+		XSSFSheet sheet = wb.createSheet("MASTERLIST");
 		XSSFRow row;
 		XSSFCell cell;
 		
@@ -83,27 +89,36 @@ public class FileHandler {
 		
 	}
 	
-	public static void writeGlobalDistribution(Cohort cohort, String fileName) throws IOException {
+	/**
+	 * Wrapper method that will populate the global distribution stats with any set of data blocks
+	 * @param cohort - The set of transcripts that are being analyzed
+	 * @param fileName - The Excel file that the method will be writing too.
+	 * @throws IOException
+	 */
+	public static void writeGlobalDistribution(Cohort cohort, String fileName) throws IllegalArgumentException, IOException {
 		InputStream ExcelFileToRead = new FileInputStream(fileName);
 		XSSFWorkbook wb = new XSSFWorkbook(ExcelFileToRead);
-		XSSFSheet sheet = wb.createSheet("Global Distributions");
+		XSSFSheet sheet = wb.createSheet("GLOBAL DIST.");
 		wb.write(new FileOutputStream(fileName));
 		int rowIndex = 0;
+		
 		rowIndex = writeGlobalDistribution(cohort, rowIndex, fileName);
 		rowIndex = writeYearDistribution(cohort, rowIndex, fileName);
 		rowIndex = writeLocationDistribution(cohort, rowIndex, fileName);
 	}
 	
 	/**
-	 * Creates a new sheet for cohort data to be displayed and fills global distribution data
+	 * The global distribution of grades in every level for the entire cohort
 	 * @param cohort - A set of transcripts
+	 * @param index - The index for the row of the data set to start at.
+	 * @param fileName - The name of the excel file that the method will write to.
 	 * @throws IOException 
 	 */
-	public static int writeGlobalDistribution(Cohort cohort, int index, String fileName) throws IOException {
+	public static int writeGlobalDistribution(Cohort cohort, int index, String fileName) throws IOException, IllegalArgumentException {
 		InputStream ExcelFileToRead = new FileInputStream(fileName);
 		XSSFWorkbook wb = new XSSFWorkbook(ExcelFileToRead);
 		int rowIndex = index;
-		XSSFSheet sheet = wb.getSheet("Global Distributions");
+		XSSFSheet sheet = wb.getSheet("GLOBAL DIST.");
 		XSSFRow row = sheet.createRow(rowIndex);
 		XSSFCell cell = row.createCell(0);
 		
@@ -127,16 +142,18 @@ public class FileHandler {
 		return rowIndex + 4;
 	}
 	
-/**
+	/**
 	 * Writes the number of students in the year that they are currently in (or completed). 
 	 * @param cohort - A set of transcripts
- * @throws IOException 
+	 * @param index - The index for the row of the data set to start at.
+	 * @param fileName - The name of the excel file that the method will write to.
+	 * @throws IOException 
 	 */
-	public static int writeYearDistribution(Cohort cohort, int index, String fileName) throws IOException {
+	public static int writeYearDistribution(Cohort cohort, int index, String fileName) throws IOException, IllegalArgumentException {
 		int rowIndex = index;
 		InputStream ExcelFileToRead = new FileInputStream(fileName);
 		XSSFWorkbook wb = new XSSFWorkbook(ExcelFileToRead);
-		XSSFSheet sheet = wb.getSheet("Global Distributions");
+		XSSFSheet sheet = wb.getSheet("GLOBAL DIST.");
 		XSSFRow row = sheet.createRow(rowIndex);
 		XSSFCell cell = row.createCell(0);
 		
@@ -160,11 +177,18 @@ public class FileHandler {
 		return rowIndex + 4;
 	}
 	
-	public static int writeLocationDistribution(Cohort cohort, int index, String fileName) throws IOException {
+	/**
+	 * 
+	 * @param cohort - A set of transcripts
+	 * @param index - The index for the row of the data set to start at.
+	 * @param fileName - The name of the excel file that the method will write to.
+	 * @throws IOException
+	 */
+	public static int writeLocationDistribution(Cohort cohort, int index, String fileName) throws IOException, IllegalArgumentException {
 		int rowIndex = index;
 		InputStream ExcelFileToRead = new FileInputStream(fileName);
 		XSSFWorkbook wb = new XSSFWorkbook(ExcelFileToRead);
-		XSSFSheet sheet = wb.getSheet("Global Distributions");
+		XSSFSheet sheet = wb.getSheet("GLOBAL DIST.");
 		XSSFRow row = sheet.createRow(rowIndex);
 		XSSFCell cell = row.createCell(0);
 		
@@ -194,7 +218,9 @@ public class FileHandler {
 	 * @throws IOException
 	 */
 	public static void writeAreaDistribution(ArrayList<Course> sortedList, String fileName) throws FileNotFoundException, IOException {
-		XSSFSheet sheet = workbook.createSheet("Area Distribution");
+		InputStream ExcelFileToRead = new FileInputStream(fileName);
+		XSSFWorkbook wb = new XSSFWorkbook(ExcelFileToRead);
+		XSSFSheet sheet = wb.createSheet("Area Distribution");
 		XSSFRow row = sheet.createRow(0);
 		String columnHeaders[] = {"Area", "Others", "Fails", "Marginals","Meets", "Exceeds"};
 		for(int c = 0; c < columnHeaders.length; c++) {
@@ -220,7 +246,7 @@ public class FileHandler {
 			}
 			
 		}
-		workbook.write(new FileOutputStream("Results.xslx"));
+		wb.write(new FileOutputStream(fileName));
 	}
 	
 	/**
@@ -291,6 +317,13 @@ public class FileHandler {
 		return areaNames;
 	}
 			
+	/**
+	 * Gets the equivalences for sets of courses 
+	 * @param areaConfig - The excel file name to access the configuration data.
+	 * @return courses - The sets of courses that compose the equivalent courses
+	 * @throws IOException
+	 * @throws FileNotFoundException
+	 */
 	public static ArrayList<ArrayList<String>> getEquivalentCourses(String areaConfig) throws IOException, FileNotFoundException {
 		
 		InputStream ExcelFileToRead = new FileInputStream(areaConfig);
