@@ -127,35 +127,38 @@ public class GUI extends JFrame implements ActionListener {
 	    	  * @throws IOException - When transcripts cannot be opened
 	    	  */
 	         if (event.equals("Parse Transcripts")) { 
-	            if (parseCount > 0) {
+	            if (parseCount == 0) {
+	            	try {	 
+			             File directory = null;
+			             directory = TranscriptReader.getDirectory();
+			     			
+			             File[] transcriptSet = directory.listFiles();
+			     	     System.out.println("Transcript count: " + transcriptSet.length);
+			     	     
+			     	     LevelSchema.getSchemaConfig();
+			     	     cohort = TranscriptReader.parseTranscripts(transcriptSet);
+			     	     message.setText(transcriptSet.length + " transcripts successfully parsed.");
+			     	     excelButton.setVisible(true);
+			     	     message2.setVisible(true);
+			     	     //prints to console
+			     	     System.out.println(CourseList.printTextRawList());
+			     	     //Automatically prints cohorts global to the excel. 
+			     	     
+			     	     FileHandler.writeGlobalDistribution(cohort, fileName);
+			     	     AreaList.makeAreaList();
+
+			     	     parseCount++; 
+			        } catch (IllegalArgumentException e1) {
+			        	message.setText("Error parsing transcripts. May have already been parsed.");
+			        	message2.setText("Remove existing results from excel and parse transcripts again.");
+			        } catch (IOException e1) {
+						e1.printStackTrace();
+					}
+	            }
+	            if(parseCount > 0) {
 		        	message.setText("Transcripts in this cohort have already been parsed.");
 		        	throw new IllegalArgumentException();
 		        }
-		        try {	 
-		             File directory = null;
-		             directory = TranscriptReader.getDirectory();
-		     			
-		             File[] transcriptSet = directory.listFiles();
-		     	     System.out.println("Transcript count: " + transcriptSet.length);
-		     	     
-		     	     LevelSchema.getSchemaConfig();
-		     	     cohort = TranscriptReader.parseTranscripts(transcriptSet);
-		     	     message.setText(transcriptSet.length + " transcripts successfully parsed.");
-		     	     excelButton.setVisible(true);
-		     	     message2.setVisible(true);
-		     	     //prints to console
-		     	     System.out.println(CourseList.printTextRawList());
-		     	     //Automatically prints cohorts global to the excel. 
-		     	     
-		     	     FileHandler.writeGlobalDistribution(cohort, fileName);
-		     	     AreaList.makeAreaList();
-
-		     	     parseCount++; 
-		        } catch (IllegalArgumentException e1) {
-		        	message.setText("Error parsing transcripts. This cohort may have already been parsed.");
-		        } catch (IOException e1) {
-					e1.printStackTrace();
-				}
 	         }
 	         /**
 	          * Writes results to specified output file when clicked
@@ -179,12 +182,12 @@ public class GUI extends JFrame implements ActionListener {
 					retrieveMessage.setVisible(true);
 					listedFiles.setVisible(true);
 				} catch (FileNotFoundException e1) {
-					message.setText("File not found.");
+					message2.setText("File not found.");
 					e1.printStackTrace();
 				}catch(IllegalArgumentException ia) {
-					message.setText("This excel had already been written to. Please delete output sheets or define a new workbook");
+					message2.setText("This excel had already been written to. Please delete output sheets or define a new workbook");
 				}catch (IOException e1) {
-					message.setText("Failed to write to excel.");
+					message2.setText("Failed to write to excel.");
 					e1.printStackTrace();
 				}
 	         }
@@ -192,7 +195,8 @@ public class GUI extends JFrame implements ActionListener {
 	          * Lists the files in the system available to the user for further processing
 	          */
 	         if(event.equals("Retrieve Stored Files")){
-	        	 retrieveMessage.setText("The following files are available for further processing:\n" + FileHandler.retrieveStoredFiles());	 
+	        	 retrieveMessage.setText("The following files are available for further processing:\n");	
+	        	 listedFiles.setText(FileHandler.retrieveStoredFiles() + fileName);
 	         }
 }
 	    /**
@@ -202,7 +206,7 @@ public class GUI extends JFrame implements ActionListener {
 	    private static String readInFile() {
 	    	String source = System.getProperty("user.dir");
 	    	JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setDialogTitle("Select your Config File"); //name for chooser
+            fileChooser.setDialogTitle("Select your config File"); //name for chooser
             //FileNameExtensionFilter filter = new FileNameExtensionFilter("Files", ".xlsx"); //filter to show only that
             fileChooser.setAcceptAllFileFilterUsed(false); //to show or not all other files
             //fileChooser.addChoosableFileFilter(filter);
