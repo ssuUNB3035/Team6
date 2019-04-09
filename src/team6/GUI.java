@@ -3,9 +3,15 @@ package team6;
  * @author Uwera Ntaganzwa
  */
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -89,10 +95,9 @@ public class GUI extends JFrame implements ActionListener {
 		     	     //prints to console
 		     	     System.out.println(CourseList.printTextRawList());
 		     	     //Automatically prints cohorts global to the excel. 
-		     	     
-		     	     FileHandler.writeGlobalDistribution(cohort, fileName);
+	        		
 		     	     AreaList.makeAreaList();
-
+		     	     
 		     	     parseCount++; 
 		        } catch (IllegalArgumentException e1) {
 		        	message.setText("Error parsing transcripts. One or more files may be corrupted.");
@@ -105,12 +110,15 @@ public class GUI extends JFrame implements ActionListener {
 	        	 if (writeCount > 0) {
 			        	message.setText("A results workbook has already been created.");
 			        	throw new IllegalArgumentException();
-			        }
+			      }
+	        	 
 	        	  sortedList = CourseList.getCourseList();
 	        	  
 	        	  try {
+
 					FileHandler.writeRawList(sortedList, fileName);
 					FileHandler.writeMasterList(cohort, fileName);
+					FileHandler.writeGlobalDistribution(cohort, fileName);
 					FileHandler.writeAreaDistribution(AreaList.getAreas(), fileName);
 					message2.setText("Results have been written to an excel workbook.");
 					retrieveFilesButton.setVisible(true);
@@ -137,11 +145,11 @@ public class GUI extends JFrame implements ActionListener {
 	    private static String readInFile() {
 	    	String source = System.getProperty("user.dir");
 	    	JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setDialogTitle("Select your Config File"); //name for chooser
-            //FileNameExtensionFilter filter = new FileNameExtensionFilter("Files", ".xlsx"); //filter to show only that
-            fileChooser.setAcceptAllFileFilterUsed(false); //to show or not all other files
-            //fileChooser.addChoosableFileFilter(filter);
-            fileChooser.setSelectedFile(new File(source)); //when you want to show the name of file into the chooser
+            fileChooser.setDialogTitle("Select your input file, that includes Area & the Course Equivalences");
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Files", "xlsx");
+            fileChooser.setAcceptAllFileFilterUsed(false);
+            fileChooser.addChoosableFileFilter(filter);
+            fileChooser.setSelectedFile(new File(source));
             fileChooser.setVisible(true);
             int result = fileChooser.showOpenDialog(fileChooser);
             

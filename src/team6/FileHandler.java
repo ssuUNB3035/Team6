@@ -34,9 +34,7 @@ public class FileHandler {
 		InputStream ExcelFileToRead = new FileInputStream(fileName);
 		XSSFWorkbook wb = new XSSFWorkbook(ExcelFileToRead);
 		XSSFSheet sheet = wb.createSheet("RAW");
-		
 		XSSFRow row = sheet.createRow(0);
-		
 
 		String columnHeaders[] = {"Course Number", "Course Name", "Others", "Fails", "Marginal","Meets", "Exceeds"};
 
