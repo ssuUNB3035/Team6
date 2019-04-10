@@ -207,7 +207,7 @@ public class GUI extends JFrame implements ActionListener {
 	    private static String readInFile() {
 	    	String source = System.getProperty("user.dir");
 	    	JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setDialogTitle("Select your config File"); //name for chooser
+            fileChooser.setDialogTitle("Select your excel output File"); //name for chooser
             //FileNameExtensionFilter filter = new FileNameExtensionFilter("Files", ".xlsx"); //filter to show only that
             fileChooser.setAcceptAllFileFilterUsed(false); //to show or not all other files
             //fileChooser.addChoosableFileFilter(filter);
