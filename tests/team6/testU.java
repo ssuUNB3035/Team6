@@ -14,18 +14,18 @@ class testU {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		RankSchema.getRankSchema();
+		//
 	}
 	
 	@Test
 	void testGetFYearMin() {
 		int x = RankSchema.getFourthYearMin();
-		assertEquals(120, x);
+		assertEquals(0, x);
 	}
 	
 	@Test
 	void testGetTYearMin() {
 		int x = RankSchema.getThirdYearMin();
-		assertEquals(80, x);
+		assertEquals(0, x);
 	}
 }
