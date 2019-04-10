@@ -127,6 +127,7 @@ public class GUI extends JFrame implements ActionListener {
 	    	  * @throws IOException - When transcripts cannot be opened
 	    	  */
 	         if (event.equals("Parse Transcripts")) { 
+	        	
 	            if (parseCount == 0) {
 	            	try {	 
 			             File directory = null;
@@ -155,10 +156,10 @@ public class GUI extends JFrame implements ActionListener {
 						e1.printStackTrace();
 					}
 	            }
-	            if(parseCount > 0) {
+	            if(parseCount > 1) {
 		        	message.setText("Transcripts in this cohort have already been parsed.");
 		        	throw new IllegalArgumentException();
-		        }
+		    }
 	         }
 	         /**
 	          * Writes results to specified output file when clicked
